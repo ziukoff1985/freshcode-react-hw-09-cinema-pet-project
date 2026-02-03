@@ -18,6 +18,7 @@ function Layout() {
                         padding: '0px',
                         backgroundColor: 'gray',
                         minHeight: '10vh',
+                        alignContent: 'center',
                     }}
                 >
                     <Header />
@@ -25,23 +26,38 @@ function Layout() {
                 <Grid
                     container
                     direction='row'
-                    sx={{ padding: '0px', minHeight: '80vh' }}
+                    sx={{
+                        padding: '0px',
+                        minHeight: '80vh',
+                    }}
                 >
                     <Grid
                         size={{ xs: 2 }}
-                        sx={{ padding: '0px', backgroundColor: 'teal' }}
+                        sx={{
+                            padding: '0px',
+                            backgroundColor: 'teal',
+                            alignContent: 'center',
+                        }}
                     >
                         <NavBar />
                     </Grid>
                     <Grid
                         size={{ xs: 7 }}
-                        sx={{ padding: '0px', backgroundColor: 'pink' }}
+                        sx={{
+                            padding: '0px',
+                            backgroundColor: 'pink',
+                            alignContent: 'center',
+                        }}
                     >
                         <Outlet />
                     </Grid>
                     <Grid
                         size={{ xs: 3 }}
-                        sx={{ padding: '0px', backgroundColor: 'yellow' }}
+                        sx={{
+                            padding: '0px',
+                            backgroundColor: 'yellow',
+                            alignContent: 'center',
+                        }}
                     >
                         <CinemaService />
                     </Grid>
@@ -52,6 +68,7 @@ function Layout() {
                         padding: '0px',
                         backgroundColor: 'skyblue',
                         minHeight: '10vh',
+                        alignContent: 'center',
                     }}
                 >
                     <Footer />

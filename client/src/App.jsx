@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 
-import './App.css';
 import Layout from './components/Layout/Layout';
 import HomePage from './pages/HomePage/HomePage';
 import MoviesPage from './pages/Movies/MoviesPage';
@@ -18,16 +17,40 @@ function App() {
         <Routes>
             <Route path='/*' element={<Layout />}>
                 <Route index element={<HomePage />} />
-                <Route path='movies' element={<MoviesPage />} />
-                <Route path='movies/:id' element={<MovieDetailsPage />} />
-                <Route path='actors' element={<ActorsPage />} />
-                <Route path='actors/:id' element={<ActorDetailsPage />} />
-                <Route path='directors' element={<DirectorsPage />} />
-                <Route path='directors/:id' element={<DirectorDetailsPage />} />
-                <Route path='studios' element={<StudiosPage />} />
-                <Route path='studios/:id' element={<StudioDetailsPage />} />
-                <Route path='*' element={<NotFoundPage />} />
+                <Route path='movies'>
+                    <Route index element={<MoviesPage />} />
+                    <Route path='new' element={<MoviesPage />} />
+                    <Route path=':id'>
+                        <Route index element={<MovieDetailsPage />} />
+                        <Route path='edit' element={<MovieDetailsPage />} />
+                    </Route>
+                </Route>
+                <Route path='actors'>
+                    <Route index element={<ActorsPage />} />
+                    <Route path='new' element={<ActorsPage />} />
+                    <Route path=':id'>
+                        <Route index element={<ActorDetailsPage />} />
+                        <Route path='edit' element={<ActorDetailsPage />} />
+                    </Route>
+                </Route>
+                <Route path='directors'>
+                    <Route index element={<DirectorsPage />} />
+                    <Route path='new' element={<DirectorsPage />} />
+                    <Route path=':id'>
+                        <Route index element={<DirectorDetailsPage />} />
+                        <Route path='edit' element={<DirectorDetailsPage />} />
+                    </Route>
+                </Route>
+                <Route path='studios'>
+                    <Route index element={<StudiosPage />} />
+                    <Route path='new' element={<StudiosPage />} />
+                    <Route path=':id'>
+                        <Route index element={<StudioDetailsPage />} />
+                        <Route path='edit' element={<StudioDetailsPage />} />
+                    </Route>
+                </Route>
             </Route>
+            <Route path='*' element={<NotFoundPage />} />
         </Routes>
     );
 }
