@@ -1,0 +1,148 @@
+{
+    "actors": [
+        {
+            "id": 1,
+            "movies": [
+                "Indiana Jones",
+                "The Star Wars",
+                "Patriot Games",
+                "Gentelmens of Fortune"
+            ],
+            "fullName": "Harrison Ford",
+            "birthDate": "1942-01-01",
+            "nationality": "USA",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/0/07/Harrison_Ford_-_Televerse_2025_%28cropped%29.jpg"
+        },
+        {
+            "id": 2,
+            "movies": [
+                "Pirates of the Caribbean",
+                "The Tourist",
+                "Alice in Wonderland",
+                "Sleepy Hollow"
+            ],
+            "fullName": "Johnny Depp",
+            "birthDate": "1963-06-09",
+            "nationality": "USA",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
+        },
+        {
+            "id": 3,
+            "movies": ["Alien", "Avatar", "Star Wars", "The Matrix"],
+            "fullName": "Sigourney Weaver",
+            "birthDate": "1949-10-10",
+            "nationality": "USA",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg/960px-Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg"
+        }
+    ],
+    "directors": [
+        {
+            "id": 1,
+            "fullName": "Steven Spielberg",
+            "birthYear": "1946-12-18",
+            "nationality": "USA",
+            "movies": [
+                "Indiana Jones",
+                "The Star Wars",
+                "Patriot Games",
+                "Gentelmens of Fortune"
+            ],
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/MKr25402_Steven_Spielberg_%28Berlinale_2023%29_%283x4_cropped%29.jpg/960px-MKr25402_Steven_Spielberg_%28Berlinale_2023%29_%283x4_cropped%29.jpg"
+        },
+        {
+            "id": 2,
+            "fullName": "James Cameron",
+            "birthYear": "1954-08-16",
+            "nationality": "Canada",
+            "movies": [
+                "Pirates of the Caribbean",
+                "The Tourist",
+                "Alice in Wonderland",
+                "Sleepy Hollow"
+            ],
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/James_Cameron_13_Dec_2025.jpg/960px-James_Cameron_13_Dec_2025.jpg"
+        },
+        {
+            "id": 3,
+            "fullName": "Quentin Tarantino",
+            "birthYear": "1963-03-27",
+            "nationality": "USA",
+            "movies": ["Alien", "Avatar", "Star Wars", "The Matrix"],
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Quentin_Tarantino_by_Gage_Skidmore.jpg/960px-Quentin_Tarantino_by_Gage_Skidmore.jpg"
+        }
+    ],
+    "studios": [
+        {
+            "id": 1,
+            "title": "Lucasfilm",
+            "location": "San Francisco, USA",
+            "foundationYear": 1971,
+            "movies": [
+                "Indiana Jones",
+                "The Star Wars",
+                "Patriot Games",
+                "Gentelmens of Fortune"
+            ],
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Lucasfilm_Games_logo.svg/2560px-Lucasfilm_Games_logo.svg.png"
+        },
+        {
+            "id": 2,
+            "title": "20th Century Studios",
+            "location": "Los Angeles, USA",
+            "foundationYear": 1935,
+            "movies": [
+                "Pirates of the Caribbean",
+                "The Tourist",
+                "Alice in Wonderland",
+                "Sleepy Hollow"
+            ],
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/20th_Century_Studios_%282020%29.svg/960px-20th_Century_Studios_%282020%29.svg.png"
+        },
+        {
+            "id": 3,
+            "title": "Paramount Pictures",
+            "location": "Los Angeles, USA",
+            "foundationYear": 1912,
+            "movies": ["Alien", "Avatar", "Star Wars", "The Matrix"],
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Paramount_Pictures_with_Skydance_byline.svg/1280px-Paramount_Pictures_with_Skydance_byline.svg.png"
+        }
+    ],
+    "movies": [
+        {
+            "id": 1,
+            "title": "Indiana Jones",
+            "releaseYear": 1980,
+            "director": "Steven Spielberg",
+            "studios": "Lucasfilm",
+            "actors": ["John Doe", "Sigourney Weaver"],
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/7/79/Indiana-jones-raiders-of-lost-ark-poster.jpg"
+        },
+        {
+            "id": 2,
+            "title": "The Star Wars",
+            "releaseYear": 1977,
+            "director": "James Cameron",
+            "studios": "20th Century Studios",
+            "actors": ["John Doe", "Johnny Depp"],
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/8/87/StarWarsMoviePoster1977.jpg"
+        },
+        {
+            "id": 3,
+            "title": "Patriot Games",
+            "releaseYear": 1992,
+            "director": "Steven Spielberg",
+            "studios": "Lucasfilm",
+            "actors": ["John Doe", "Sigourney Weaver"],
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/2/2a/Patriot_games_film_poster.jpg"
+        },
+        {
+            "id": 4,
+            "title": "Pulp Fiction",
+            "releaseYear": 1998,
+            "director": "Quentin Tarantino",
+            "studios": "Paramount Pictures",
+            "actors": ["John Doe", "Sigourney Weaver"],
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/9/93/Pulp_Fiction.jpg"
+        }
+    ]
+}
