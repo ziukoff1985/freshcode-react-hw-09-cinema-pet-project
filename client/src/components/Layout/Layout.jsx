@@ -7,73 +7,66 @@ import CinemaService from '../ServiceBar/CinemaService';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
-function Layout() {
+function Layout({ toggleMode, mode }) {
     return (
-        <Box>
-            <Grid container direction='column'>
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: '100vh',
+            }}
+        >
+            {/* HEADER */}
+            <Paper
+                square
+                elevation={4}
+                sx={{ p: 1, backgroundColor: 'primary.main', color: 'white' }}
+            >
+                <Header toggleTheme={toggleMode} mode={mode} />
+            </Paper>
+
+            <Grid container sx={{ flexGrow: 1 }}>
+                {/* NAVIGATION (SIDEBAR) */}
                 <Grid
-                    size={{ xs: 12 }}
-                    sx={{
-                        padding: '0px',
-                        backgroundColor: 'gray',
-                        minHeight: '10vh',
-                        alignContent: 'center',
-                    }}
+                    size={{ xs: 12, md: 2 }}
+                    sx={{ borderRight: 1, borderColor: 'divider' }}
                 >
-                    <Header />
+                    <NavBar />
                 </Grid>
-                <Grid
-                    container
-                    direction='row'
-                    sx={{
-                        padding: '0px',
-                        minHeight: '80vh',
-                    }}
-                >
-                    <Grid
-                        size={{ xs: 2 }}
-                        sx={{
-                            padding: '0px',
-                            backgroundColor: 'teal',
-                            alignContent: 'center',
-                        }}
-                    >
-                        <NavBar />
-                    </Grid>
-                    <Grid
-                        size={{ xs: 7 }}
-                        sx={{
-                            padding: '0px',
-                            backgroundColor: 'pink',
-                            alignContent: 'center',
-                        }}
-                    >
-                        <Outlet />
-                    </Grid>
-                    <Grid
-                        size={{ xs: 3 }}
-                        sx={{
-                            padding: '0px',
-                            backgroundColor: 'yellow',
-                            alignContent: 'center',
-                        }}
-                    >
-                        <CinemaService />
-                    </Grid>
+
+                {/* MAIN CONTENT */}
+                <Grid size={{ xs: 12, md: 7 }} component='main' sx={{ p: 2 }}>
+                    <Outlet />
                 </Grid>
+
+                {/* SERVICE BAR */}
                 <Grid
-                    size={{ xs: 12 }}
+                    size={{ xs: 12, md: 3 }}
                     sx={{
-                        padding: '0px',
-                        backgroundColor: 'skyblue',
-                        minHeight: '10vh',
-                        alignContent: 'center',
+                        borderLeft: 1,
+                        borderColor: 'divider',
+                        bgcolor: 'background.paper',
                     }}
                 >
-                    <Footer />
+                    <CinemaService />
                 </Grid>
             </Grid>
+
+            {/* FOOTER */}
+            <Paper
+                square
+                sx={{
+                    p: 2,
+                    mt: 'auto',
+                    textAlign: 'center',
+                    borderTop: 1,
+                    borderColor: 'divider',
+                }}
+            >
+                <Footer />
+            </Paper>
         </Box>
     );
 }
