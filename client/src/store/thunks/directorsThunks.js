@@ -56,10 +56,10 @@ export const updateDirector = createAsyncThunk(
 
 export const deleteDirector = createAsyncThunk(
     `${DIRECTORS_SLICE_NAME}/deleteDirector`,
-    async (id, thunkAPI) => {
+    async (directorId, thunkAPI) => {
         try {
-            const { data } = await api.delete(`/directors/${id}`);
-            return data;
+            await api.delete(`/directors/${directorId}`);
+            return directorId;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }

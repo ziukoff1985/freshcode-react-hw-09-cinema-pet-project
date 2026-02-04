@@ -55,10 +55,10 @@ export const updateStudio = createAsyncThunk(
 
 export const deleteStudio = createAsyncThunk(
     `${STUDIOS_SLICE_NAME}/deleteStudio`,
-    async (id, thunkAPI) => {
+    async (studioId, thunkAPI) => {
         try {
-            const { data } = await api.delete(`/studios/${id}`);
-            return data;
+            await api.delete(`/studios/${studioId}`);
+            return studioId;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }

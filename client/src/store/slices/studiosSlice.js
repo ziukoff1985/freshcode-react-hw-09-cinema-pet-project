@@ -67,7 +67,7 @@ const studiosSlice = createSlice({
                 state.isPending = false;
                 state.error = null;
                 state.studios = state.studios.filter(
-                    (studio) => studio.id !== action.payload.id,
+                    (studio) => studio.id !== action.payload,
                 );
                 state.currentStudio = null;
                 state.studioForEdit =

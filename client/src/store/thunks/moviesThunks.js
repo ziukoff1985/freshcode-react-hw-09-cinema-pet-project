@@ -56,10 +56,10 @@ export const updateMovie = createAsyncThunk(
 
 export const deleteMovie = createAsyncThunk(
     `${MOVIES_SLICE_NAME}/deleteMovie`,
-    async (id, thunkAPI) => {
+    async (movieId, thunkAPI) => {
         try {
-            const { data } = await api.delete(`/movies/${id}`);
-            return data;
+            await api.delete(`/movies/${movieId}`);
+            return movieId;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }

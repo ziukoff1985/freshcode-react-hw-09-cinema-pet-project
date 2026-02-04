@@ -56,10 +56,10 @@ export const updateActor = createAsyncThunk(
 
 export const deleteActor = createAsyncThunk(
     `${ACTORS_SLICE_NAME}/deleteActor`,
-    async (id, thunkAPI) => {
+    async (actorId, thunkAPI) => {
         try {
-            const { data } = await api.delete(`/actors/${id}`);
-            return data;
+            await api.delete(`/actors/${actorId}`);
+            return actorId;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }

@@ -64,7 +64,7 @@ const moviesSlice = createSlice({
                 state.isPending = false;
                 state.error = null;
                 state.movies = state.movies.filter(
-                    (movie) => movie.id !== action.payload.id,
+                    (movie) => movie.id !== action.payload,
                 );
                 state.currentMovie = null;
                 state.movieForEdit =

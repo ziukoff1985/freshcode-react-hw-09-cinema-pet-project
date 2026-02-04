@@ -1,17 +1,98 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { ACTORS_SLICE_NAME, EMPTY_ACTOR_DATA } from '../../constants/constants';
+import {
+    createActor,
+    deleteActor,
+    getActorById,
+    getAllActors,
+    updateActor,
+} from '../thunks/actorsThunks';
 
 const initialState = {
     actors: [],
+    currentActor: null,
     actorForEdit: EMPTY_ACTOR_DATA,
     isPending: false,
     error: null,
 };
 
+export const setIsPending = (state) => {
+    state.isPending = true;
+    state.error = null;
+};
+
+export const setError = (state, action) => {
+    state.isPending = false;
+    state.error = action.payload;
+};
+
 const actorsSlice = createSlice({
     name: ACTORS_SLICE_NAME,
     initialState,
-    reducers: {},
+    reducers: {
+        setActorForEdit: (state, action) => {
+            state.actorForEdit = action.payload;
+        },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getAllActors.fulfilled, (state, action) => {
+                state.isPending = false;
+                state.error = null;
+                state.actors = action.payload;
+            })
+            .addCase(getActorById.fulfilled, (state, action) => {
+                state.isPending = false;
+                state.error = null;
+                state.currentActor = action.payload;
+            })
+            .addCase(createActor.fulfilled, (state, action) => {
+                state.isPending = false;
+                state.error = null;
+                state.actors.push(action.payload);
+            })
+            .addCase(updateActor.fulfilled, (state, action) => {
+                state.isPending = false;
+                state.error = null;
+                state.actors = state.actors.map((actor) =>
+                    actor.id === action.payload.id ? action.payload : actor,
+                );
+                state.currentActor = null;
+                state.actorForEdit = action.payload;
+            })
+            .addCase(deleteActor.fulfilled, (state, action) => {
+                state.isPending = false;
+                state.error = null;
+                state.actors = state.actors.filter(
+                    (actor) => actor.id !== action.payload,
+                );
+                state.currentActor = null;
+                state.actorForEdit =
+                    state.actorForEdit.id === action.payload
+                        ? EMPTY_ACTOR_DATA
+                        : state.actorForEdit;
+            })
+            .addMatcher(
+                isAnyOf(
+                    getAllActors.pending,
+                    getActorById.pending,
+                    createActor.pending,
+                    updateActor.pending,
+                    deleteActor.pending,
+                ),
+                setIsPending,
+            )
+            .addMatcher(
+                isAnyOf(
+                    getAllActors.rejected,
+                    getActorById.rejected,
+                    createActor.rejected,
+                    updateActor.rejected,
+                    deleteActor.rejected,
+                ),
+                setError,
+            );
+    },
 });
 
 export default actorsSlice.reducer;
