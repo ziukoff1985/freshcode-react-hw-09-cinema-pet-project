@@ -1,8 +1,9 @@
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import { Link } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 
 import StudiosList from '../../components/Lists/StudiosList';
+import StudioDetailsPage from './StudioDetailsPage';
 
 function StudiosPage() {
     return (
@@ -12,8 +13,18 @@ function StudiosPage() {
                     <Button>Add studio</Button>
                 </Link>
             </Stack>
+            <Stack>
+                <Link to='/studios/1/edit'>
+                    <Button>Edit studio</Button>
+                </Link>
+            </Stack>
             <div>StudiosPage</div>
-            <StudiosList />
+            <Routes>
+                <Route index element={<StudiosList />} />
+                <Route path='new' element={<StudiosList />} />
+                <Route path=':id' element={<StudioDetailsPage />} />
+                <Route path=':id/edit' element={<StudioDetailsPage />} />
+            </Routes>
         </>
     );
 }

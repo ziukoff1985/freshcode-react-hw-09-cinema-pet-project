@@ -1,8 +1,9 @@
 import Stack from '@mui/material/Stack';
-import { Link } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 import DirectorsList from '../../components/Lists/DirectorsList';
+import DirectorDetailsPage from './DirectorDetailsPage';
 
 function DirectorsPage() {
     return (
@@ -12,8 +13,18 @@ function DirectorsPage() {
                     <Button>Add director</Button>
                 </Link>
             </Stack>
+            <Stack>
+                <Link to='/directors/1/edit'>
+                    <Button>Edit director</Button>
+                </Link>
+            </Stack>
             <div>DirectorsPage</div>
-            <DirectorsList />
+            <Routes>
+                <Route index element={<DirectorsList />} />
+                <Route path='new' element={<DirectorsList />} />
+                <Route path=':id' element={<DirectorDetailsPage />} />
+                <Route path=':id/edit' element={<DirectorDetailsPage />} />
+            </Routes>
         </>
     );
 }

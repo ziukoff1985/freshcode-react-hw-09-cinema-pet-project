@@ -12,7 +12,7 @@ function Header({ toggleTheme, mode }) {
                 px: 2,
             }}
         >
-            <Typography variant='h6'>MovieDB Pet Project</Typography>
+            <Typography variant='h6'>Cinema Manager</Typography>
             <IconButton onClick={toggleTheme} color='inherit'>
                 {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton>

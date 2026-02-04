@@ -29,7 +29,6 @@ function CinemaService() {
                     }
                 />
             </Routes>
-            {/* <Outlet /> */}
         </Box>
     );
 }

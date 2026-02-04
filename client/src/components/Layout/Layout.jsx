@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import NavBar from '../NavBar/NavBar';
+import NavBar from '../Navigation/NavBar';
 import CinemaService from '../ServiceBar/CinemaService';
 
 import Box from '@mui/material/Box';
@@ -22,7 +22,11 @@ function Layout({ toggleMode, mode }) {
             <Paper
                 square
                 elevation={4}
-                sx={{ p: 1, backgroundColor: 'primary.main', color: 'white' }}
+                sx={{
+                    p: 2,
+                    backgroundColor: 'background.header',
+                    color: 'white',
+                }}
             >
                 <Header toggleTheme={toggleMode} mode={mode} />
             </Paper>
@@ -31,7 +35,11 @@ function Layout({ toggleMode, mode }) {
                 {/* NAVIGATION (SIDEBAR) */}
                 <Grid
                     size={{ xs: 12, md: 2 }}
-                    sx={{ borderRight: 1, borderColor: 'divider' }}
+                    sx={{
+                        borderRight: 1,
+                        borderColor: 'divider',
+                        bgcolor: 'background.paper',
+                    }}
                 >
                     <NavBar />
                 </Grid>
@@ -57,12 +65,11 @@ function Layout({ toggleMode, mode }) {
             {/* FOOTER */}
             <Paper
                 square
+                elevation={4}
                 sx={{
                     p: 2,
+                    backgroundColor: 'background.header',
                     mt: 'auto',
-                    textAlign: 'center',
-                    borderTop: 1,
-                    borderColor: 'divider',
                 }}
             >
                 <Footer />
