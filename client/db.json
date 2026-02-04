@@ -8,7 +8,8 @@
                 "Patriot Games",
                 "Gentelmens of Fortune"
             ],
-            "fullName": "Harrison Ford",
+            "firstName": "Harrison",
+            "lastName": "Ford",
             "birthDate": "1942-01-01",
             "nationality": "USA",
             "image": "https://upload.wikimedia.org/wikipedia/commons/0/07/Harrison_Ford_-_Televerse_2025_%28cropped%29.jpg"
@@ -21,7 +22,8 @@
                 "Alice in Wonderland",
                 "Sleepy Hollow"
             ],
-            "fullName": "Johnny Depp",
+            "firstName": "Johnny",
+            "lastName": "Depp",
             "birthDate": "1963-06-09",
             "nationality": "USA",
             "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
@@ -29,7 +31,8 @@
         {
             "id": 3,
             "movies": ["Alien", "Avatar", "Star Wars", "The Matrix"],
-            "fullName": "Sigourney Weaver",
+            "firstName": "Sigourney",
+            "lastName": "Weaver",
             "birthDate": "1949-10-10",
             "nationality": "USA",
             "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg/960px-Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg"
@@ -38,36 +41,33 @@
     "directors": [
         {
             "id": 1,
-            "fullName": "Steven Spielberg",
-            "birthYear": "1946-12-18",
+            "firstName": "Steven",
+            "lastName": "Spielberg",
+            "birthYear": "1946",
             "nationality": "USA",
             "movies": [
-                "Indiana Jones",
-                "The Star Wars",
-                "Patriot Games",
-                "Gentelmens of Fortune"
+                "Indiana Johns",
+                "Schindler's List",
+                "Saving Private Ryan"
             ],
             "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/MKr25402_Steven_Spielberg_%28Berlinale_2023%29_%283x4_cropped%29.jpg/960px-MKr25402_Steven_Spielberg_%28Berlinale_2023%29_%283x4_cropped%29.jpg"
         },
         {
             "id": 2,
-            "fullName": "James Cameron",
-            "birthYear": "1954-08-16",
+            "firstName": "James",
+            "lastName": "Cameron",
+            "birthYear": "1954",
             "nationality": "Canada",
-            "movies": [
-                "Pirates of the Caribbean",
-                "The Tourist",
-                "Alice in Wonderland",
-                "Sleepy Hollow"
-            ],
+            "movies": ["Rambo", "Terminator", "Avatar"],
             "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/James_Cameron_13_Dec_2025.jpg/960px-James_Cameron_13_Dec_2025.jpg"
         },
         {
             "id": 3,
-            "fullName": "Quentin Tarantino",
-            "birthYear": "1963-03-27",
+            "firstName": "Quentin",
+            "lastName": "Tarantino",
+            "birthYear": "1963",
             "nationality": "USA",
-            "movies": ["Alien", "Avatar", "Star Wars", "The Matrix"],
+            "movies": ["Alien", "Avatar", "Star Wars"],
             "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Quentin_Tarantino_by_Gage_Skidmore.jpg/960px-Quentin_Tarantino_by_Gage_Skidmore.jpg"
         }
     ],
@@ -110,39 +110,48 @@
     "movies": [
         {
             "id": 1,
-            "title": "Indiana Jones",
+            "title": "Indiana Johns",
+            "directors": ["Stiven Spilberg"],
+            "actors": ["Harrison  Ford", "Sean Connery"],
+            "studios": ["Lukas Film"],
             "releaseYear": 1980,
-            "director": "Steven Spielberg",
-            "studios": "Lucasfilm",
-            "actors": ["John Doe", "Sigourney Weaver"],
-            "poster": "https://upload.wikimedia.org/wikipedia/ru/7/79/Indiana-jones-raiders-of-lost-ark-poster.jpg"
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/8/8b/IJandCrystalSkull.jpg/220px-IJandCrystalSkull.jpg"
         },
         {
             "id": 2,
-            "title": "The Star Wars",
-            "releaseYear": 1977,
-            "director": "James Cameron",
-            "studios": "20th Century Studios",
-            "actors": ["John Doe", "Johnny Depp"],
-            "poster": "https://upload.wikimedia.org/wikipedia/ru/8/87/StarWarsMoviePoster1977.jpg"
+            "title": "Alien",
+            "directors": ["Ridley Scott"],
+            "actors": ["Sigourney Weaver"],
+            "studios": ["20th Century Studios, Inc."],
+            "releaseYear": 1979,
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/c/c3/Alien_movie_poster.jpg/232px-Alien_movie_poster.jpg"
         },
         {
             "id": 3,
-            "title": "Patriot Games",
-            "releaseYear": 1992,
-            "director": "Steven Spielberg",
-            "studios": "Lucasfilm",
-            "actors": ["John Doe", "Sigourney Weaver"],
-            "poster": "https://upload.wikimedia.org/wikipedia/ru/2/2a/Patriot_games_film_poster.jpg"
+            "title": "Aliens",
+            "directors": ["James Cameron"],
+            "actors": ["Sigourney Weaver"],
+            "studios": ["20th Century Studios, Inc."],
+            "releaseYear": 1986,
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/f/fb/Aliens_poster.jpg/196px-Aliens_poster.jpg"
         },
         {
             "id": 4,
-            "title": "Pulp Fiction",
-            "releaseYear": 1998,
-            "director": "Quentin Tarantino",
-            "studios": "Paramount Pictures",
-            "actors": ["John Doe", "Sigourney Weaver"],
-            "poster": "https://upload.wikimedia.org/wikipedia/ru/9/93/Pulp_Fiction.jpg"
+            "title": "Pirates of the Caribbean:",
+            "directors": ["Gregor (Gore) Verbinski"],
+            "actors": ["Johnny Depp", "Orlando Bloom"],
+            "studios": ["Walt Disney Pictures"],
+            "releaseYear": 2001,
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/7/79/Pirates-of-the-Caribbean-The-Curse-of-the-Black-Pearl-.jpg/201px-Pirates-of-the-Caribbean-The-Curse-of-the-Black-Pearl-.jpg"
+        },
+        {
+            "id": 5,
+            "title": "The Lord Of The Rings",
+            "directors": ["Peter Jackson"],
+            "actors": ["Elijah Wood", "Ian McKellen"],
+            "studios": ["New Line Cinema "],
+            "releaseYear": 2001,
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/0/08/The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_%E2%80%94_movie.jpg/203px-The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_%E2%80%94_movie.jpg"
         }
     ]
 }
