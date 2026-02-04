@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { DIRECTORS_SLICE_NAME } from '../../constants/constants';
+import {
+    DIRECTORS_SLICE_NAME,
+    EMPTY_DIRECTOR_DATA,
+} from '../../constants/constants';
 
 const initialState = {
     directors: [],
-    directorForEdit: null,
-    isLoading: false,
+    directorForEdit: EMPTY_DIRECTOR_DATA,
+    isPending: false,
     error: null,
 };
 

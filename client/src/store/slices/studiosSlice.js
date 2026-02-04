@@ -1,17 +1,101 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { STUDIOS_SLICE_NAME } from '../../constants/constants';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import {
+    STUDIOS_SLICE_NAME,
+    EMPTY_STUDIO_DATA,
+} from '../../constants/constants';
+import {
+    createStudio,
+    deleteStudio,
+    getAllStudios,
+    getStudioById,
+    updateStudio,
+} from '../thunks/studiosThunks';
 
 const initialState = {
     studios: [],
-    studioForEdit: null,
-    isLoading: false,
+    currentStudio: null,
+    studioForEdit: EMPTY_STUDIO_DATA,
+    isPending: false,
     error: null,
+};
+
+const setError = (state, action) => {
+    state.isPending = false;
+    state.error = action.payload;
+};
+
+const setIsPending = (state) => {
+    state.isPending = true;
+    state.error = null;
 };
 
 const studiosSlice = createSlice({
     name: STUDIOS_SLICE_NAME,
     initialState,
-    reducers: {},
+    reducers: {
+        setStudioForEdit: (state, action) => {
+            state.studioForEdit = action.payload;
+        },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getAllStudios.fulfilled, (state, action) => {
+                state.isPending = false;
+                state.error = null;
+                state.studios = action.payload;
+            })
+            .addCase(getStudioById.fulfilled, (state, action) => {
+                state.isPending = false;
+                state.error = null;
+                state.currentStudio = action.payload;
+            })
+            .addCase(createStudio.fulfilled, (state, action) => {
+                state.isPending = false;
+                state.error = null;
+                state.studios.push(action.payload);
+            })
+            .addCase(updateStudio.fulfilled, (state, action) => {
+                state.isPending = false;
+                state.error = null;
+                state.studios = state.studios.map((studio) =>
+                    studio.id === action.payload.id ? action.payload : studio,
+                );
+                state.currentStudio = null;
+                state.studioForEdit = action.payload;
+            })
+            .addCase(deleteStudio.fulfilled, (state, action) => {
+                state.isPending = false;
+                state.error = null;
+                state.studios = state.studios.filter(
+                    (studio) => studio.id !== action.payload.id,
+                );
+                state.currentStudio = null;
+                state.studioForEdit =
+                    state.studioForEdit.id === action.payload
+                        ? EMPTY_STUDIO_DATA
+                        : state.studioForEdit;
+            })
+            .addMatcher(
+                isAnyOf(
+                    getAllStudios.pending,
+                    getStudioById.pending,
+                    createStudio.pending,
+                    updateStudio.pending,
+                    deleteStudio.pending,
+                ),
+                setIsPending,
+            )
+            .addMatcher(
+                isAnyOf(
+                    getAllStudios.rejected,
+                    getStudioById.rejected,
+                    createStudio.rejected,
+                    updateStudio.rejected,
+                    deleteStudio.rejected,
+                ),
+                setError,
+            );
+    },
 });
 
 export default studiosSlice.reducer;
