@@ -141,14 +141,14 @@ import {
     Typography,
     Button,
     Paper,
-    Grid, // Використовуємо новітній Grid2
+    Grid,
     Chip,
     Divider,
     CircularProgress,
     Card,
     CardMedia,
     alpha,
-    Avatar, // Допоміжна функція для прозорості кольорів
+    Avatar,
 } from '@mui/material';
 import {
     ArrowBack as BackIcon,
