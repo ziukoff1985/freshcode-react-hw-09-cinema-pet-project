@@ -1,34 +1,3 @@
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getAllActors } from '../../store/thunks/actorsThunks';
-// import { Link } from 'react-router-dom';
-
-// function ActorsList() {
-//     const dispatch = useDispatch();
-//     const actors = useSelector((state) => state.actorsList.actors);
-
-//     useEffect(() => {
-//         dispatch(getAllActors());
-//     }, [dispatch]);
-
-//     return (
-//         <>
-//             <div>ActorsList</div>
-//             <ul>
-//                 {actors.map((actor) => (
-//                     <li key={actor.id}>
-//                         <Link
-//                             to={`${actor.id}`}
-//                         >{`${actor.firstName} ${actor.lastName}`}</Link>
-//                     </li>
-//                 ))}
-//             </ul>
-//         </>
-//     );
-// }
-
-// export default ActorsList;
-
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';

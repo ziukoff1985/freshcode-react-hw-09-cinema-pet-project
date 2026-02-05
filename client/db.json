@@ -43,7 +43,7 @@
             "id": 1,
             "firstName": "Steven",
             "lastName": "Spielberg",
-            "birthYear": "1946",
+            "birthDate": "1946",
             "nationality": "USA",
             "movies": [
                 "Indiana Jones",
@@ -56,7 +56,7 @@
             "id": 2,
             "firstName": "James",
             "lastName": "Cameron",
-            "birthYear": "1954",
+            "birthDate": "1954",
             "nationality": "Canada",
             "movies": ["Rambo", "Terminator", "Avatar"],
             "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/James_Cameron_13_Dec_2025.jpg/960px-James_Cameron_13_Dec_2025.jpg"
@@ -65,7 +65,7 @@
             "id": 3,
             "firstName": "Quentin",
             "lastName": "Tarantino",
-            "birthYear": "1963",
+            "birthDate": "1963",
             "nationality": "USA",
             "movies": ["Alien", "Avatar", "Star Wars"],
             "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Quentin_Tarantino_by_Gage_Skidmore.jpg/960px-Quentin_Tarantino_by_Gage_Skidmore.jpg"
