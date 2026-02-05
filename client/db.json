@@ -2,12 +2,7 @@
     "actors": [
         {
             "id": 1,
-            "movies": [
-                "Indiana Jones",
-                "The Star Wars",
-                "Patriot Games",
-                "Gentelmens of Fortune"
-            ],
+            "movies": ["Indiana Jones", "The Star Wars", "Patriot Games"],
             "firstName": "Harrison",
             "lastName": "Ford",
             "birthDate": "1942-01-01",
@@ -19,8 +14,7 @@
             "movies": [
                 "Pirates of the Caribbean",
                 "The Tourist",
-                "Alice in Wonderland",
-                "Sleepy Hollow"
+                "Alice in Wonderland"
             ],
             "firstName": "Johnny",
             "lastName": "Depp",
@@ -30,7 +24,7 @@
         },
         {
             "id": 3,
-            "movies": ["Alien", "Avatar", "Star Wars", "The Matrix"],
+            "movies": ["Alien", "Avatar", "Star Wars"],
             "firstName": "Sigourney",
             "lastName": "Weaver",
             "birthDate": "1949-10-10",
@@ -74,7 +68,7 @@
     "studios": [
         {
             "id": 1,
-            "title": "Lucasfilm",
+            "title": "LucasFilm",
             "location": "San Francisco, USA",
             "foundationYear": 1971,
             "movies": [

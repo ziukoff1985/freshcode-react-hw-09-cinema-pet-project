@@ -64,10 +64,6 @@ function MovieDetailsPage() {
                     mb: 3,
                     borderRadius: 2,
                     textTransform: 'none',
-                    '&:hover': {
-                        backgroundColor: (theme) =>
-                            alpha(theme.palette.primary.main, 0.1),
-                    },
                 }}
             >
                 Back to movies list
@@ -78,26 +74,10 @@ function MovieDetailsPage() {
                 sx={{
                     p: { xs: 2, md: 4 },
                     borderRadius: 5,
-                    background:
-                        'linear-gradient(135deg, #ffffff 0%, #f9faff 100%)', // Ніжний градієнт
                     position: 'relative',
                     overflow: 'hidden',
                 }}
             >
-                {/* Декоративний елемент на фоні */}
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        top: -50,
-                        right: -50,
-                        width: 200,
-                        height: 200,
-                        borderRadius: '50%',
-                        background: (theme) =>
-                            alpha(theme.palette.primary.main, 0.03),
-                    }}
-                />
-
                 <Grid container spacing={5} alignItems='stretch'>
                     {/* ФОТО АКТОРА З ТІННЮ ТА ЕФЕКТОМ */}
                     <Grid size={{ xs: 12, md: 4.5 }}>
@@ -105,9 +85,6 @@ function MovieDetailsPage() {
                             sx={{
                                 borderRadius: 4,
                                 boxShadow: '0 20px 40px rgba(0,0,0,0.2)', // Глибока тінь
-                                transition: 'transform 0.3s ease-in-out',
-                                '&:hover': { transform: 'scale(1.02)' }, // Легке збільшення
-                                lineHeight: 0,
                             }}
                         >
                             <CardMedia
@@ -135,7 +112,7 @@ function MovieDetailsPage() {
                                 justifyContent: 'space-between',
                                 alignItems: 'flex-start',
                                 flexWrap: 'wrap',
-                                gap: 2,
+                                gap: 1,
                             }}
                         >
                             <Box>
@@ -149,11 +126,6 @@ function MovieDetailsPage() {
                                             xs: '2.5rem',
                                             md: '3.5rem',
                                         },
-                                        // Градієнт на тексті
-                                        background:
-                                            'linear-gradient(45deg, #1a237e 30%, #0d47a1 90%)',
-                                        WebkitBackgroundClip: 'text',
-                                        WebkitTextFillColor: 'transparent',
                                     }}
                                 >
                                     {currentMovie.title}
@@ -192,30 +164,6 @@ function MovieDetailsPage() {
                                                 sx={{
                                                     borderRadius: '12px',
                                                     fontWeight: 500,
-                                                    backgroundColor: (theme) =>
-                                                        alpha(
-                                                            theme.palette
-                                                                .primary.main,
-                                                            0.08,
-                                                        ),
-                                                    border: '1px solid',
-                                                    borderColor: (theme) =>
-                                                        alpha(
-                                                            theme.palette
-                                                                .primary.main,
-                                                            0.2,
-                                                        ),
-                                                    '&:hover': {
-                                                        backgroundColor: (
-                                                            theme,
-                                                        ) =>
-                                                            alpha(
-                                                                theme.palette
-                                                                    .primary
-                                                                    .main,
-                                                                0.15,
-                                                            ),
-                                                    },
                                                 }}
                                             />
                                         ),
@@ -333,25 +281,6 @@ function MovieDetailsPage() {
                                         sx={{
                                             borderRadius: '12px',
                                             fontWeight: 500,
-                                            backgroundColor: (theme) =>
-                                                alpha(
-                                                    theme.palette.primary.main,
-                                                    0.08,
-                                                ),
-                                            border: '1px solid',
-                                            borderColor: (theme) =>
-                                                alpha(
-                                                    theme.palette.primary.main,
-                                                    0.2,
-                                                ),
-                                            '&:hover': {
-                                                backgroundColor: (theme) =>
-                                                    alpha(
-                                                        theme.palette.primary
-                                                            .main,
-                                                        0.15,
-                                                    ),
-                                            },
                                         }}
                                     />
                                 ))}
