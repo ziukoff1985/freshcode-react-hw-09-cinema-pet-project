@@ -183,6 +183,7 @@ function ActorDetailsPage() {
                 <CircularProgress size={60} thickness={4} />
             </Box>
         );
+    // ! Треба змінити - показує Аctor not found при першому завантаженні
     if (!currentActor)
         return (
             <Typography variant='h5' sx={{ p: 4, textAlign: 'center' }}>
