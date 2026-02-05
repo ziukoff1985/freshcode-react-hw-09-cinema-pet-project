@@ -1,5 +1,181 @@
+// import { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getAllActors } from '../../store/thunks/actorsThunks';
+// import { Link } from 'react-router-dom';
+
+// function ActorsList() {
+//     const dispatch = useDispatch();
+//     const actors = useSelector((state) => state.actorsList.actors);
+
+//     useEffect(() => {
+//         dispatch(getAllActors());
+//     }, [dispatch]);
+
+//     return (
+//         <>
+//             <div>ActorsList</div>
+//             <ul>
+//                 {actors.map((actor) => (
+//                     <li key={actor.id}>
+//                         <Link
+//                             to={`${actor.id}`}
+//                         >{`${actor.firstName} ${actor.lastName}`}</Link>
+//                     </li>
+//                 ))}
+//             </ul>
+//         </>
+//     );
+// }
+
+// export default ActorsList;
+
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+    List,
+    ListItem,
+    ListItemAvatar,
+    ListItemText,
+    Avatar,
+    IconButton,
+    Typography,
+    Paper,
+    Divider,
+    Box,
+    Tooltip,
+    CircularProgress,
+} from '@mui/material';
+import {
+    Visibility as ViewIcon,
+    Edit as EditIcon,
+    Delete as DeleteIcon,
+    Person as PersonIcon,
+} from '@mui/icons-material';
+import { getAllActors, deleteActor } from '../../store/thunks/actorsThunks';
+
 function ActorsList() {
-    return <div>ActorsList</div>;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { actors, isPending, error } = useSelector(
+        (state) => state.actorsList,
+    );
+
+    useEffect(() => {
+        dispatch(getAllActors());
+    }, [dispatch]);
+
+    const handleDelete = (id) => {
+        if (window.confirm('Are you sure you want to delete this actor?')) {
+            dispatch(deleteActor(id));
+        }
+    };
+
+    if (isPending)
+        return (
+            <Box sx={{ display: 'flex', justifyContent: 'center', p: 5 }}>
+                <CircularProgress />
+            </Box>
+        );
+    if (error) return <Typography color='error'>Error: {error}</Typography>;
+
+    return (
+        <Paper
+            elevation={2}
+            sx={{ width: '100%', bgcolor: 'background.paper', borderRadius: 2 }}
+        >
+            <Box
+                sx={{ p: 2, borderBottom: '1px solid', borderColor: 'divider' }}
+            >
+                <Typography
+                    variant='h5'
+                    component='div'
+                    sx={{ fontWeight: 'bold' }}
+                >
+                    Actors
+                </Typography>
+            </Box>
+            <List sx={{ width: '100%', py: 0 }}>
+                {actors.map((actor, index) => (
+                    <Box key={actor.id}>
+                        <ListItem
+                            alignItems='flex-start'
+                            secondaryAction={
+                                <Box>
+                                    <Tooltip title='Show details'>
+                                        <IconButton
+                                            component={Link}
+                                            to={`${actor.id}`}
+                                            color='primary'
+                                        >
+                                            <ViewIcon />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title='Edit'>
+                                        <IconButton
+                                            onClick={() =>
+                                                navigate(`${actor.id}/edit`)
+                                            }
+                                            color='secondary'
+                                        >
+                                            <EditIcon />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title='Delete'>
+                                        <IconButton
+                                            onClick={() =>
+                                                handleDelete(actor.id)
+                                            }
+                                            color='error'
+                                        >
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </Tooltip>
+                                </Box>
+                            }
+                        >
+                            <ListItemAvatar>
+                                <Avatar
+                                    alt={`${actor.firstName} ${actor.lastName}`}
+                                    src={actor.image}
+                                    sx={{ width: 50, height: 50, mr: 2 }}
+                                >
+                                    <PersonIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        sx={{
+                                            fontWeight: 'bold',
+                                            fontSize: '1.1rem',
+                                        }}
+                                    >
+                                        {`${actor.firstName} ${actor.lastName}`}
+                                    </Typography>
+                                }
+                                secondary={
+                                    <>
+                                        <Typography
+                                            component='span'
+                                            variant='body2'
+                                            color='text.primary'
+                                        >
+                                            {actor.nationality}
+                                        </Typography>
+                                        {` — Birth date: ${actor.birthDate}`}
+                                    </>
+                                }
+                            />
+                        </ListItem>
+                        {index < actors.length - 1 && (
+                            <Divider variant='inset' component='li' />
+                        )}
+                    </Box>
+                ))}
+            </List>
+        </Paper>
+    );
 }
 
 export default ActorsList;
