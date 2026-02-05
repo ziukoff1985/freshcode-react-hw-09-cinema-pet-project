@@ -33,6 +33,10 @@ const actorsSlice = createSlice({
         setActorForEdit: (state, action) => {
             state.actorForEdit = action.payload;
         },
+        clearCurrentActor: (state) => {
+            state.currentActor = null;
+            state.error = null;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -94,5 +98,7 @@ const actorsSlice = createSlice({
             );
     },
 });
+
+export const { setActorForEdit, clearCurrentActor } = actorsSlice.actions;
 
 export default actorsSlice.reducer;

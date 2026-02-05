@@ -9,7 +9,7 @@ import {
     Grid,
     Chip,
     Divider,
-    CircularProgress,
+    /* CircularProgress, */
     Card,
     CardMedia,
     alpha,
@@ -22,39 +22,43 @@ import {
     Language,
 } from '@mui/icons-material';
 import { getActorById } from '../../store/thunks/actorsThunks';
+// import { clearCurrentActor } from '../../store/slices/actorsSlice';
 
 function ActorDetailsPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentActor, isPending } = useSelector(
+    const { currentActor /* , isPending, error */ } = useSelector(
         (state) => state.actorsList,
     );
 
     useEffect(() => {
         dispatch(getActorById(id));
+        // return () => {
+        //     dispatch(clearCurrentActor());
+        // };
     }, [dispatch, id]);
 
-    if (isPending)
-        return (
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '50vh',
-                }}
-            >
-                <CircularProgress size={60} thickness={4} />
-            </Box>
-        );
+    // if (isPending || (!currentActor && !error))
+    //     return (
+    //         <Box
+    //             sx={{
+    //                 display: 'flex',
+    //                 justifyContent: 'center',
+    //                 alignItems: 'center',
+    //                 height: '50vh',
+    //             }}
+    //         >
+    //             <CircularProgress size={60} thickness={4} />
+    //         </Box>
+    //     );
     // ! Треба змінити - показує Аctor not found при першому завантаженні
-    if (!currentActor)
-        return (
-            <Typography variant='h5' sx={{ p: 4, textAlign: 'center' }}>
-                Actor not found
-            </Typography>
-        );
+    // if (!currentActor)
+    //     return (
+    //         <Typography variant='h5' sx={{ p: 4, textAlign: 'center' }}>
+    //             Actor not found
+    //         </Typography>
+    //     );
 
     return (
         <Box sx={{ p: { xs: 1, md: 3 }, maxWidth: 1200, mx: 'auto' }}>
