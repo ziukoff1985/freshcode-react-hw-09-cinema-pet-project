@@ -48,6 +48,8 @@ function DirectorDetailsPage() {
                 <CircularProgress size={60} thickness={4} />
             </Box>
         );
+
+    // ! Треба змінити - показує Аctor not found при першому завантаженні
     if (!currentDirector)
         return (
             <Typography variant='h5' sx={{ p: 4, textAlign: 'center' }}>
@@ -157,20 +159,9 @@ function DirectorDetailsPage() {
                                         WebkitTextFillColor: 'transparent',
                                     }}
                                 >
-                                    {currentDirector.firstName}
-                                </Typography>
-                                <Typography
-                                    variant='h2'
-                                    sx={{
-                                        fontWeight: 300,
-                                        mt: -1,
-                                        color: 'text.secondary',
-                                    }}
-                                >
-                                    {currentDirector.lastName}
+                                    {`${currentDirector.firstName} ${currentDirector.lastName}`}
                                 </Typography>
                             </Box>
-
                             <Button
                                 variant='contained'
                                 startIcon={<EditIcon />}

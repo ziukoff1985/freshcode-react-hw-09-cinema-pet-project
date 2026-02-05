@@ -293,17 +293,7 @@ function ActorDetailsPage() {
                                         WebkitTextFillColor: 'transparent',
                                     }}
                                 >
-                                    {currentActor.firstName}
-                                </Typography>
-                                <Typography
-                                    variant='h2'
-                                    sx={{
-                                        fontWeight: 300,
-                                        mt: -1,
-                                        color: 'text.secondary',
-                                    }}
-                                >
-                                    {currentActor.lastName}
+                                    {`${currentActor.firstName} ${currentActor.lastName}`}
                                 </Typography>
                             </Box>
 
