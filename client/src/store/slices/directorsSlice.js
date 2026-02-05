@@ -19,12 +19,12 @@ const initialState = {
     error: null,
 };
 
-export const setIsPending = (state) => {
+const setIsPending = (state) => {
     state.isPending = true;
     state.error = null;
 };
 
-export const setError = (state, action) => {
+const setError = (state, action) => {
     state.isPending = false;
     state.error = action.payload;
 };
@@ -62,7 +62,7 @@ const directorsSlice = createSlice({
                         ? action.payload
                         : director,
                 );
-                state.currentDirector = null;
+                state.currentDirector = action.payload;
                 state.directorForEdit = action.payload;
             })
             .addCase(deleteDirector.fulfilled, (state, action) => {

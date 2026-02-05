@@ -16,12 +16,12 @@ const initialState = {
     error: null,
 };
 
-export const setIsPending = (state) => {
+const setIsPending = (state) => {
     state.isPending = true;
     state.error = null;
 };
 
-export const setError = (state, action) => {
+const setError = (state, action) => {
     state.isPending = false;
     state.error = action.payload;
 };
@@ -57,7 +57,7 @@ const actorsSlice = createSlice({
                 state.actors = state.actors.map((actor) =>
                     actor.id === action.payload.id ? action.payload : actor,
                 );
-                state.currentActor = null;
+                state.currentActor = action.payload;
                 state.actorForEdit = action.payload;
             })
             .addCase(deleteActor.fulfilled, (state, action) => {

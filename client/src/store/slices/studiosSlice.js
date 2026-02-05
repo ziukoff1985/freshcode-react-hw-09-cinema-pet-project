@@ -60,7 +60,7 @@ const studiosSlice = createSlice({
                 state.studios = state.studios.map((studio) =>
                     studio.id === action.payload.id ? action.payload : studio,
                 );
-                state.currentStudio = null;
+                state.currentStudio = action.payload;
                 state.studioForEdit = action.payload;
             })
             .addCase(deleteStudio.fulfilled, (state, action) => {

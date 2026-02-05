@@ -57,7 +57,7 @@ const moviesSlice = createSlice({
                 state.movies = state.movies.map((movie) =>
                     movie.id === action.payload.id ? action.payload : movie,
                 );
-                state.currentMovie = null;
+                state.currentMovie = action.payload;
                 state.movieForEdit = action.payload;
             })
             .addCase(deleteMovie.fulfilled, (state, action) => {
