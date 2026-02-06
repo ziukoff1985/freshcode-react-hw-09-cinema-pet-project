@@ -18,16 +18,6 @@ const initialState = {
     error: null,
 };
 
-// const setIsPending = (state) => {
-//     state.isPending = true;
-//     state.error = null;
-// };
-
-// const setError = (state, action) => {
-//     state.isPending = false;
-//     state.error = action.payload;
-// };
-
 const actorsSlice = createSlice({
     name: ACTORS_SLICE_NAME,
     initialState,

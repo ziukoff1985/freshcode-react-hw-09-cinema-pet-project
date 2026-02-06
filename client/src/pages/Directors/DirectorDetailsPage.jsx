@@ -237,9 +237,9 @@ function DirectorDetailsPage() {
                         <Box
                             sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}
                         >
-                            {currentDirector.movies.map((movie, idx) => (
+                            {currentDirector.movies.map((movie, i) => (
                                 <Chip
-                                    key={idx}
+                                    key={i}
                                     label={movie}
                                     sx={{
                                         borderRadius: '12px',

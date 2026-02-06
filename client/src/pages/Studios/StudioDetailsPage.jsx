@@ -50,7 +50,6 @@ function StudioDetailsPage() {
         );
     return (
         <Box sx={{ p: { xs: 1, md: 3 }, maxWidth: 1200, mx: 'auto' }}>
-            {/* Кнопка назад з ефектом підсвічування */}
             <Button
                 startIcon={<BackIcon />}
                 onClick={() => navigate('/studios')}
@@ -231,9 +230,9 @@ function StudioDetailsPage() {
                                     gap: 1.5,
                                 }}
                             >
-                                {currentStudio.movies.map((movie, idx) => (
+                                {currentStudio.movies.map((movie, i) => (
                                     <Chip
-                                        key={idx}
+                                        key={i}
                                         label={movie}
                                         sx={{
                                             borderRadius: '12px',

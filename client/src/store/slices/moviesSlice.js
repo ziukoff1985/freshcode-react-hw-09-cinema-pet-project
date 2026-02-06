@@ -7,6 +7,7 @@ import {
     getMovieById,
     updateMovie,
 } from '../thunks/moviesThunks';
+import { setError, setIsPending } from '../../services/reducer-service';
 
 const initialState = {
     movies: [],
@@ -14,16 +15,6 @@ const initialState = {
     movieForEdit: EMPTY_MOVIE_DATA,
     isPending: false,
     error: null,
-};
-
-const setIsPending = (state) => {
-    state.isPending = true;
-    state.error = null;
-};
-
-const setError = (state, action) => {
-    state.isPending = false;
-    state.error = action.payload;
 };
 
 const moviesSlice = createSlice({

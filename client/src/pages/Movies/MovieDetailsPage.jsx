@@ -56,7 +56,6 @@ function MovieDetailsPage() {
         );
     return (
         <Box sx={{ p: { xs: 1, md: 3 }, maxWidth: 1200, mx: 'auto' }}>
-            {/* Кнопка назад з ефектом підсвічування */}
             <Button
                 startIcon={<BackIcon />}
                 onClick={() => navigate('/movies')}
@@ -84,7 +83,7 @@ function MovieDetailsPage() {
                         <Card
                             sx={{
                                 borderRadius: 4,
-                                boxShadow: '0 20px 40px rgba(0,0,0,0.2)', // Глибока тінь
+                                boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
                             }}
                         >
                             <CardMedia
@@ -274,10 +273,10 @@ function MovieDetailsPage() {
                                     gap: 1.5,
                                 }}
                             >
-                                {currentMovie.actors.map((movie, idx) => (
+                                {currentMovie.actors.map((actor, idx) => (
                                     <Chip
                                         key={idx}
-                                        label={movie}
+                                        label={actor}
                                         sx={{
                                             borderRadius: '12px',
                                             fontWeight: 500,

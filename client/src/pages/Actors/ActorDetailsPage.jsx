@@ -248,9 +248,9 @@ function ActorDetailsPage() {
                                     gap: 1.5,
                                 }}
                             >
-                                {currentActor.movies.map((movie, idx) => (
+                                {currentActor.movies.map((movie, i) => (
                                     <Chip
-                                        key={idx}
+                                        key={i}
                                         label={movie}
                                         sx={{
                                             borderRadius: '12px',

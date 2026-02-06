@@ -10,6 +10,7 @@ import {
     getStudioById,
     updateStudio,
 } from '../thunks/studiosThunks';
+import { setError, setIsPending } from '../../services/reducer-service';
 
 const initialState = {
     studios: [],
@@ -17,16 +18,6 @@ const initialState = {
     studioForEdit: EMPTY_STUDIO_DATA,
     isPending: false,
     error: null,
-};
-
-const setError = (state, action) => {
-    state.isPending = false;
-    state.error = action.payload;
-};
-
-const setIsPending = (state) => {
-    state.isPending = true;
-    state.error = null;
 };
 
 const studiosSlice = createSlice({

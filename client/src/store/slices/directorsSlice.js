@@ -10,6 +10,7 @@ import {
     getDirectorById,
     updateDirector,
 } from '../thunks/directorsThunks';
+import { setError, setIsPending } from '../../services/reducer-service';
 
 const initialState = {
     directors: [],
@@ -17,16 +18,6 @@ const initialState = {
     directorForEdit: EMPTY_DIRECTOR_DATA,
     isPending: false,
     error: null,
-};
-
-const setIsPending = (state) => {
-    state.isPending = true;
-    state.error = null;
-};
-
-const setError = (state, action) => {
-    state.isPending = false;
-    state.error = action.payload;
 };
 
 const directorsSlice = createSlice({
