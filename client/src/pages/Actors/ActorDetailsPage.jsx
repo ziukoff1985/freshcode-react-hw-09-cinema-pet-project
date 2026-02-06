@@ -9,7 +9,7 @@ import {
     Grid,
     Chip,
     Divider,
-    /* CircularProgress, */
+    CircularProgress,
     Card,
     CardMedia,
     alpha,
@@ -22,36 +22,37 @@ import {
     Language,
 } from '@mui/icons-material';
 import { getActorById } from '../../store/thunks/actorsThunks';
-// import { clearCurrentActor } from '../../store/slices/actorsSlice';
+import { clearCurrentActor } from '../../store/slices/actorsSlice';
 
 function ActorDetailsPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentActor /* , isPending, error */ } = useSelector(
+    const { currentActor, isPending, error } = useSelector(
         (state) => state.actorsList,
     );
 
     useEffect(() => {
         dispatch(getActorById(id));
-        // return () => {
-        //     dispatch(clearCurrentActor());
-        // };
+        // ! При розмонтуванні компонента - очищаємо currentActor
+        return () => {
+            dispatch(clearCurrentActor());
+        };
     }, [dispatch, id]);
 
-    // if (isPending || (!currentActor && !error))
-    //     return (
-    //         <Box
-    //             sx={{
-    //                 display: 'flex',
-    //                 justifyContent: 'center',
-    //                 alignItems: 'center',
-    //                 height: '50vh',
-    //             }}
-    //         >
-    //             <CircularProgress size={60} thickness={4} />
-    //         </Box>
-    //     );
+    if (isPending || (!currentActor && !error))
+        return (
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '50vh',
+                }}
+            >
+                <CircularProgress size={60} thickness={4} />
+            </Box>
+        );
     // ! Треба змінити - показує Аctor not found при першому завантаженні
     // if (!currentActor)
     //     return (
@@ -62,7 +63,6 @@ function ActorDetailsPage() {
 
     return (
         <Box sx={{ p: { xs: 1, md: 3 }, maxWidth: 1200, mx: 'auto' }}>
-            {/* Кнопка назад з ефектом підсвічування */}
             <Button
                 startIcon={<BackIcon />}
                 onClick={() => navigate('/actors')}
@@ -85,7 +85,7 @@ function ActorDetailsPage() {
                 }}
             >
                 <Grid container spacing={5} alignItems='stretch'>
-                    {/* ФОТО АКТОРА З ТІННЮ ТА ЕФЕКТОМ */}
+                    {/* ФОТО АКТОРА*/}
                     <Grid size={{ xs: 12, md: 4.5 }}>
                         <Card
                             sx={{

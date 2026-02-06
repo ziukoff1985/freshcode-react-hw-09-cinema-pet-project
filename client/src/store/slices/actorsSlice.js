@@ -8,6 +8,8 @@ import {
     updateActor,
 } from '../thunks/actorsThunks';
 
+import { setIsPending, setError } from '../../services/reducer-service';
+
 const initialState = {
     actors: [],
     currentActor: null,
@@ -16,15 +18,15 @@ const initialState = {
     error: null,
 };
 
-const setIsPending = (state) => {
-    state.isPending = true;
-    state.error = null;
-};
+// const setIsPending = (state) => {
+//     state.isPending = true;
+//     state.error = null;
+// };
 
-const setError = (state, action) => {
-    state.isPending = false;
-    state.error = action.payload;
-};
+// const setError = (state, action) => {
+//     state.isPending = false;
+//     state.error = action.payload;
+// };
 
 const actorsSlice = createSlice({
     name: ACTORS_SLICE_NAME,

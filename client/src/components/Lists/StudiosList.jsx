@@ -43,7 +43,7 @@ function StudiosList() {
     if (isPending)
         return (
             <Box sx={{ display: 'flex', justifyContent: 'center', p: 5 }}>
-                <CircularProgress />
+                <CircularProgress size={60} thickness={4} />
             </Box>
         );
     if (error) return <Typography color='error'>Error: {error}</Typography>;
