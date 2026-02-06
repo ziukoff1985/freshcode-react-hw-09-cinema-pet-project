@@ -32,9 +32,6 @@ function StudiosPage() {
                     <Button
                         variant='contained'
                         color='success'
-                        // fullWidth
-                        // type='submit'
-                        // disabled={!isValid}
                         startIcon={<LibraryAddIcon />}
                         size='small'
                     >
@@ -42,12 +39,6 @@ function StudiosPage() {
                     </Button>
                 </Link>
             </Stack>
-            {/* <Stack>
-                <Link to='/studios/1/edit'>
-                    <Button>Edit studio</Button>
-                </Link>
-            </Stack>
-            <div>StudiosPage</div> */}
             <Routes>
                 <Route index element={<StudiosList />} />
                 <Route path='new' element={<StudiosList />} />

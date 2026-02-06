@@ -1,24 +1,44 @@
 import Stack from '@mui/material/Stack';
 import { Link, Route, Routes } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 
 import ActorsList from '../../components/Lists/ActorsList';
 import ActorDetailsPage from './ActorDetailsPage';
+import { Typography } from '@mui/material';
 
 function ActorsPage() {
     return (
         <>
-            <Stack>
+            <Stack
+                sx={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    mb: 2,
+                }}
+            >
+                <Typography
+                    variant='h6'
+                    sx={{
+                        fontWeight: 'bold',
+                        mb: 0,
+                        color: 'primary.main',
+                    }}
+                >
+                    Actors
+                </Typography>
                 <Link to='/actors/new'>
-                    <Button>Add actor</Button>
+                    <Button
+                        variant='contained'
+                        color='success'
+                        startIcon={<LibraryAddIcon />}
+                        size='small'
+                    >
+                        Add actor
+                    </Button>
                 </Link>
             </Stack>
-            {/* <Stack>
-                <Link to='/actors/1/edit'>
-                    <Button>Edit actor</Button>
-                </Link>
-            </Stack>
-            <div>ActorsPage</div> */}
             <Routes>
                 <Route index element={<ActorsList />} />
                 <Route path='new' element={<ActorsList />} />
