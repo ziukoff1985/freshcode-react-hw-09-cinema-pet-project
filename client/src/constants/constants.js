@@ -43,3 +43,30 @@ export const EMPTY_MOVIE_DATA = {
     releaseYear: '',
     poster: '',
 };
+
+export const posters = [
+    {
+        id: 1,
+        title: 'Indiana Jones',
+        url: 'https://upload.wikimedia.org/wikipedia/ru/7/79/Indiana-jones-raiders-of-lost-ark-poster.jpg',
+        alt: 'Indiana Jones',
+    },
+    {
+        id: 2,
+        title: 'The Star Wars',
+        url: 'https://upload.wikimedia.org/wikipedia/ru/8/87/StarWarsMoviePoster1977.jpg',
+        alt: 'The Star Wars',
+    },
+    {
+        id: 3,
+        title: 'Patriot Games',
+        url: 'https://upload.wikimedia.org/wikipedia/ru/2/2a/Patriot_games_film_poster.jpg',
+        alt: 'Patriot Games',
+    },
+    {
+        id: 4,
+        title: 'Pulp Fiction',
+        url: 'https://upload.wikimedia.org/wikipedia/ru/9/93/Pulp_Fiction.jpg',
+        alt: 'Pulp Fiction',
+    },
+];

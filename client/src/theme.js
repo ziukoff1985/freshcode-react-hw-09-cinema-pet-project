@@ -15,6 +15,9 @@ export const getAppTheme = (mode) =>
                 paper: mode === 'light' ? '#fff' : '#1e1e1e',
                 header: mode === 'light' ? '#1976d2' : '#121212',
             },
+            color: {
+                primary: mode === 'light' ? '#121212' : '#f4f6f8',
+            },
         },
         typography: {
             fontFamily: 'Roboto, Arial, sans-serif',

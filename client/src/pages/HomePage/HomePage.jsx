@@ -1,5 +1,7 @@
+import HomeCarousel from '../../components/UI/HomeCarousel';
+
 function HomePage() {
-    return <div>HomePage</div>;
+    return <HomeCarousel />;
 }
 
 export default HomePage;

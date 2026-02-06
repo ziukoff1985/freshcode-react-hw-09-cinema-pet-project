@@ -1,5 +1,18 @@
+import { Box, Typography } from '@mui/material';
+
 function Footer() {
-    return <div>Footer</div>;
+    return (
+        <Box
+            sx={{
+                mt: 'auto',
+                p: 3,
+                textAlign: 'center',
+                color: 'white',
+            }}
+        >
+            <Typography variant='boy2'>© 2026 Cinema Manager</Typography>
+        </Box>
+    );
 }
 
 export default Footer;

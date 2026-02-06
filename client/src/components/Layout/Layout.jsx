@@ -45,7 +45,11 @@ function Layout({ toggleMode, mode }) {
                 </Grid>
 
                 {/* MAIN CONTENT */}
-                <Grid size={{ xs: 12, md: 7 }} component='main' sx={{ p: 2 }}>
+                <Grid
+                    size={{ xs: 12, md: 7 }}
+                    component='main'
+                    sx={{ p: 2, bgcolor: 'background.paper' }}
+                >
                     <Outlet />
                 </Grid>
 
@@ -67,9 +71,9 @@ function Layout({ toggleMode, mode }) {
                 square
                 elevation={4}
                 sx={{
-                    p: 2,
                     backgroundColor: 'background.header',
                     mt: 'auto',
+                    color: 'white',
                 }}
             >
                 <Footer />
