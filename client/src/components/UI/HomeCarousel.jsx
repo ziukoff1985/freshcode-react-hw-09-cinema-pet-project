@@ -7,8 +7,8 @@ function HomeCarousel() {
     return (
         <Box
             sx={{
-                mb: 5,
-                borderRadius: 6, // Більш заокруглені кути для сучасного вигляду
+                // mb: 5,
+                borderRadius: 2, // Більш заокруглені кути для сучасного вигляду
                 overflow: 'hidden',
                 boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
                 mx: { xs: 1, md: 0 },
@@ -31,7 +31,7 @@ function HomeCarousel() {
                         color: '#fff',
                     },
                 }}
-                sx={{ width: '100%', height: { xs: 350, md: 550 } }}
+                sx={{ width: '100%', height: { xs: 350, md: 530 } }}
             >
                 {posters.map((item) => (
                     <CarouselItem key={item.id} item={item} />
@@ -59,7 +59,7 @@ function CarouselItem({ item }) {
             }}
         >
             {/* Напівпрозорий оверлей на все зображення */}
-            <Box
+            {/* <Box
                 sx={{
                     position: 'absolute',
                     top: 0,
@@ -68,9 +68,9 @@ function CarouselItem({ item }) {
                     height: '100%',
                     background: 'rgba(0,0,0,0.3)', // Затемнення для акценту на центрі
                 }}
-            />
+            /> */}
 
-            {/* Стильний текстовий блок по центру */}
+            {/* Стильний текстовий блок по центру
             <Box
                 sx={{
                     position: 'relative',
@@ -110,7 +110,7 @@ function CarouselItem({ item }) {
                 >
                     PREMIUM COLLECTION
                 </Typography>
-            </Box>
+            </Box> */}
         </Paper>
     );
 }

@@ -48,25 +48,25 @@ export const posters = [
     {
         id: 1,
         title: 'Indiana Jones',
-        url: 'https://upload.wikimedia.org/wikipedia/ru/7/79/Indiana-jones-raiders-of-lost-ark-poster.jpg',
+        url: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2830500/b7b3b043d3d61c1f52c1be61b709f0e9f2eb49d3/capsule_616x353.jpg?t=1757603029',
         alt: 'Indiana Jones',
     },
     {
         id: 2,
         title: 'The Star Wars',
-        url: 'https://upload.wikimedia.org/wikipedia/ru/8/87/StarWarsMoviePoster1977.jpg',
+        url: 'https://cdn.mos.cms.futurecdn.net/4KDGxhUCBRTxzbWNMzCmVk.jpg',
         alt: 'The Star Wars',
     },
     {
         id: 3,
         title: 'Patriot Games',
-        url: 'https://upload.wikimedia.org/wikipedia/ru/2/2a/Patriot_games_film_poster.jpg',
+        url: 'https://resizing.flixster.com/WvMidlaBXbOX9-8xFzPx-28lkT4=/fit-in/705x460/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p14051_v_h8_aa.jpg',
         alt: 'Patriot Games',
     },
     {
         id: 4,
         title: 'Pulp Fiction',
-        url: 'https://upload.wikimedia.org/wikipedia/ru/9/93/Pulp_Fiction.jpg',
+        url: 'https://preview.redd.it/30-years-ago-today-pulp-fiction-was-released-in-us-theaters-v0-vjhotci0bqud1.jpeg?width=640&crop=smart&auto=webp&s=2bf9ec11da5ca12879c9523ed187e63882702850',
         alt: 'Pulp Fiction',
     },
 ];
