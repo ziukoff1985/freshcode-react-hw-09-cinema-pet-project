@@ -118,10 +118,9 @@ function ActorDetailsPage() {
                         <Box
                             sx={{
                                 display: 'flex',
-                                justifyContent: 'space-between',
+                                flexDirection: 'column',
                                 alignItems: 'flex-start',
-                                flexWrap: 'wrap',
-                                gap: 2,
+                                gap: 1,
                             }}
                         >
                             <Box>
@@ -132,8 +131,8 @@ function ActorDetailsPage() {
                                         color: 'text.primary',
                                         letterSpacing: '-0.02em',
                                         fontSize: {
-                                            xs: '2.5rem',
-                                            md: '3.5rem',
+                                            xs: '24px',
+                                            md: '36px',
                                         },
                                     }}
                                 >
@@ -232,7 +231,7 @@ function ActorDetailsPage() {
                         <Box
                             sx={{
                                 display: 'flex',
-                                gap: 1,
+                                gap: 1.5,
                                 flexWrap: 'wrap',
                                 width: '100%',
                             }}
@@ -245,7 +244,7 @@ function ActorDetailsPage() {
                                     color: 'primary.main',
                                 }}
                             >
-                                Filmography
+                                Filmography:
                             </Typography>
 
                             <Box
