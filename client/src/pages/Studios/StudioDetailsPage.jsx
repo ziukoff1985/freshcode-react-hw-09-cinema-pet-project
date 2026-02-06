@@ -107,7 +107,7 @@ function StudioDetailsPage() {
                                 justifyContent: 'space-between',
                                 alignItems: 'flex-start',
                                 flexWrap: 'wrap',
-                                gap: 2,
+                                gap: 1,
                             }}
                         >
                             <Box sx={{ width: '100%' }}>
@@ -120,8 +120,8 @@ function StudioDetailsPage() {
                                         letterSpacing: '-0.02em',
 
                                         fontSize: {
-                                            xs: '2.5rem',
-                                            md: '3.5rem',
+                                            xs: '24px',
+                                            md: '36px',
                                         },
                                     }}
                                 >
@@ -226,7 +226,7 @@ function StudioDetailsPage() {
                                     color: 'primary.main',
                                 }}
                             >
-                                Movies
+                                Movies:
                             </Typography>
 
                             <Box

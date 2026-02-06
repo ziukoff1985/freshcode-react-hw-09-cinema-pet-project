@@ -47,22 +47,12 @@ function MoviesList() {
             </Box>
         );
     if (error) return <Typography color='error'>Error: {error}</Typography>;
+
     return (
         <Paper
             elevation={2}
             sx={{ width: '100%', bgcolor: 'background.paper', borderRadius: 2 }}
         >
-            <Box
-                sx={{ p: 2, borderBottom: '1px solid', borderColor: 'divider' }}
-            >
-                <Typography
-                    variant='h5'
-                    component='div'
-                    sx={{ fontWeight: 'bold' }}
-                >
-                    Movies
-                </Typography>
-            </Box>
             <List sx={{ width: '100%', py: 0 }}>
                 {movies.map((movie, index) => (
                     <Box key={movie.id}>

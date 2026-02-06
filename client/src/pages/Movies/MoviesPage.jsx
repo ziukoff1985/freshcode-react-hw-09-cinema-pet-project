@@ -1,24 +1,44 @@
 import Stack from '@mui/material/Stack';
 import { Link, Route, Routes } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 
 import MoviesList from '../../components/Lists/MoviesList';
 import MovieDetailsPage from './MovieDetailsPage';
+import { Typography } from '@mui/material';
 
 function MoviesPage() {
     return (
         <>
-            <Stack>
+            <Stack
+                sx={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    mb: 2,
+                }}
+            >
+                <Typography
+                    variant='h6'
+                    sx={{
+                        fontWeight: 'bold',
+                        mb: 0,
+                        color: 'primary.main',
+                    }}
+                >
+                    Movies
+                </Typography>
                 <Link to='/movies/new'>
-                    <Button>Add movie</Button>
+                    <Button
+                        variant='contained'
+                        color='success'
+                        startIcon={<LibraryAddIcon />}
+                        size='small'
+                    >
+                        Add movie
+                    </Button>
                 </Link>
             </Stack>
-            {/* <Stack>
-                <Link to='/movies/1/edit'>
-                    <Button>Edit movie</Button>
-                </Link>
-            </Stack>
-            <div>MoviesPage</div> */}
             <Routes>
                 <Route index element={<MoviesList />} />
                 <Route path='new' element={<MoviesList />} />
