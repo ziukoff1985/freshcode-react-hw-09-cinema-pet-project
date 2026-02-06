@@ -130,7 +130,11 @@ function StudioDetailsPage() {
                             </Box>
 
                             <Button
-                                variant='contained'
+                                variant={
+                                    location.pathname.includes('edit')
+                                        ? 'disabled'
+                                        : 'contained'
+                                }
                                 startIcon={<EditIcon />}
                                 onClick={() => navigate('edit')}
                                 sx={{
