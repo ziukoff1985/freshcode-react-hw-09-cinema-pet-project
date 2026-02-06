@@ -49,18 +49,20 @@ function StudioDetailsPage() {
             </Typography>
         );
     return (
-        <Box sx={{ p: { xs: 1, md: 3 }, maxWidth: 1200, mx: 'auto' }}>
-            <Button
-                startIcon={<BackIcon />}
-                onClick={() => navigate('/studios')}
-                sx={{
-                    mb: 3,
-                    borderRadius: 2,
-                    textTransform: 'none',
-                }}
-            >
-                Back to studios list
-            </Button>
+        <Box sx={{ /* p: { xs: 1, md: 3 }, */ maxWidth: 1200, mx: 'auto' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <Button
+                    startIcon={<BackIcon />}
+                    onClick={() => navigate('/studios')}
+                    sx={{
+                        mb: 1,
+                        borderRadius: 2,
+                        textTransform: 'none',
+                    }}
+                >
+                    Back to studios list
+                </Button>
+            </Box>
 
             <Paper
                 elevation={6}

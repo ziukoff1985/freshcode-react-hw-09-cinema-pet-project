@@ -13,12 +13,12 @@ function ActorsPage() {
                     <Button>Add actor</Button>
                 </Link>
             </Stack>
-            <Stack>
+            {/* <Stack>
                 <Link to='/actors/1/edit'>
                     <Button>Edit actor</Button>
                 </Link>
             </Stack>
-            <div>ActorsPage</div>
+            <div>ActorsPage</div> */}
             <Routes>
                 <Route index element={<ActorsList />} />
                 <Route path='new' element={<ActorsList />} />

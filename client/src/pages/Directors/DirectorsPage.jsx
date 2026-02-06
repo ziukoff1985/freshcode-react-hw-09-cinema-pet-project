@@ -13,12 +13,12 @@ function DirectorsPage() {
                     <Button>Add director</Button>
                 </Link>
             </Stack>
-            <Stack>
+            {/* <Stack>
                 <Link to='/directors/1/edit'>
                     <Button>Edit director</Button>
                 </Link>
             </Stack>
-            <div>DirectorsPage</div>
+            <div>DirectorsPage</div> */}
             <Routes>
                 <Route index element={<DirectorsList />} />
                 <Route path='new' element={<DirectorsList />} />
