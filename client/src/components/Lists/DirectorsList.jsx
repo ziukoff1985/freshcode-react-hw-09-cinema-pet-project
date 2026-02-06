@@ -56,17 +56,6 @@ function DirectorsList() {
             elevation={2}
             sx={{ width: '100%', bgcolor: 'background.paper', borderRadius: 2 }}
         >
-            <Box
-                sx={{ p: 2, borderBottom: '1px solid', borderColor: 'divider' }}
-            >
-                <Typography
-                    variant='h5'
-                    component='div'
-                    sx={{ fontWeight: 'bold' }}
-                >
-                    Directors
-                </Typography>
-            </Box>
             <List sx={{ width: '100%', py: 0 }}>
                 {directors.map((director, index) => (
                     <Box key={director.id}>

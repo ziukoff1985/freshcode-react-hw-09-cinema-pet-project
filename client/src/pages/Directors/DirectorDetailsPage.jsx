@@ -58,23 +58,20 @@ function DirectorDetailsPage() {
         );
 
     return (
-        <Box sx={{ p: { xs: 1, md: 3 }, maxWidth: 1200, mx: 'auto' }}>
-            {/* Кнопка назад з ефектом підсвічування */}
-            <Button
-                startIcon={<BackIcon />}
-                onClick={() => navigate('/directors')}
-                sx={{
-                    mb: 3,
-                    borderRadius: 2,
-                    textTransform: 'none',
-                    '&:hover': {
-                        backgroundColor: (theme) =>
-                            alpha(theme.palette.primary.main, 0.1),
-                    },
-                }}
-            >
-                Back to directors list
-            </Button>
+        <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <Button
+                    startIcon={<BackIcon />}
+                    onClick={() => navigate('/directors')}
+                    sx={{
+                        mb: 1,
+                        borderRadius: 2,
+                        textTransform: 'none',
+                    }}
+                >
+                    Back to directors list
+                </Button>
+            </Box>
 
             <Paper
                 elevation={6}
@@ -117,10 +114,9 @@ function DirectorDetailsPage() {
                         <Box
                             sx={{
                                 display: 'flex',
-                                justifyContent: 'space-between',
+                                flexDirection: 'column',
                                 alignItems: 'flex-start',
-                                flexWrap: 'wrap',
-                                gap: 2,
+                                gap: 1,
                             }}
                         >
                             <Box>
@@ -131,8 +127,8 @@ function DirectorDetailsPage() {
                                         color: 'text.primary',
                                         letterSpacing: '-0.02em',
                                         fontSize: {
-                                            xs: '2.5rem',
-                                            md: '3.5rem',
+                                            xs: '24px',
+                                            md: '36px',
                                         },
                                     }}
                                 >
@@ -140,7 +136,11 @@ function DirectorDetailsPage() {
                                 </Typography>
                             </Box>
                             <Button
-                                variant='contained'
+                                variant={
+                                    location.pathname.includes('edit')
+                                        ? 'disabled'
+                                        : 'contained'
+                                }
                                 startIcon={<EditIcon />}
                                 onClick={() => navigate('edit')}
                                 sx={{
@@ -223,30 +223,36 @@ function DirectorDetailsPage() {
                             </Box>
                         </Box>
 
-                        <Typography
-                            variant='h6'
-                            sx={{
-                                fontWeight: 'bold',
-                                mb: 2,
-                                color: 'primary.main',
-                            }}
-                        >
-                            Selected Filmography
-                        </Typography>
+                        <Box sx={{ display: 'flex', gap: 2 }}>
+                            <Typography
+                                variant='h6'
+                                sx={{
+                                    fontWeight: 'bold',
+                                    mb: 2,
+                                    color: 'primary.main',
+                                }}
+                            >
+                                Movies:
+                            </Typography>
 
-                        <Box
-                            sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}
-                        >
-                            {currentDirector.movies.map((movie, i) => (
-                                <Chip
-                                    key={i}
-                                    label={movie}
-                                    sx={{
-                                        borderRadius: '12px',
-                                        fontWeight: 500,
-                                    }}
-                                />
-                            ))}
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    gap: 1.5,
+                                }}
+                            >
+                                {currentDirector.movies.map((movie, i) => (
+                                    <Chip
+                                        key={i}
+                                        label={movie}
+                                        sx={{
+                                            borderRadius: '12px',
+                                            fontWeight: 500,
+                                        }}
+                                    />
+                                ))}
+                            </Box>
                         </Box>
                     </Grid>
                 </Grid>

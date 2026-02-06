@@ -49,7 +49,7 @@ function StudioDetailsPage() {
             </Typography>
         );
     return (
-        <Box sx={{ /* p: { xs: 1, md: 3 }, */ maxWidth: 1200, mx: 'auto' }}>
+        <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
                 <Button
                     startIcon={<BackIcon />}
@@ -104,9 +104,8 @@ function StudioDetailsPage() {
                         <Box
                             sx={{
                                 display: 'flex',
-                                justifyContent: 'space-between',
+                                flexDirection: 'column',
                                 alignItems: 'flex-start',
-                                flexWrap: 'wrap',
                                 gap: 1,
                             }}
                         >
@@ -175,7 +174,7 @@ function StudioDetailsPage() {
                                         variant='caption'
                                         color='text.secondary'
                                     >
-                                        Country
+                                        Location
                                     </Typography>
                                     <Typography
                                         variant='body1'

@@ -55,7 +55,7 @@ function MovieDetailsPage() {
             </Typography>
         );
     return (
-        <Box sx={{ /* p: { xs: 1, md: 3 }, */ maxWidth: 1200, mx: 'auto' }}>
+        <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
                 <Button
                     startIcon={<BackIcon />}
