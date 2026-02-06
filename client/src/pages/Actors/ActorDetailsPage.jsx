@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     Box,
@@ -26,6 +26,7 @@ import { clearCurrentActor } from '../../store/slices/actorsSlice';
 
 function ActorDetailsPage() {
     const { id } = useParams();
+    const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { currentActor, isPending, error } = useSelector(
@@ -139,7 +140,11 @@ function ActorDetailsPage() {
                             </Box>
 
                             <Button
-                                variant='contained'
+                                variant={
+                                    location.pathname.includes('edit')
+                                        ? 'disabled'
+                                        : 'contained'
+                                }
                                 startIcon={<EditIcon />}
                                 onClick={() => navigate('edit')}
                                 sx={{
