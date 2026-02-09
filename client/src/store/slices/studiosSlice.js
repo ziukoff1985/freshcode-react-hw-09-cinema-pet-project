@@ -27,6 +27,9 @@ const studiosSlice = createSlice({
         setStudioForEdit: (state, action) => {
             state.studioForEdit = action.payload;
         },
+        clearCurrentStudio: (state) => {
+            state.currentStudio = null;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -88,5 +91,7 @@ const studiosSlice = createSlice({
             );
     },
 });
+
+export const { setStudioForEdit, clearCurrentStudio } = studiosSlice.actions;
 
 export default studiosSlice.reducer;

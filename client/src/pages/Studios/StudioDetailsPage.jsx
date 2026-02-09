@@ -22,32 +22,36 @@ import {
     Language,
 } from '@mui/icons-material';
 import { getStudioById } from '../../store/thunks/studiosThunks';
+import { clearCurrentStudio } from '../../store/slices/studiosSlice';
 
 function StudioDetailsPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentStudio, isPending } = useSelector(
-        (state) => state.studiosList,
-    );
+    const { currentStudio } = useSelector((state) => state.studiosList);
 
     useEffect(() => {
         dispatch(getStudioById(id));
+        return () => {
+            dispatch(clearCurrentStudio());
+        };
     }, [dispatch, id]);
 
-    if (isPending)
+    if (!currentStudio) {
         return (
-            <Box sx={{ display: 'flex', justifyContent: 'center', p: 5 }}>
-                <CircularProgress />
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '50vh',
+                }}
+            >
+                <CircularProgress size={60} thickness={4} />
             </Box>
         );
+    }
 
-    if (!currentStudio)
-        return (
-            <Typography variant='h5' sx={{ p: 4, textAlign: 'center' }}>
-                Studio not found
-            </Typography>
-        );
     return (
         <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
@@ -74,7 +78,7 @@ function StudioDetailsPage() {
                 }}
             >
                 <Grid container spacing={5} alignItems='stretch'>
-                    {/* ФОТО АКТОРА З ТІННЮ ТА ЕФЕКТОМ */}
+                    {/* Stuio's logo */}
                     <Grid size={{ xs: 12, md: 4.5 }}>
                         <Card
                             sx={{
@@ -96,7 +100,7 @@ function StudioDetailsPage() {
                         </Card>
                     </Grid>
 
-                    {/* БЛОК ІНФОРМАЦІЇ */}
+                    {/* Studio's info */}
                     <Grid
                         size={{ xs: 12, md: 7.5 }}
                         sx={{ display: 'flex', flexDirection: 'column' }}
@@ -152,7 +156,7 @@ function StudioDetailsPage() {
 
                         <Divider sx={{ my: 3, opacity: 0.6 }} />
 
-                        {/* Картки швидкої інфо */}
+                        {/* Studio's details */}
                         <Box sx={{ display: 'flex', gap: 4, mb: 4 }}>
                             <Box
                                 sx={{
