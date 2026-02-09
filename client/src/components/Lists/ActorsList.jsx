@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -25,11 +25,10 @@ import {
     Person as PersonIcon,
 } from '@mui/icons-material';
 import { getAllActors, deleteActor } from '../../store/thunks/actorsThunks';
+import useConfirm from '../../hooks/useConfirm';
+import ConfirmDrawer from '../UI/ConfirmDrawer';
 
 function ActorsList() {
-    const [openConfirm, setOpenConfirm] = useState(false);
-    const [selectedActorId, setSelectedActorId] = useState(null);
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { actors, isPending } = useSelector((state) => state.actorsList);
@@ -38,21 +37,15 @@ function ActorsList() {
         dispatch(getAllActors());
     }, [dispatch]);
 
-    const handleOpenDeleteConfirm = (actorId) => {
-        setOpenConfirm(true);
-        setSelectedActorId(actorId);
+    const confirm = useConfirm();
+
+    const handleDeleteClick = (id) => {
+        confirm.openConfirm(id);
     };
 
-    const handleCloseDeleteConfirm = () => {
-        setOpenConfirm(false);
-        setSelectedActorId(null);
-    };
-
-    const handleDelete = () => {
-        if (selectedActorId) {
-            dispatch(deleteActor(selectedActorId));
-        }
-        handleCloseDeleteConfirm();
+    const handleConfirmDelete = () => {
+        dispatch(deleteActor(confirm.payload));
+        confirm.closeConfirm();
     };
 
     if (!actors || isPending)
@@ -101,9 +94,7 @@ function ActorsList() {
                                         <Tooltip title='Delete'>
                                             <IconButton
                                                 onClick={() =>
-                                                    handleOpenDeleteConfirm(
-                                                        actor.id,
-                                                    )
+                                                    handleDeleteClick(actor.id)
                                                 }
                                                 color='error'
                                             >
@@ -155,44 +146,15 @@ function ActorsList() {
                 </List>
             </Paper>
 
-            <Drawer
-                anchor='right' // або 'bottom'
-                open={openConfirm}
-                onClose={handleCloseDeleteConfirm}
-            >
-                <Box
-                    sx={{
-                        width: { xs: '100vw', sm: 360 },
-                        p: 3,
-                    }}
-                >
-                    <Typography variant='h6' gutterBottom>
-                        ❗ Warning
-                    </Typography>
-
-                    <Typography variant='body2' color='text.secondary' mb={3}>
-                        Are you sure you want to delete? This action cannot be
-                        undone.
-                    </Typography>
-
-                    <Stack
-                        direction='row'
-                        spacing={2}
-                        justifyContent='flex-end'
-                    >
-                        <Button onClick={handleCloseDeleteConfirm}>
-                            Cancel
-                        </Button>
-                        <Button
-                            onClick={handleDelete}
-                            variant='contained'
-                            color='error'
-                        >
-                            Delete
-                        </Button>
-                    </Stack>
-                </Box>
-            </Drawer>
+            <ConfirmDrawer
+                open={confirm.open}
+                title='Delete actor'
+                description='Are you sure you want to delete actor? This action cannot be undone.'
+                confirmText='Delete'
+                cancelText='Cancel'
+                onConfirm={handleConfirmDelete}
+                onClose={confirm.closeConfirm}
+            />
         </>
     );
 }
