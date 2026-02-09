@@ -38,7 +38,7 @@ function ActorsList() {
         }
     };
 
-    if (isPending)
+    if (!actors || isPending)
         return (
             <Box sx={{ display: 'flex', justifyContent: 'center', p: 5 }}>
                 <CircularProgress size={60} thickness={4} />

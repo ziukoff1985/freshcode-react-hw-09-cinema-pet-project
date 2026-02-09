@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -14,6 +14,12 @@ import {
     Box,
     Tooltip,
     CircularProgress,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions,
+    Button,
 } from '@mui/material';
 import {
     Visibility as ViewIcon,
@@ -24,6 +30,9 @@ import {
 import { deleteMovie, getAllMovies } from '../../store/thunks/moviesThunks';
 
 function MoviesList() {
+    const [openConfirm, setOpenConfirm] = useState(false);
+    const [selectedMovieId, setSelectedMovieId] = useState(null);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { movies, isPending } = useSelector((state) => state.moviesList);
@@ -32,13 +41,30 @@ function MoviesList() {
         dispatch(getAllMovies());
     }, [dispatch]);
 
-    const handleDelete = (id) => {
-        if (window.confirm('Are you sure you want to delete this movie?')) {
-            dispatch(deleteMovie(id));
-        }
+    const handleOpenDeleteConfirm = (id) => {
+        setOpenConfirm(true);
+        setSelectedMovieId(id);
     };
 
-    if (isPending)
+    const handleCloseDeleteConfirm = () => {
+        setOpenConfirm(false);
+        setSelectedMovieId(null);
+    };
+
+    const handleDelete = () => {
+        if (selectedMovieId) {
+            dispatch(deleteMovie(selectedMovieId));
+        }
+        handleCloseDeleteConfirm();
+    };
+
+    // const handleDelete = (id) => {
+    //     if (window.confirm('Are you sure you want to delete this movie?')) {
+    //         dispatch(deleteMovie(id));
+    //     }
+    // };
+
+    if (!movies || isPending)
         return (
             <Box sx={{ display: 'flex', justifyContent: 'center', p: 5 }}>
                 <CircularProgress size={60} thickness={4} />
@@ -46,90 +72,124 @@ function MoviesList() {
         );
 
     return (
-        <Paper
-            elevation={2}
-            sx={{ width: '100%', bgcolor: 'background.paper', borderRadius: 2 }}
-        >
-            <List sx={{ width: '100%', py: 0 }}>
-                {movies.map((movie, index) => (
-                    <Box key={movie.id}>
-                        <ListItem
-                            alignItems='flex-start'
-                            secondaryAction={
-                                <Box>
-                                    <Tooltip title='Show details'>
-                                        <IconButton
-                                            component={Link}
-                                            to={`${movie.id}`}
-                                            color='primary'
-                                        >
-                                            <ViewIcon />
-                                        </IconButton>
-                                    </Tooltip>
-                                    <Tooltip title='Edit'>
-                                        <IconButton
-                                            onClick={() =>
-                                                navigate(`${movie.id}/edit`)
-                                            }
-                                            color='secondary'
-                                        >
-                                            <EditIcon />
-                                        </IconButton>
-                                    </Tooltip>
-                                    <Tooltip title='Delete'>
-                                        <IconButton
-                                            onClick={() =>
-                                                handleDelete(movie.id)
-                                            }
-                                            color='error'
-                                        >
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    </Tooltip>
-                                </Box>
-                            }
-                        >
-                            <ListItemAvatar>
-                                <Avatar
-                                    alt={`${movie.title}`}
-                                    src={movie.poster}
-                                    sx={{ width: 50, height: 50, mr: 2 }}
-                                >
-                                    <PersonIcon />
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary={
-                                    <Typography
-                                        sx={{
-                                            fontWeight: 'bold',
-                                            fontSize: '16px',
-                                        }}
+        <>
+            <Paper
+                elevation={2}
+                sx={{
+                    width: '100%',
+                    bgcolor: 'background.paper',
+                    borderRadius: 2,
+                }}
+            >
+                <List sx={{ width: '100%', py: 0 }}>
+                    {movies.map((movie, index) => (
+                        <Box key={movie.id}>
+                            <ListItem
+                                alignItems='flex-start'
+                                secondaryAction={
+                                    <Box>
+                                        <Tooltip title='Show details'>
+                                            <IconButton
+                                                component={Link}
+                                                to={`${movie.id}`}
+                                                color='primary'
+                                            >
+                                                <ViewIcon />
+                                            </IconButton>
+                                        </Tooltip>
+                                        <Tooltip title='Edit'>
+                                            <IconButton
+                                                onClick={() =>
+                                                    navigate(`${movie.id}/edit`)
+                                                }
+                                                color='secondary'
+                                            >
+                                                <EditIcon />
+                                            </IconButton>
+                                        </Tooltip>
+                                        <Tooltip title='Delete'>
+                                            <IconButton
+                                                onClick={() =>
+                                                    handleOpenDeleteConfirm(
+                                                        movie.id,
+                                                    )
+                                                }
+                                                color='error'
+                                            >
+                                                <DeleteIcon />
+                                            </IconButton>
+                                        </Tooltip>
+                                    </Box>
+                                }
+                            >
+                                <ListItemAvatar>
+                                    <Avatar
+                                        alt={`${movie.title}`}
+                                        src={movie.poster}
+                                        sx={{ width: 50, height: 50, mr: 2 }}
                                     >
-                                        {`${movie.title}`}
-                                    </Typography>
-                                }
-                                secondary={
-                                    <>
+                                        <PersonIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary={
                                         <Typography
-                                            component='span'
-                                            variant='body2'
-                                            color='text.primary'
+                                            sx={{
+                                                fontWeight: 'bold',
+                                                fontSize: '16px',
+                                            }}
                                         >
-                                            {movie.studios.join(', ')}
+                                            {`${movie.title}`}
                                         </Typography>
-                                        {` — Release year: ${movie.releaseYear}`}
-                                    </>
-                                }
-                            />
-                        </ListItem>
-                        {index < movies.length - 1 && (
-                            <Divider variant='inset' component='li' />
-                        )}
-                    </Box>
-                ))}
-            </List>
-        </Paper>
+                                    }
+                                    secondary={
+                                        <>
+                                            <Typography
+                                                component='span'
+                                                variant='body2'
+                                                color='text.primary'
+                                            >
+                                                {movie.studios.join(', ')}
+                                            </Typography>
+                                            {` — Release year: ${movie.releaseYear}`}
+                                        </>
+                                    }
+                                />
+                            </ListItem>
+                            {index < movies.length - 1 && (
+                                <Divider variant='inset' component='li' />
+                            )}
+                        </Box>
+                    ))}
+                </List>
+            </Paper>
+
+            <Dialog
+                open={openConfirm}
+                onClose={handleCloseDeleteConfirm}
+                aria-labelledby='delete-movie-dialog'
+            >
+                <DialogTitle id='delete-movie-dialog'>Delete movie</DialogTitle>
+
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure you want to delete this movie? This action
+                        cannot be undone.
+                    </DialogContentText>
+                </DialogContent>
+
+                <DialogActions>
+                    <Button onClick={handleCloseDeleteConfirm}>Cancel</Button>
+                    <Button
+                        onClick={handleDelete}
+                        color='error'
+                        variant='contained'
+                    >
+                        Delete
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </>
     );
 }
 
