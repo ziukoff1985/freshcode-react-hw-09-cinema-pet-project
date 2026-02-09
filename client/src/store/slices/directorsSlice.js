@@ -27,6 +27,10 @@ const directorsSlice = createSlice({
         setDirectorForEdit: (state, action) => {
             state.directorForEdit = action.payload;
         },
+        clearCurrentDirector: (state) => {
+            state.currentDirector = null;
+            state.error = null;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -90,5 +94,8 @@ const directorsSlice = createSlice({
             );
     },
 });
+
+export const { setDirectorForEdit, clearCurrentDirector } =
+    directorsSlice.actions;
 
 export default directorsSlice.reducer;

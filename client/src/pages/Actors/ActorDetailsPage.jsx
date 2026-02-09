@@ -29,19 +29,16 @@ function ActorDetailsPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentActor, isPending, error } = useSelector(
-        (state) => state.actorsList,
-    );
+    const { currentActor } = useSelector((state) => state.actorsList);
 
     useEffect(() => {
         dispatch(getActorById(id));
-        // ! При розмонтуванні компонента - очищаємо currentActor
         return () => {
             dispatch(clearCurrentActor());
         };
     }, [dispatch, id]);
 
-    if (isPending || (!currentActor && !error))
+    if (!currentActor) {
         return (
             <Box
                 sx={{
@@ -54,13 +51,7 @@ function ActorDetailsPage() {
                 <CircularProgress size={60} thickness={4} />
             </Box>
         );
-    // ! Треба змінити - показує Аctor not found при першому завантаженні
-    // if (!currentActor)
-    //     return (
-    //         <Typography variant='h5' sx={{ p: 4, textAlign: 'center' }}>
-    //             Actor not found
-    //         </Typography>
-    //     );
+    }
 
     return (
         <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
@@ -88,7 +79,7 @@ function ActorDetailsPage() {
                 }}
             >
                 <Grid container spacing={5} alignItems='stretch'>
-                    {/* ФОТО АКТОРА*/}
+                    {/* Actor's photo */}
                     <Grid size={{ xs: 12, md: 4.5 }}>
                         <Card
                             sx={{
@@ -110,7 +101,7 @@ function ActorDetailsPage() {
                         </Card>
                     </Grid>
 
-                    {/* БЛОК ІНФОРМАЦІЇ */}
+                    {/* Actor's info */}
                     <Grid
                         size={{ xs: 12, md: 7.5 }}
                         sx={{ display: 'flex', flexDirection: 'column' }}
@@ -164,7 +155,7 @@ function ActorDetailsPage() {
 
                         <Divider sx={{ my: 3, opacity: 0.6 }} />
 
-                        {/* Картки швидкої інфо */}
+                        {/* Actor's details */}
                         <Box sx={{ display: 'flex', gap: 4, mb: 4 }}>
                             <Box
                                 sx={{

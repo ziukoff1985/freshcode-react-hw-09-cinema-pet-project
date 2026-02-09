@@ -22,20 +22,22 @@ import {
     Language,
 } from '@mui/icons-material';
 import { getDirectorById } from '../../store/thunks/directorsThunks';
+import { clearCurrentDirector } from '../../store/slices/directorsSlice';
 
 function DirectorDetailsPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentDirector, isPending } = useSelector(
-        (state) => state.directorsList,
-    );
+    const { currentDirector } = useSelector((state) => state.directorsList);
 
     useEffect(() => {
         dispatch(getDirectorById(id));
+        return () => {
+            dispatch(clearCurrentDirector());
+        };
     }, [dispatch, id]);
 
-    if (isPending)
+    if (!currentDirector) {
         return (
             <Box
                 sx={{
@@ -48,14 +50,7 @@ function DirectorDetailsPage() {
                 <CircularProgress size={60} thickness={4} />
             </Box>
         );
-
-    // ! Треба змінити - показує Аctor not found при першому завантаженні
-    if (!currentDirector)
-        return (
-            <Typography variant='h5' sx={{ p: 4, textAlign: 'center' }}>
-                Director not found
-            </Typography>
-        );
+    }
 
     return (
         <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
@@ -84,7 +79,7 @@ function DirectorDetailsPage() {
                 }}
             >
                 <Grid container spacing={5} alignItems='stretch'>
-                    {/* ФОТО АКТОРА З ТІННЮ ТА ЕФЕКТОМ */}
+                    {/* Actor's photo */}
                     <Grid size={{ xs: 12, md: 4.5 }}>
                         <Card
                             sx={{
@@ -106,7 +101,7 @@ function DirectorDetailsPage() {
                         </Card>
                     </Grid>
 
-                    {/* БЛОК ІНФОРМАЦІЇ */}
+                    {/* Actor's info */}
                     <Grid
                         size={{ xs: 12, md: 7.5 }}
                         sx={{ display: 'flex', flexDirection: 'column' }}
@@ -159,7 +154,7 @@ function DirectorDetailsPage() {
 
                         <Divider sx={{ my: 3, opacity: 0.6 }} />
 
-                        {/* Картки швидкої інфо */}
+                        {/* Actor's details */}
                         <Box sx={{ display: 'flex', gap: 4, mb: 4 }}>
                             <Box
                                 sx={{
