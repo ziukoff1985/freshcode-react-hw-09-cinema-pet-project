@@ -31,9 +31,9 @@ import ConfirmDrawer from '../UI/ConfirmDrawer';
 function DirectorsList() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { directors, isPending } = useSelector(
-        (state) => state.directorsList,
-    );
+
+    const directors = useSelector((state) => state.directorsList.directors);
+    const isPending = useSelector((state) => state.directorsList.isPending);
 
     useEffect(() => {
         dispatch(getAllDirectors());

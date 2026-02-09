@@ -28,7 +28,9 @@ import ConfirmDrawer from '../UI/ConfirmDrawer';
 function MoviesList() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { movies, isPending } = useSelector((state) => state.moviesList);
+
+    const movies = useSelector((state) => state.moviesList.movies);
+    const isPending = useSelector((state) => state.moviesList.isPending);
 
     useEffect(() => {
         dispatch(getAllMovies());

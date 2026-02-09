@@ -28,7 +28,9 @@ import ConfirmDrawer from '../UI/ConfirmDrawer';
 function ActorsList() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { actors, isPending } = useSelector((state) => state.actorsList);
+
+    const actors = useSelector((state) => state.actorsList.actors);
+    const isPending = useSelector((state) => state.actorsList.isPending);
 
     useEffect(() => {
         dispatch(getAllActors());

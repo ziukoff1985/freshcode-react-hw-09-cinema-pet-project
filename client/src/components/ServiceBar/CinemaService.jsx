@@ -22,8 +22,12 @@ function CinemaService() {
                 <Route
                     path='*'
                     element={
-                        <Typography variant='body2' color='text.secondary'>
-                            Please choose an element for editing or click on
+                        <Typography
+                            variant='body2'
+                            color='text.secondary'
+                            sx={{ fontSize: '24px' }}
+                        >
+                            Please choose an element for editing or click the
                             'Add' button
                         </Typography>
                     }

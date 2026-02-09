@@ -28,7 +28,9 @@ import ConfirmDrawer from '../UI/ConfirmDrawer';
 function StudiosList() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { studios, isPending } = useSelector((state) => state.studiosList);
+
+    const studios = useSelector((state) => state.studiosList.studios);
+    const isPending = useSelector((state) => state.studiosList.isPending);
 
     useEffect(() => {
         dispatch(getAllStudios());

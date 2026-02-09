@@ -32,7 +32,7 @@ function Layout({ toggleMode, mode }) {
             </Paper>
 
             <Grid container sx={{ flexGrow: 1 }}>
-                {/* NAVIGATION (SIDEBAR) */}
+                {/* NAVIGATION */}
                 <Grid
                     size={{ xs: 12, md: 2 }}
                     sx={{
@@ -53,7 +53,7 @@ function Layout({ toggleMode, mode }) {
                     <Outlet />
                 </Grid>
 
-                {/* SERVICE BAR */}
+                {/* CINEMA SERVICE */}
                 <Grid
                     size={{ xs: 12, md: 3 }}
                     sx={{
