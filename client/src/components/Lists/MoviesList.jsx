@@ -14,12 +14,9 @@ import {
     Box,
     Tooltip,
     CircularProgress,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogContentText,
-    DialogActions,
+    Drawer,
     Button,
+    Stack,
 } from '@mui/material';
 import {
     Visibility as ViewIcon,
@@ -164,31 +161,44 @@ function MoviesList() {
                 </List>
             </Paper>
 
-            <Dialog
+            <Drawer
+                anchor='right' // або 'bottom'
                 open={openConfirm}
                 onClose={handleCloseDeleteConfirm}
-                aria-labelledby='delete-movie-dialog'
             >
-                <DialogTitle id='delete-movie-dialog'>Delete movie</DialogTitle>
+                <Box
+                    sx={{
+                        width: { xs: '100vw', sm: 360 },
+                        p: 3,
+                    }}
+                >
+                    <Typography variant='h6' gutterBottom>
+                        Delete movie
+                    </Typography>
 
-                <DialogContent>
-                    <DialogContentText>
+                    <Typography variant='body2' color='text.secondary' mb={3}>
                         Are you sure you want to delete this movie? This action
                         cannot be undone.
-                    </DialogContentText>
-                </DialogContent>
+                    </Typography>
 
-                <DialogActions>
-                    <Button onClick={handleCloseDeleteConfirm}>Cancel</Button>
-                    <Button
-                        onClick={handleDelete}
-                        color='error'
-                        variant='contained'
+                    <Stack
+                        direction='row'
+                        spacing={2}
+                        justifyContent='flex-end'
                     >
-                        Delete
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                        <Button onClick={handleCloseDeleteConfirm}>
+                            Cancel
+                        </Button>
+                        <Button
+                            onClick={handleDelete}
+                            variant='contained'
+                            color='error'
+                        >
+                            Delete
+                        </Button>
+                    </Stack>
+                </Box>
+            </Drawer>
         </>
     );
 }
