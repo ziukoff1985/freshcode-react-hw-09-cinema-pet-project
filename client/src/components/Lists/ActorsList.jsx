@@ -36,15 +36,15 @@ function ActorsList() {
         dispatch(getAllActors());
     }, [dispatch]);
 
-    const confirm = useConfirm();
+    const { open, payload, openConfirm, closeConfirm } = useConfirm();
 
     const handleDeleteClick = (id) => {
-        confirm.openConfirm(id);
+        openConfirm(id);
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteActor(confirm.payload));
-        confirm.closeConfirm();
+        dispatch(deleteActor(payload));
+        closeConfirm();
     };
 
     if (!actors || isPending)
@@ -146,13 +146,13 @@ function ActorsList() {
             </Paper>
 
             <ConfirmDrawer
-                open={confirm.open}
+                open={open}
                 title='Delete actor'
-                description='Are you sure you want to delete actor? This action cannot be undone.'
+                description='Are you sure you want to delete this actor? This action cannot be undone.'
                 confirmText='Delete'
                 cancelText='Cancel'
                 onConfirm={handleConfirmDelete}
-                onClose={confirm.closeConfirm}
+                onClose={closeConfirm}
             />
         </>
     );

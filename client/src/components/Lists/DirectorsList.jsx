@@ -39,15 +39,15 @@ function DirectorsList() {
         dispatch(getAllDirectors());
     }, [dispatch]);
 
-    const confirm = useConfirm();
+    const { open, payload, openConfirm, closeConfirm } = useConfirm();
 
     const handleDeleteClick = (id) => {
-        confirm.openConfirm(id);
+        openConfirm(id);
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteDirector(confirm.payload));
-        confirm.closeConfirm();
+        dispatch(deleteDirector(payload));
+        closeConfirm();
     };
 
     if (!directors || isPending)
@@ -153,13 +153,13 @@ function DirectorsList() {
             </Paper>
 
             <ConfirmDrawer
-                open={confirm.open}
+                open={open}
                 title='Delete director'
                 description='Are you sure you want to delete this director? This action cannot be undone.'
                 confirmText='Delete'
                 cancelText='Cancel'
                 onConfirm={handleConfirmDelete}
-                onClose={confirm.closeConfirm}
+                onClose={closeConfirm}
             />
         </>
     );

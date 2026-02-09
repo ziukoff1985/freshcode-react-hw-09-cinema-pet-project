@@ -36,15 +36,15 @@ function MoviesList() {
         dispatch(getAllMovies());
     }, [dispatch]);
 
-    const confirm = useConfirm();
+    const { open, payload, openConfirm, closeConfirm } = useConfirm();
 
     const handleDeleteClick = (id) => {
-        confirm.openConfirm(id);
+        openConfirm(id);
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteMovie(confirm.payload));
-        confirm.closeConfirm();
+        dispatch(deleteMovie(payload));
+        closeConfirm();
     };
 
     if (!movies || isPending)
@@ -146,13 +146,13 @@ function MoviesList() {
             </Paper>
 
             <ConfirmDrawer
-                open={confirm.open}
+                open={open}
                 title='Delete movie'
-                description='Are you sure you want to delete movie? This action cannot be undone.'
+                description='Are you sure you want to delete this movie? This action cannot be undone.'
                 confirmText='Delete'
                 cancelText='Cancel'
                 onConfirm={handleConfirmDelete}
-                onClose={confirm.closeConfirm}
+                onClose={closeConfirm}
             />
         </>
     );
