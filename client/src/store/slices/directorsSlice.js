@@ -29,7 +29,6 @@ const directorsSlice = createSlice({
         },
         clearCurrentDirector: (state) => {
             state.currentDirector = null;
-            state.error = null;
         },
     },
     extraReducers: (builder) => {

@@ -27,7 +27,6 @@ const actorsSlice = createSlice({
         },
         clearCurrentActor: (state) => {
             state.currentActor = null;
-            state.error = null;
         },
     },
     extraReducers: (builder) => {

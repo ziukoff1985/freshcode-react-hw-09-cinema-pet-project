@@ -22,20 +22,22 @@ import {
     Language,
 } from '@mui/icons-material';
 import { getMovieById } from '../../store/thunks/moviesThunks';
+import { clearCurrentMovie } from '../../store/slices/moviesSlice';
 
 function MovieDetailsPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentMovie, isPending } = useSelector(
-        (state) => state.moviesList,
-    );
+    const { currentMovie } = useSelector((state) => state.moviesList);
 
     useEffect(() => {
         dispatch(getMovieById(id));
+        return () => {
+            dispatch(clearCurrentMovie());
+        };
     }, [dispatch, id]);
 
-    if (isPending)
+    if (!currentMovie) {
         return (
             <Box
                 sx={{
@@ -48,12 +50,8 @@ function MovieDetailsPage() {
                 <CircularProgress size={60} thickness={4} />
             </Box>
         );
-    if (!currentMovie)
-        return (
-            <Typography variant='h5' sx={{ p: 4, textAlign: 'center' }}>
-                Movie not found
-            </Typography>
-        );
+    }
+
     return (
         <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
@@ -80,7 +78,7 @@ function MovieDetailsPage() {
                 }}
             >
                 <Grid container spacing={5} alignItems='stretch'>
-                    {/* ФОТО АКТОРА З ТІННЮ ТА ЕФЕКТОМ */}
+                    {/* Movie's photo */}
                     <Grid size={{ xs: 12, md: 4.5 }}>
                         <Card
                             sx={{
@@ -102,7 +100,7 @@ function MovieDetailsPage() {
                         </Card>
                     </Grid>
 
-                    {/* БЛОК ІНФОРМАЦІЇ */}
+                    {/* Movie's info */}
                     <Grid
                         size={{ xs: 12, md: 7.5 }}
                         sx={{ display: 'flex', flexDirection: 'column' }}
@@ -158,7 +156,7 @@ function MovieDetailsPage() {
                         </Box>
                         <Divider sx={{ my: 3, opacity: 0.6 }} />
 
-                        {/* Картки швидкої інфо */}
+                        {/* Movie's details */}
                         <Box sx={{ display: 'flex', gap: 4, mb: 4 }}>
                             <Box
                                 sx={{
