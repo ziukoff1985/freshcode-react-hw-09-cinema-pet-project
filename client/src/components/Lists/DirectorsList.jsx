@@ -29,7 +29,7 @@ import {
 function DirectorsList() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { directors, isPending, error } = useSelector(
+    const { directors, isPending } = useSelector(
         (state) => state.directorsList,
     );
 
@@ -49,7 +49,6 @@ function DirectorsList() {
                 <CircularProgress size={60} thickness={4} />
             </Box>
         );
-    if (error) return <Typography color='error'>Error: {error}</Typography>;
 
     return (
         <Paper
@@ -109,7 +108,7 @@ function DirectorsList() {
                                     <Typography
                                         sx={{
                                             fontWeight: 'bold',
-                                            fontSize: '1.1rem',
+                                            fontSize: '16px',
                                         }}
                                     >
                                         {`${director.firstName} ${director.lastName}`}

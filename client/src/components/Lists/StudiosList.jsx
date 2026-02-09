@@ -26,9 +26,7 @@ import { deleteStudio, getAllStudios } from '../../store/thunks/studiosThunks';
 function StudiosList() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { studios, isPending, error } = useSelector(
-        (state) => state.studiosList,
-    );
+    const { studios, isPending } = useSelector((state) => state.studiosList);
 
     useEffect(() => {
         dispatch(getAllStudios());
@@ -46,7 +44,6 @@ function StudiosList() {
                 <CircularProgress size={60} thickness={4} />
             </Box>
         );
-    if (error) return <Typography color='error'>Error: {error}</Typography>;
 
     return (
         <Paper
@@ -106,7 +103,7 @@ function StudiosList() {
                                     <Typography
                                         sx={{
                                             fontWeight: 'bold',
-                                            fontSize: '1.1rem',
+                                            fontSize: '16px',
                                         }}
                                     >
                                         {`${studio.title}`}

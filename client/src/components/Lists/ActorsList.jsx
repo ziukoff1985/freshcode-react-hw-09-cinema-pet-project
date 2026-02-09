@@ -26,9 +26,7 @@ import { getAllActors, deleteActor } from '../../store/thunks/actorsThunks';
 function ActorsList() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { actors, isPending, error } = useSelector(
-        (state) => state.actorsList,
-    );
+    const { actors, isPending } = useSelector((state) => state.actorsList);
 
     useEffect(() => {
         dispatch(getAllActors());
@@ -46,7 +44,6 @@ function ActorsList() {
                 <CircularProgress size={60} thickness={4} />
             </Box>
         );
-    if (error) return <Typography color='error'>Error: {error}</Typography>;
 
     return (
         <Paper
@@ -106,7 +103,7 @@ function ActorsList() {
                                     <Typography
                                         sx={{
                                             fontWeight: 'bold',
-                                            fontSize: '1.1rem',
+                                            fontSize: '16px',
                                         }}
                                     >
                                         {`${actor.firstName} ${actor.lastName}`}

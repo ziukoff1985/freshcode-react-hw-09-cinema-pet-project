@@ -26,9 +26,7 @@ import { deleteMovie, getAllMovies } from '../../store/thunks/moviesThunks';
 function MoviesList() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { movies, isPending, error } = useSelector(
-        (state) => state.moviesList,
-    );
+    const { movies, isPending } = useSelector((state) => state.moviesList);
 
     useEffect(() => {
         dispatch(getAllMovies());
@@ -46,7 +44,6 @@ function MoviesList() {
                 <CircularProgress size={60} thickness={4} />
             </Box>
         );
-    if (error) return <Typography color='error'>Error: {error}</Typography>;
 
     return (
         <Paper
@@ -106,7 +103,7 @@ function MoviesList() {
                                     <Typography
                                         sx={{
                                             fontWeight: 'bold',
-                                            fontSize: '1.1rem',
+                                            fontSize: '16px',
                                         }}
                                     >
                                         {`${movie.title}`}
