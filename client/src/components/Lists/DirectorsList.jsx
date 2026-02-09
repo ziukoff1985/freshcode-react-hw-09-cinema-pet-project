@@ -180,12 +180,12 @@ function DirectorsList() {
                     }}
                 >
                     <Typography variant='h6' gutterBottom>
-                        Delete director
+                        ❗ Warning
                     </Typography>
 
                     <Typography variant='body2' color='text.secondary' mb={3}>
-                        Are you sure you want to delete this director? This
-                        action cannot be undone.
+                        Are you sure you want to delete? This action cannot be
+                        undone.
                     </Typography>
 
                     <Stack

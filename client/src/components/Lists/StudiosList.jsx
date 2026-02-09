@@ -55,12 +55,6 @@ function StudiosList() {
         dispatch(getAllStudios());
     }, [dispatch]);
 
-    // const handleDelete = (id) => {
-    //     if (window.confirm('Are you sure you want to delete this studio?')) {
-    //         dispatch(deleteStudio(id));
-    //     }
-    // };
-
     if (!studios || isPending)
         return (
             <Box sx={{ display: 'flex', justifyContent: 'center', p: 5 }}>
@@ -164,58 +158,39 @@ function StudiosList() {
             </Paper>
 
             <Drawer
-                anchor='bottom'
+                anchor='right' // або 'bottom'
                 open={openConfirm}
                 onClose={handleCloseDeleteConfirm}
-                PaperProps={{
-                    sx: {
-                        borderTopLeftRadius: 16,
-                        borderTopRightRadius: 16,
-                    },
-                }}
             >
-                <Box sx={{ p: 3 }}>
-                    <Box
-                        sx={{
-                            width: 40,
-                            height: 4,
-                            bgcolor: 'grey.400',
-                            borderRadius: 2,
-                            mx: 'auto',
-                            mb: 2,
-                        }}
-                    />
-
-                    <Typography variant='h6' textAlign='center'>
-                        Delete movie?
+                <Box
+                    sx={{
+                        width: { xs: '100vw', sm: 360 },
+                        p: 3,
+                    }}
+                >
+                    <Typography variant='h6' gutterBottom>
+                        ❗ Warning
                     </Typography>
 
-                    <Typography
-                        variant='body2'
-                        color='text.secondary'
-                        textAlign='center'
-                        mt={1}
-                        mb={3}
+                    <Typography variant='body2' color='text.secondary' mb={3}>
+                        Are you sure you want to delete? This action cannot be
+                        undone.
+                    </Typography>
+
+                    <Stack
+                        direction='row'
+                        spacing={2}
+                        justifyContent='flex-end'
                     >
-                        This action cannot be undone
-                    </Typography>
-
-                    <Stack spacing={2}>
+                        <Button onClick={handleCloseDeleteConfirm}>
+                            Cancel
+                        </Button>
                         <Button
                             onClick={handleDelete}
                             variant='contained'
                             color='error'
-                            size='large'
-                            fullWidth
                         >
                             Delete
-                        </Button>
-                        <Button
-                            onClick={handleCloseDeleteConfirm}
-                            size='large'
-                            fullWidth
-                        >
-                            Cancel
                         </Button>
                     </Stack>
                 </Box>
