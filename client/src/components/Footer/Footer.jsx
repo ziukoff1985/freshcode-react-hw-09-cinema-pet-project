@@ -10,7 +10,7 @@ function Footer() {
                 color: 'white',
             }}
         >
-            <Typography variant='boy2'>© 2026 Cinema Manager</Typography>
+            <Typography variant='boy2'>© 2026 CinemaLab</Typography>
         </Box>
     );
 }
