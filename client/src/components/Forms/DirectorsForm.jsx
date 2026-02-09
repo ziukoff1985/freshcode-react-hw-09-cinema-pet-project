@@ -1,5 +1,5 @@
 function DirectorsForm() {
-    return <div>DirectorsForm</div>;
+    return <h2>Here should be directors form for editing or adding</h2>;
 }
 
 export default DirectorsForm;

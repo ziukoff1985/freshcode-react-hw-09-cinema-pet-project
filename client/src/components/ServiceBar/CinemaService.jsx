@@ -1,4 +1,4 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import MoviesForm from '../Forms/MoviesForm';
 import ActorsForm from '../Forms/ActorsForm';
 import DirectorsForm from '../Forms/DirectorsForm';
@@ -8,8 +8,8 @@ import Typography from '@mui/material/Typography';
 
 function CinemaService() {
     return (
-        <Box sx={{ p: 2 }}>
-            <h2>Cinema Service</h2>
+        <Box sx={{ p: 2, fontSize: '24px' }}>
+            <h2 style={{ fontSize: '32px' }}>Cinema Service</h2>
             <Routes>
                 <Route path='/movies/new' element={<MoviesForm />} />
                 <Route path='/movies/:id/edit' element={<MoviesForm />} />
@@ -23,8 +23,8 @@ function CinemaService() {
                     path='*'
                     element={
                         <Typography variant='body2' color='text.secondary'>
-                            Оберіть елемент для редагування або натисніть
-                            "Додати"
+                            Please choose an element for editing or click on
+                            'Add' button
                         </Typography>
                     }
                 />
