@@ -28,7 +28,7 @@ function MovieDetailsPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentMovie } = useSelector((state) => state.moviesList);
+    const { currentMovie, error } = useSelector((state) => state.moviesList);
 
     useEffect(() => {
         dispatch(getMovieById(id));
@@ -37,7 +37,7 @@ function MovieDetailsPage() {
         };
     }, [dispatch, id]);
 
-    if (!currentMovie) {
+    if (!currentMovie && !error) {
         return (
             <Box
                 sx={{
@@ -48,6 +48,25 @@ function MovieDetailsPage() {
                 }}
             >
                 <CircularProgress size={60} thickness={4} />
+            </Box>
+        );
+    }
+
+    if (error) {
+        return (
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    mt: 5,
+                }}
+            >
+                <Typography variant='text'>Error: {error}</Typography>
+                <Typography variant='text'>
+                    Something went wrong, try again...
+                </Typography>
             </Box>
         );
     }

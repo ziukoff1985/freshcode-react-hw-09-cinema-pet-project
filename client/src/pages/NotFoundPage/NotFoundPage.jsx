@@ -5,7 +5,7 @@ const NotFoundPage = () => {
     return (
         <Box
             sx={{
-                minHeight: '100vh',
+                // minHeight: '100vh',
                 display: 'flex',
                 alignItems: 'center',
                 bgcolor: 'background.paper',

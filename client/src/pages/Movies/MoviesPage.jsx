@@ -6,6 +6,7 @@ import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import MoviesList from '../../components/Lists/MoviesList';
 import MovieDetailsPage from './MovieDetailsPage';
 import { Typography } from '@mui/material';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function MoviesPage() {
     return (
@@ -44,6 +45,7 @@ function MoviesPage() {
                 <Route path='new' element={<MoviesList />} />
                 <Route path=':id' element={<MovieDetailsPage />} />
                 <Route path=':id/edit' element={<MovieDetailsPage />} />
+                <Route path='*' element={<NotFoundPage />} />
             </Routes>
         </>
     );
