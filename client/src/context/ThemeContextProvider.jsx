@@ -1,9 +1,18 @@
 import { ThemeProvider } from '@mui/material';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ColorModeContext, getAppTheme } from './ThemeContext';
 
 export const ThemeContextProvider = ({ children }) => {
-    const [mode, setMode] = useState('light');
+    const getInitialThemeMode = () =>
+        localStorage.getItem('cinemaThemeMode') || 'light';
+
+    const [mode, setMode] = useState(getInitialThemeMode);
+
+    useEffect(() => {
+        if (mode) {
+            localStorage.setItem('cinemaThemeMode', mode);
+        }
+    }, [mode]);
 
     const colorMode = useMemo(
         () => ({
@@ -17,7 +26,7 @@ export const ThemeContextProvider = ({ children }) => {
         [mode],
     );
 
-    const theme = useMemo(() => getAppTheme(mode), [mode]);
+    const theme = useMemo(() => getAppTheme(mode || 'light'), [mode]);
 
     return (
         <ColorModeContext.Provider value={colorMode}>
