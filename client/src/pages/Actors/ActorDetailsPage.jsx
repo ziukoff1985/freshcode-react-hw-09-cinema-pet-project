@@ -9,7 +9,6 @@ import {
     Grid,
     Chip,
     Divider,
-    CircularProgress,
     Card,
     CardMedia,
     alpha,
@@ -21,15 +20,18 @@ import {
     Cake,
     Language,
 } from '@mui/icons-material';
+
 import { getActorById } from '../../store/thunks/actorsThunks';
 import { clearCurrentActor } from '../../store/slices/actorsSlice';
+import Loader from '../../components/UI/Loader';
+import ErrorMessage from '../../components/UI/ErrorMessage';
 
 function ActorDetailsPage() {
     const { id } = useParams();
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentActor } = useSelector((state) => state.actorsList);
+    const { currentActor, error } = useSelector((state) => state.actorsList);
 
     useEffect(() => {
         dispatch(getActorById(id));
@@ -38,19 +40,12 @@ function ActorDetailsPage() {
         };
     }, [dispatch, id]);
 
-    if (!currentActor) {
-        return (
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '50vh',
-                }}
-            >
-                <CircularProgress size={60} thickness={4} />
-            </Box>
-        );
+    if (!currentActor && !error) {
+        return <Loader />;
+    }
+
+    if (error) {
+        return <ErrorMessage error={error} />;
     }
 
     return (

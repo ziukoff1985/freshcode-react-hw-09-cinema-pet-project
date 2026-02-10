@@ -1,11 +1,12 @@
-import Stack from '@mui/material/Stack';
 import { Link, Route, Routes } from 'react-router-dom';
+
+import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import Typography from '@mui/material/Typography';
 
 import MoviesList from '../../components/Lists/MoviesList';
 import MovieDetailsPage from './MovieDetailsPage';
-import { Typography } from '@mui/material';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function MoviesPage() {

@@ -9,7 +9,6 @@ import {
     Grid,
     Chip,
     Divider,
-    CircularProgress,
     Card,
     CardMedia,
     alpha,
@@ -21,8 +20,11 @@ import {
     Cake,
     Language,
 } from '@mui/icons-material';
+
 import { getMovieById } from '../../store/thunks/moviesThunks';
 import { clearCurrentMovie } from '../../store/slices/moviesSlice';
+import Loader from '../../components/UI/Loader';
+import ErrorMessage from '../../components/UI/ErrorMessage';
 
 function MovieDetailsPage() {
     const { id } = useParams();
@@ -38,37 +40,11 @@ function MovieDetailsPage() {
     }, [dispatch, id]);
 
     if (!currentMovie && !error) {
-        return (
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '50vh',
-                }}
-            >
-                <CircularProgress size={60} thickness={4} />
-            </Box>
-        );
+        return <Loader />;
     }
 
     if (error) {
-        return (
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    mt: 5,
-                }}
-            >
-                <Typography variant='text'>Error: {error}</Typography>
-                <Typography variant='text'>
-                    Something went wrong, try again...
-                </Typography>
-            </Box>
-        );
+        return <ErrorMessage error={error} />;
     }
 
     return (

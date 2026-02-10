@@ -1,11 +1,13 @@
-import Stack from '@mui/material/Stack';
 import { Link, Route, Routes } from 'react-router-dom';
+
+import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import Typography from '@mui/material/Typography';
 
 import ActorsList from '../../components/Lists/ActorsList';
 import ActorDetailsPage from './ActorDetailsPage';
-import { Typography } from '@mui/material';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function ActorsPage() {
     return (
@@ -44,6 +46,7 @@ function ActorsPage() {
                 <Route path='new' element={<ActorsList />} />
                 <Route path=':id' element={<ActorDetailsPage />} />
                 <Route path=':id/edit' element={<ActorDetailsPage />} />
+                <Route path='*' element={<NotFoundPage />} />
             </Routes>
         </>
     );
