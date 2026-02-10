@@ -1,8 +1,13 @@
-import { IconButton, Typography, Box } from '@mui/material';
+import { IconButton, Typography, Box, useTheme, Tooltip } from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { useColorMode } from '../../context/ThemeContext';
 
-function Header({ toggleTheme, mode }) {
+function Header() {
+    const { toggleColorMode } = useColorMode();
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
+
     return (
         <Box
             sx={{
@@ -13,9 +18,15 @@ function Header({ toggleTheme, mode }) {
             }}
         >
             <Typography variant='h6'>CinemaLab</Typography>
-            <IconButton onClick={toggleTheme} color='inherit'>
-                {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-            </IconButton>
+            <Tooltip
+                title={
+                    isDarkMode ? 'Switch to Light mode' : 'Switch to Dark mode'
+                }
+            >
+                <IconButton onClick={toggleColorMode} color='inherit'>
+                    {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+                </IconButton>
+            </Tooltip>
         </Box>
     );
 }

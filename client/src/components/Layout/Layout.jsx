@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
-function Layout({ toggleMode, mode }) {
+function Layout() {
     return (
         <Box
             sx={{
@@ -28,7 +28,7 @@ function Layout({ toggleMode, mode }) {
                     color: 'white',
                 }}
             >
-                <Header toggleTheme={toggleMode} mode={mode} />
+                <Header />
             </Paper>
 
             <Grid container sx={{ flexGrow: 1 }}>

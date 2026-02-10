@@ -1,29 +1,3 @@
-// import { NavLink } from 'react-router-dom';
-
-// function NavBar() {
-//     return (
-//         <ul>
-//             <li>
-//                 <NavLink to='/'>Home</NavLink>
-//             </li>
-//             <li>
-//                 <NavLink to='/movies'>Movies</NavLink>
-//             </li>
-//             <li>
-//                 <NavLink to='/actors'>Actors</NavLink>
-//             </li>
-//             <li>
-//                 <NavLink to='/directors'>Directors</NavLink>
-//             </li>
-//             <li>
-//                 <NavLink to='/studios'>Studios</NavLink>
-//             </li>
-//         </ul>
-//     );
-// }
-
-// export default NavBar;
-
 import { NavLink, useLocation } from 'react-router-dom';
 import {
     Box,
@@ -49,7 +23,6 @@ import {
 function NavBar() {
     const location = useLocation();
 
-    // Масив об'єктів для навігації
     const navItems = [
         { text: 'Home', path: '/', icon: <HomeIcon /> },
         { text: 'Movies', path: '/movies', icon: <MovieIcon /> },
@@ -68,7 +41,6 @@ function NavBar() {
                 bgcolor: 'background.paper',
             }}
         >
-            {/* Логотип або Назва проекту */}
             <Box sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 2 }}>
                 <LogoIcon color='primary' sx={{ fontSize: 32 }} />
                 <Typography
@@ -99,25 +71,16 @@ function NavBar() {
                                 to={item.path}
                                 sx={{
                                     borderRadius: 3,
-                                    // Стилізація активного стану
                                     bgcolor: isActive
                                         ? alpha('#1976d2', 0.1)
                                         : 'transparent',
                                     color: isActive
                                         ? 'primary.main'
-                                        : 'text.secondary',
-                                    '&.active': {
-                                        bgcolor: alpha('#1976d2', 0.1),
-                                        color: 'primary.main',
-                                        '& .MuiListItemIcon-root': {
-                                            color: 'primary.main',
-                                        },
-                                        '& .MuiTypography-root': {
-                                            fontWeight: 'bold',
-                                        },
-                                    },
-                                    '&:hover': {
-                                        bgcolor: alpha('#1976d2', 0.05),
+                                        : 'text.primary',
+                                    '& .MuiTypography-root': {
+                                        fontWeight: isActive
+                                            ? 'bold'
+                                            : 'normal',
                                     },
                                     transition: 'all 0.2s ease',
                                 }}

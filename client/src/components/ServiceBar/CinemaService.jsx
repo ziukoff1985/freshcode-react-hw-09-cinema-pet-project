@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import MoviesForm from '../Forms/MoviesForm';
 import ActorsForm from '../Forms/ActorsForm';
 import DirectorsForm from '../Forms/DirectorsForm';
@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 function CinemaService() {
+    const location = useLocation();
+
     return (
         <Box sx={{ p: 2, fontSize: '24px' }}>
             <h2>Cinema Service</h2>
@@ -22,14 +24,16 @@ function CinemaService() {
                 <Route
                     path='*'
                     element={
-                        <Typography
-                            variant='body2'
-                            color='text.secondary'
-                            sx={{ fontSize: '24px' }}
-                        >
-                            Please choose an element for editing or click the
-                            'Add' button
-                        </Typography>
+                        location.pathname !== '/' && (
+                            <Typography
+                                variant='body2'
+                                color='text.secondary'
+                                sx={{ fontSize: '24px' }}
+                            >
+                                Please choose an element for editing or click
+                                the 'Add' button
+                            </Typography>
+                        )
                     }
                 />
             </Routes>
