@@ -73,8 +73,11 @@ function StudiosList() {
                                     <Box>
                                         <Tooltip title='Show details'>
                                             <IconButton
-                                                component={Link}
-                                                to={`${studio.id}`}
+                                                onClick={() => {
+                                                    navigate(
+                                                        `/studios/${studio.id}`,
+                                                    );
+                                                }}
                                                 color='primary'
                                             >
                                                 <ViewIcon />
@@ -84,7 +87,7 @@ function StudiosList() {
                                             <IconButton
                                                 onClick={() =>
                                                     navigate(
-                                                        `${studio.id}/edit`,
+                                                        `/studios/${studio.id}/edit`,
                                                     )
                                                 }
                                                 color='secondary'

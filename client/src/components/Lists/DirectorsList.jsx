@@ -76,8 +76,11 @@ function DirectorsList() {
                                     <Box>
                                         <Tooltip title='Show details'>
                                             <IconButton
-                                                component={Link}
-                                                to={`${director.id}`}
+                                                onClick={() => {
+                                                    navigate(
+                                                        `/directors/${director.id}`,
+                                                    );
+                                                }}
                                                 color='primary'
                                             >
                                                 <ViewIcon />
@@ -87,7 +90,7 @@ function DirectorsList() {
                                             <IconButton
                                                 onClick={() =>
                                                     navigate(
-                                                        `${director.id}/edit`,
+                                                        `/directors/${director.id}/edit`,
                                                     )
                                                 }
                                                 color='secondary'

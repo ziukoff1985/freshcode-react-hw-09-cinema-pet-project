@@ -73,8 +73,11 @@ function ActorsList() {
                                     <Box>
                                         <Tooltip title='Show details'>
                                             <IconButton
-                                                component={Link}
-                                                to={`${actor.id}`}
+                                                onClick={() =>
+                                                    navigate(
+                                                        `/actors/${actor.id}`,
+                                                    )
+                                                }
                                                 color='primary'
                                             >
                                                 <ViewIcon />
@@ -83,7 +86,9 @@ function ActorsList() {
                                         <Tooltip title='Edit'>
                                             <IconButton
                                                 onClick={() =>
-                                                    navigate(`${actor.id}/edit`)
+                                                    navigate(
+                                                        `/actors/${actor.id}/edit`,
+                                                    )
                                                 }
                                                 color='secondary'
                                             >

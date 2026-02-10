@@ -73,23 +73,30 @@ function MoviesList() {
                                     <Box>
                                         <Tooltip title='Show details'>
                                             <IconButton
-                                                component={Link}
-                                                to={`${movie.id}`}
+                                                onClick={() =>
+                                                    navigate(
+                                                        `/movies/${movie.id}`,
+                                                    )
+                                                }
                                                 color='primary'
                                             >
                                                 <ViewIcon />
                                             </IconButton>
                                         </Tooltip>
+
                                         <Tooltip title='Edit'>
                                             <IconButton
                                                 onClick={() =>
-                                                    navigate(`${movie.id}/edit`)
+                                                    navigate(
+                                                        `/movies/${movie.id}/edit`,
+                                                    )
                                                 }
                                                 color='secondary'
                                             >
                                                 <EditIcon />
                                             </IconButton>
                                         </Tooltip>
+
                                         <Tooltip title='Delete'>
                                             <IconButton
                                                 onClick={() =>
