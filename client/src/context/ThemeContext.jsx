@@ -34,10 +34,8 @@ export const getAppTheme = (mode = 'light') =>
                     root: {
                         ...(mode === 'dark' && {
                             border: '1px solid',
-                            borderColor: '#404040', // або 'divider'
-                            borderRadius: '8px',
-                            marginBottom: '8px',
-                            backgroundColor: '#1e1e1e',
+                            borderColor: '#404040',
+                            backgroundColor: '#343434',
                         }),
                     },
                 },
