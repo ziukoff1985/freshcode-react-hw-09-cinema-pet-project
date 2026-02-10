@@ -5,8 +5,8 @@ function useConfirm() {
     const [payload, setPayload] = useState(null);
 
     const openConfirm = useCallback((data) => {
-        setPayload(data);
         setOpen(true);
+        setPayload(data);
     }, []);
 
     const closeConfirm = useCallback(() => {

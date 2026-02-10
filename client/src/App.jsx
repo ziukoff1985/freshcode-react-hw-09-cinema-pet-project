@@ -27,6 +27,7 @@ function App() {
             <Routes>
                 <Route
                     path='/*'
+                    Route
                     element={
                         <Layout toggleMode={toggleColorMode} mode={mode} />
                     }
@@ -36,8 +37,8 @@ function App() {
                     <Route path='actors/*' element={<ActorsPage />} />
                     <Route path='directors/*' element={<DirectorsPage />} />
                     <Route path='studios/*' element={<StudiosPage />} />
+                    <Route path='*' element={<NotFoundPage />} />
                 </Route>
-                <Route path='*' element={<NotFoundPage />} />
             </Routes>
         </ThemeProvider>
     );
