@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 
 export const ColorModeContext = createContext({
     toggleColorMode: () => {},
-    // mode: 'light',
+    mode: 'light',
 });
 
 export const getAppTheme = (mode = 'light') =>
