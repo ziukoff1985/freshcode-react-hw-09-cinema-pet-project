@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-function ErrorMessage({ error, btnText }) {
+function ErrorMessage({ error, btnText, from }) {
     return (
         <Box
             sx={{
@@ -16,7 +16,7 @@ function ErrorMessage({ error, btnText }) {
             <Typography variant='text'>{error}</Typography>
             <Button
                 component={Link}
-                to='/'
+                to={from}
                 variant='contained'
                 size='large'
                 sx={{

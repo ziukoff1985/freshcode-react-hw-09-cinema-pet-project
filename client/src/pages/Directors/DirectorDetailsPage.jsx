@@ -48,7 +48,13 @@ function DirectorDetailsPage() {
     }
 
     if (error) {
-        return <ErrorMessage error={error} btnText='Back to directors list' />;
+        return (
+            <ErrorMessage
+                error={error}
+                btnText='Back to directors list'
+                from='/directors'
+            />
+        );
     }
 
     return (

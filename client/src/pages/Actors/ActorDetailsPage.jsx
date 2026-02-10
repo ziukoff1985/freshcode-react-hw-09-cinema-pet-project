@@ -47,7 +47,7 @@ function ActorDetailsPage() {
     }
 
     if (error) {
-        return <ErrorMessage error={error} btnText='Back to actors list' />;
+        return <ErrorMessage error={error} btnText='Back to actors list' from='/actors' />;
     }
 
     return (

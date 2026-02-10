@@ -47,7 +47,13 @@ function MovieDetailsPage() {
     }
 
     if (error) {
-        return <ErrorMessage error={error} btnText='Back to movies list' />;
+        return (
+            <ErrorMessage
+                error={error}
+                btnText='Back to movies list'
+                from='/movies'
+            />
+        );
     }
 
     return (
