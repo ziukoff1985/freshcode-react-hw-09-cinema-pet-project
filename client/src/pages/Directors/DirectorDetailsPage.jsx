@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     Box,
@@ -9,7 +9,6 @@ import {
     Grid,
     Chip,
     Divider,
-    CircularProgress,
     Card,
     CardMedia,
     alpha,
@@ -23,12 +22,17 @@ import {
 } from '@mui/icons-material';
 import { getDirectorById } from '../../store/thunks/directorsThunks';
 import { clearCurrentDirector } from '../../store/slices/directorsSlice';
+import Loader from '../../components/UI/Loader';
+import ErrorMessage from '../../components/UI/ErrorMessage';
 
 function DirectorDetailsPage() {
     const { id } = useParams();
+    const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentDirector } = useSelector((state) => state.directorsList);
+    const { currentDirector, error } = useSelector(
+        (state) => state.directorsList,
+    );
 
     useEffect(() => {
         dispatch(getDirectorById(id));
@@ -37,19 +41,12 @@ function DirectorDetailsPage() {
         };
     }, [dispatch, id]);
 
-    if (!currentDirector) {
-        return (
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '50vh',
-                }}
-            >
-                <CircularProgress size={60} thickness={4} />
-            </Box>
-        );
+    if (!currentDirector && !error) {
+        return <Loader />;
+    }
+
+    if (error) {
+        return <ErrorMessage error={error} />;
     }
 
     return (

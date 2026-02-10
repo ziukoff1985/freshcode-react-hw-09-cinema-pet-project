@@ -44,6 +44,7 @@ function StudiosPage() {
                 <Route path='new' element={<StudiosList />} />
                 <Route path=':id' element={<StudioDetailsPage />} />
                 <Route path=':id/edit' element={<StudioDetailsPage />} />
+                <Route path='*' element={<NotFoundPage />} />
             </Routes>
         </>
     );

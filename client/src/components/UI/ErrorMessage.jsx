@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 
-function Error({ error }) {
+function ErrorMessage({ error }) {
     return (
         <Box
             sx={{
@@ -17,4 +17,4 @@ function Error({ error }) {
     );
 }
 
-export default Error;
+export default ErrorMessage;

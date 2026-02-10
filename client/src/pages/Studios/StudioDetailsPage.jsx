@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import {
     Box,
@@ -9,7 +9,6 @@ import {
     Grid,
     Chip,
     Divider,
-    CircularProgress,
     Card,
     CardMedia,
     alpha,
@@ -21,14 +20,18 @@ import {
     Cake,
     Language,
 } from '@mui/icons-material';
+
 import { getStudioById } from '../../store/thunks/studiosThunks';
 import { clearCurrentStudio } from '../../store/slices/studiosSlice';
+import Loader from '../../components/UI/Loader';
+import ErrorMessage from '../../components/UI/ErrorMessage';
 
 function StudioDetailsPage() {
     const { id } = useParams();
+    const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentStudio } = useSelector((state) => state.studiosList);
+    const { currentStudio, error } = useSelector((state) => state.studiosList);
 
     useEffect(() => {
         dispatch(getStudioById(id));
@@ -37,19 +40,12 @@ function StudioDetailsPage() {
         };
     }, [dispatch, id]);
 
-    if (!currentStudio) {
-        return (
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '50vh',
-                }}
-            >
-                <CircularProgress size={60} thickness={4} />
-            </Box>
-        );
+    if (!currentStudio && !error) {
+        return <Loader />;
+    }
+
+    if (error) {
+        return <ErrorMessage error={error} />;
     }
 
     return (
