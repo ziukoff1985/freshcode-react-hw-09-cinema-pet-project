@@ -1,5 +1,16 @@
+import { useLocation } from 'react-router-dom';
+
 function ActorsForm() {
-    return <h1>Here should be actors form for editing or adding</h1>;
+    const location = useLocation();
+    return (
+        <>
+            {location.pathname.includes('edit') ? (
+                <h2>Form for EDITING Actor</h2>
+            ) : (
+                <h2>Form for ADDING Actor</h2>
+            )}
+        </>
+    );
 }
 
 export default ActorsForm;

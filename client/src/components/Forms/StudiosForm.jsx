@@ -1,5 +1,13 @@
 function StudiosForm() {
-    return <h2>Here should be studios form for editing or adding</h2>;
+    return (
+        <>
+            {location.pathname.includes('edit') ? (
+                <h2>Form for EDITING Studio</h2>
+            ) : (
+                <h2>Form for ADDING Studio</h2>
+            )}
+        </>
+    );
 }
 
 export default StudiosForm;

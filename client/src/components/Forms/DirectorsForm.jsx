@@ -1,5 +1,13 @@
 function DirectorsForm() {
-    return <h2>Here should be directors form for editing or adding</h2>;
+    return (
+        <>
+            {location.pathname.includes('edit') ? (
+                <h2>Form for EDITING Director</h2>
+            ) : (
+                <h2>Form for ADDING Director</h2>
+            )}
+        </>
+    );
 }
 
 export default DirectorsForm;
