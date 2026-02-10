@@ -30,9 +30,11 @@ function DirectorDetailsPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentDirector, error } = useSelector(
-        (state) => state.directorsList,
+
+    const currentDirector = useSelector(
+        (state) => state.directorsList.currentDirector,
     );
+    const error = useSelector((state) => state.directorsList.error);
 
     useEffect(() => {
         dispatch(getDirectorById(id));

@@ -31,7 +31,11 @@ function StudioDetailsPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentStudio, error } = useSelector((state) => state.studiosList);
+
+    const currentStudio = useSelector(
+        (state) => state.studiosList.currentStudio,
+    );
+    const error = useSelector((state) => state.studiosList.error);
 
     useEffect(() => {
         dispatch(getStudioById(id));

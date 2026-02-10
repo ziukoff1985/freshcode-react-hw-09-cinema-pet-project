@@ -31,7 +31,9 @@ function ActorDetailsPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentActor, error } = useSelector((state) => state.actorsList);
+
+    const currentActor = useSelector((state) => state.actorsList.currentActor);
+    const error = useSelector((state) => state.actorsList.error);
 
     useEffect(() => {
         dispatch(getActorById(id));

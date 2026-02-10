@@ -31,7 +31,9 @@ function MovieDetailsPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentMovie, error } = useSelector((state) => state.moviesList);
+
+    const currentMovie = useSelector((state) => state.moviesList.currentMovie);
+    const error = useSelector((state) => state.moviesList.error);
 
     useEffect(() => {
         dispatch(getMovieById(id));

@@ -6,6 +6,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import StudiosList from '../../components/Lists/StudiosList';
 import StudioDetailsPage from './StudioDetailsPage';
 import { Typography } from '@mui/material';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function StudiosPage() {
     return (
