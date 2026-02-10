@@ -49,7 +49,7 @@ function StudioDetailsPage() {
     }
 
     if (error) {
-        return <ErrorMessage error={error} />;
+        return <ErrorMessage error={error} btnText='Back to studios list' />;
     }
 
     return (

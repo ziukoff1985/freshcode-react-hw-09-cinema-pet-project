@@ -1,6 +1,7 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-function ErrorMessage({ error }) {
+function ErrorMessage({ error, btnText }) {
     return (
         <Box
             sx={{
@@ -13,6 +14,19 @@ function ErrorMessage({ error }) {
         >
             <Typography variant='text'>Oops! Something went wrong</Typography>
             <Typography variant='text'>{error}</Typography>
+            <Button
+                component={Link}
+                to='/'
+                variant='contained'
+                size='large'
+                sx={{
+                    mt: 10,
+                    px: 4,
+                    borderRadius: 2,
+                }}
+            >
+                {btnText}
+            </Button>
         </Box>
     );
 }

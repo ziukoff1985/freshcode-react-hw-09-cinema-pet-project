@@ -1,4 +1,4 @@
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Box, Container, Typography, Button, Stack } from '@mui/material';
 
 const NotFoundPage = () => {
@@ -37,7 +37,7 @@ const NotFoundPage = () => {
                     </Stack>
 
                     <Button
-                        component={RouterLink}
+                        component={Link}
                         to='/'
                         variant='contained'
                         size='large'
