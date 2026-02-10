@@ -53,7 +53,7 @@ function StudioDetailsPage() {
             <ErrorMessage
                 error={error}
                 btnText='Back to studios list'
-                from='/studios'
+                to='/studios'
             />
         );
     }

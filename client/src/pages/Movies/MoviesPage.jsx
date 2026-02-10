@@ -35,7 +35,7 @@ function MoviesPage() {
                         variant='contained'
                         color='success'
                         startIcon={<LibraryAddIcon />}
-                        size='small'
+                        size='medium'
                     >
                         Add movie
                     </Button>

@@ -34,7 +34,7 @@ function StudiosPage() {
                         variant='contained'
                         color='success'
                         startIcon={<LibraryAddIcon />}
-                        size='small'
+                        size='medium'
                     >
                         Add studio
                     </Button>

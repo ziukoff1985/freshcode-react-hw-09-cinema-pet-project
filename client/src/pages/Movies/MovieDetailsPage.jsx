@@ -51,7 +51,7 @@ function MovieDetailsPage() {
             <ErrorMessage
                 error={error}
                 btnText='Back to movies list'
-                from='/movies'
+                to='/movies'
             />
         );
     }

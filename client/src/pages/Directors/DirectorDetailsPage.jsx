@@ -52,7 +52,7 @@ function DirectorDetailsPage() {
             <ErrorMessage
                 error={error}
                 btnText='Back to directors list'
-                from='/directors'
+                to='/directors'
             />
         );
     }

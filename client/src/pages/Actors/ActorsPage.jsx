@@ -35,7 +35,7 @@ function ActorsPage() {
                         variant='contained'
                         color='success'
                         startIcon={<LibraryAddIcon />}
-                        size='small'
+                        size='medium'
                     >
                         Add actor
                     </Button>

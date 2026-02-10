@@ -18,7 +18,6 @@ function Layout() {
                 minHeight: '100vh',
             }}
         >
-            {/* HEADER */}
             <Paper
                 square
                 elevation={4}
@@ -32,7 +31,6 @@ function Layout() {
             </Paper>
 
             <Grid container sx={{ flexGrow: 1 }}>
-                {/* NAVIGATION */}
                 <Grid
                     size={{ xs: 12, md: 2 }}
                     sx={{
@@ -44,7 +42,6 @@ function Layout() {
                     <NavBar />
                 </Grid>
 
-                {/* MAIN CONTENT */}
                 <Grid
                     size={{ xs: 12, md: 7 }}
                     component='main'
@@ -53,7 +50,6 @@ function Layout() {
                     <Outlet />
                 </Grid>
 
-                {/* CINEMA SERVICE */}
                 <Grid
                     size={{ xs: 12, md: 3 }}
                     sx={{
@@ -66,7 +62,6 @@ function Layout() {
                 </Grid>
             </Grid>
 
-            {/* FOOTER */}
             <Paper
                 square
                 elevation={4}
