@@ -17,11 +17,14 @@ function ConfirmDrawer({
                     p: 3,
                 }}
             >
-                <Typography variant='h6'>{title}</Typography>
+                <Typography variant='h6' fontSize='28px'>
+                    {title}
+                </Typography>
 
                 {description && (
                     <Typography
                         variant='body2'
+                        fontSize='20px'
                         color='text.secondary'
                         mt={1}
                         mb={3}
