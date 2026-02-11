@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
     List,
     ListItem,
@@ -14,12 +14,14 @@ import {
     Box,
     Tooltip,
     CircularProgress,
+    Button,
 } from '@mui/material';
 import {
     Visibility as ViewIcon,
     Edit as EditIcon,
     Delete as DeleteIcon,
     Person as PersonIcon,
+    ArrowBack as BackIcon,
 } from '@mui/icons-material';
 import { getAllActors, deleteActor } from '../../store/thunks/actorsThunks';
 import useConfirm from '../../hooks/useConfirm';
@@ -56,6 +58,19 @@ function ActorsList() {
 
     return (
         <>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <Button
+                    startIcon={<BackIcon />}
+                    onClick={() => navigate('/')}
+                    sx={{
+                        mb: 1,
+                        borderRadius: 2,
+                        textTransform: 'none',
+                    }}
+                >
+                    Back to Home
+                </Button>
+            </Box>
             <Paper
                 elevation={2}
                 sx={{
