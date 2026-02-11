@@ -160,30 +160,26 @@ function DirectorDetailsPage() {
                                                 ? 'disabled'
                                                 : 'contained'
                                         }
+                                        size='medium'
                                         startIcon={<EditIcon />}
                                         onClick={() => navigate('edit')}
                                         sx={{
-                                            px: 3,
-                                            py: 1,
                                             boxShadow:
                                                 '0 4px 14px 0 rgba(0,118,255,0.39)',
-                                            fontWeight: 'bold',
                                         }}
                                     >
                                         Edit
                                     </Button>
                                     <Button
                                         variant='contained'
+                                        size='medium'
                                         color='error'
                                         startIcon={<DeleteForever />}
                                         onClick={handleDeleteClick}
                                         sx={{
                                             width: 'fit-content',
-                                            px: 3,
-                                            py: 1,
                                             boxShadow:
                                                 '0 4px 14px 0 rgba(209, 42, 42, 0.39)',
-                                            fontWeight: 'bold',
                                         }}
                                     >
                                         Delete
