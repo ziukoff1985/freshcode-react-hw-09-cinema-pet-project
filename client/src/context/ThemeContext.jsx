@@ -24,6 +24,9 @@ export const getAppTheme = (mode = 'light') =>
             text: {
                 primary: mode === 'light' ? '#000' : '#fff',
             },
+            colorIcons: {
+                main: mode === 'light' ? '#1a237e' : '#a19f9f',
+            },
         },
         typography: {
             fontFamily: 'Roboto, sans-serif',

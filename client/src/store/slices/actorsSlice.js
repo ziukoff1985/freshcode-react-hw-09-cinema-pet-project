@@ -25,6 +25,9 @@ const actorsSlice = createSlice({
         setActorForEdit: (state, action) => {
             state.actorForEdit = action.payload;
         },
+        clearActorForEdit: (state) => {
+            state.actorForEdit = EMPTY_ACTOR_DATA;
+        },
         clearCurrentActor: (state) => {
             state.currentActor = null;
         },
@@ -90,6 +93,7 @@ const actorsSlice = createSlice({
     },
 });
 
-export const { setActorForEdit, clearCurrentActor } = actorsSlice.actions;
+export const { setActorForEdit, clearCurrentActor, clearActorForEdit } =
+    actorsSlice.actions;
 
 export default actorsSlice.reducer;

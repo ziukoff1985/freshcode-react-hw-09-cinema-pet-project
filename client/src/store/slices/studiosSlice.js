@@ -30,6 +30,9 @@ const studiosSlice = createSlice({
         clearCurrentStudio: (state) => {
             state.currentStudio = null;
         },
+        clearStudioForEdit: (state) => {
+            state.studioForEdit = EMPTY_STUDIO_DATA;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -92,6 +95,7 @@ const studiosSlice = createSlice({
     },
 });
 
-export const { setStudioForEdit, clearCurrentStudio } = studiosSlice.actions;
+export const { setStudioForEdit, clearCurrentStudio, clearStudioForEdit } =
+    studiosSlice.actions;
 
 export default studiosSlice.reducer;

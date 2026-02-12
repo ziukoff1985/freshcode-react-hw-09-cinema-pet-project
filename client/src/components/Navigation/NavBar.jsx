@@ -70,7 +70,7 @@ function NavBar() {
                                 component={NavLink}
                                 to={item.path}
                                 sx={{
-                                    borderRadius: 3,
+                                    // borderRadius: 3,
                                     bgcolor: isActive
                                         ? alpha('#1976d2', 0.1)
                                         : 'transparent',

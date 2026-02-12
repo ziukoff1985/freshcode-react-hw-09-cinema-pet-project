@@ -7,8 +7,16 @@ import DirectorsList from '../../components/Lists/DirectorsList';
 import DirectorDetailsPage from './DirectorDetailsPage';
 import { Typography } from '@mui/material';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import { useDispatch } from 'react-redux';
+import { setDirectorForEdit } from '../../store/slices/directorsSlice';
+import { EMPTY_DIRECTOR_DATA } from '../../constants/constants';
 
 function DirectorsPage() {
+    const dispatch = useDispatch();
+    const handleAddNewDirector = () => {
+        dispatch(setDirectorForEdit(EMPTY_DIRECTOR_DATA));
+    };
+
     return (
         <>
             <Stack
@@ -16,7 +24,7 @@ function DirectorsPage() {
                     flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    mb: 2,
+                    mb: 1,
                 }}
             >
                 <Typography
@@ -31,6 +39,7 @@ function DirectorsPage() {
                 </Typography>
                 <Link to='/directors/new'>
                     <Button
+                        onClick={handleAddNewDirector}
                         variant='contained'
                         color='success'
                         startIcon={<LibraryAddIcon />}

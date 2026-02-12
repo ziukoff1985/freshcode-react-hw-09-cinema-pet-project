@@ -23,7 +23,10 @@ import {
 } from '@mui/icons-material';
 
 import { deleteStudio, getStudioById } from '../../store/thunks/studiosThunks';
-import { clearCurrentStudio } from '../../store/slices/studiosSlice';
+import {
+    clearCurrentStudio,
+    setStudioForEdit,
+} from '../../store/slices/studiosSlice';
 import Loader from '../../components/UI/Loader';
 import ErrorMessage from '../../components/UI/ErrorMessage';
 import useConfirm from '../../hooks/useConfirm';
@@ -56,6 +59,12 @@ function StudioDetailsPage() {
     const handleConfirmDelete = () => {
         dispatch(deleteStudio(payload));
         closeConfirm();
+        navigate('/studios');
+    };
+
+    const handleEditClick = () => {
+        dispatch(setStudioForEdit(currentStudio));
+        navigate(`/studios/${id}/edit`);
     };
 
     if (!currentStudio && !error) {
@@ -92,7 +101,7 @@ function StudioDetailsPage() {
                 <Paper
                     elevation={6}
                     sx={{
-                        p: { xs: 2, md: 4 },
+                        p: { xs: 2, md: 3 },
                         borderRadius: 5,
                         position: 'relative',
                         overflow: 'hidden',
@@ -162,13 +171,16 @@ function StudioDetailsPage() {
                                         }
                                         size='medium'
                                         startIcon={<EditIcon />}
-                                        onClick={() => navigate('edit')}
+                                        // onClick={() => navigate('edit')}
+                                        onClick={handleEditClick}
                                         sx={{
                                             boxShadow:
                                                 '0 4px 14px 0 rgba(0,118,255,0.39)',
                                         }}
                                     >
-                                        Edit
+                                        {location.pathname.includes('edit')
+                                            ? 'Now Editing...'
+                                            : 'Edit'}
                                     </Button>
                                     <Button
                                         variant='contained'
@@ -200,7 +212,7 @@ function StudioDetailsPage() {
                                     <Avatar
                                         sx={{
                                             bgcolor: alpha('#1a237e', 0.1),
-                                            color: '#1a237e',
+                                            color: 'colorIcons.main',
                                         }}
                                     >
                                         <Language fontSize='small' />
@@ -230,7 +242,7 @@ function StudioDetailsPage() {
                                     <Avatar
                                         sx={{
                                             bgcolor: alpha('#1a237e', 0.1),
-                                            color: '#1a237e',
+                                            color: 'colorIcons.main',
                                         }}
                                     >
                                         <Cake fontSize='small' />
@@ -240,7 +252,7 @@ function StudioDetailsPage() {
                                             variant='caption'
                                             color='text.secondary'
                                         >
-                                            Foundation Year
+                                            Foundation Date
                                         </Typography>
                                         <Typography
                                             variant='body1'

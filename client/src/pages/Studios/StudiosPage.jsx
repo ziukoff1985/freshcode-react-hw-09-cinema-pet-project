@@ -7,8 +7,17 @@ import StudiosList from '../../components/Lists/StudiosList';
 import StudioDetailsPage from './StudioDetailsPage';
 import { Typography } from '@mui/material';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import { useDispatch } from 'react-redux';
+import { EMPTY_STUDIO_DATA } from '../../constants/constants';
+import { setStudioForEdit } from '../../store/slices/studiosSlice';
 
 function StudiosPage() {
+    const dispatch = useDispatch();
+
+    const handleAddNewStudio = () => {
+        dispatch(setStudioForEdit(EMPTY_STUDIO_DATA));
+    };
+
     return (
         <>
             <Stack
@@ -16,7 +25,7 @@ function StudiosPage() {
                     flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    mb: 2,
+                    mb: 1,
                 }}
             >
                 <Typography
@@ -31,6 +40,7 @@ function StudiosPage() {
                 </Typography>
                 <Link to='/studios/new'>
                     <Button
+                        onClick={handleAddNewStudio}
                         variant='contained'
                         color='success'
                         startIcon={<LibraryAddIcon />}

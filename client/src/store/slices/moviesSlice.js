@@ -27,6 +27,9 @@ const moviesSlice = createSlice({
         clearCurrentMovie: (state) => {
             state.currentMovie = null;
         },
+        clearMovieForEdit: (state) => {
+            state.movieForEdit = EMPTY_MOVIE_DATA;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -89,6 +92,7 @@ const moviesSlice = createSlice({
     },
 });
 
-export const { setMovieForEdit, clearCurrentMovie } = moviesSlice.actions;
+export const { setMovieForEdit, clearCurrentMovie, clearMovieForEdit } =
+    moviesSlice.actions;
 
 export default moviesSlice.reducer;

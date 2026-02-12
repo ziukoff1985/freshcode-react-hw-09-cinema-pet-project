@@ -25,7 +25,10 @@ import {
     deleteDirector,
     getDirectorById,
 } from '../../store/thunks/directorsThunks';
-import { clearCurrentDirector } from '../../store/slices/directorsSlice';
+import {
+    clearCurrentDirector,
+    setDirectorForEdit,
+} from '../../store/slices/directorsSlice';
 import Loader from '../../components/UI/Loader';
 import ErrorMessage from '../../components/UI/ErrorMessage';
 import useConfirm from '../../hooks/useConfirm';
@@ -58,6 +61,12 @@ function DirectorDetailsPage() {
     const handleConfirmDelete = () => {
         dispatch(deleteDirector(payload));
         closeConfirm();
+        navigate('/directors');
+    };
+
+    const handleEditClick = () => {
+        dispatch(setDirectorForEdit(currentDirector));
+        navigate(`/directors/${id}/edit`);
     };
 
     if (!currentDirector && !error) {
@@ -94,9 +103,8 @@ function DirectorDetailsPage() {
                 <Paper
                     elevation={6}
                     sx={{
-                        p: { xs: 2, md: 4 },
+                        p: { xs: 2, md: 3 },
                         borderRadius: 5,
-                        // background:
                         position: 'relative',
                         overflow: 'hidden',
                     }}
@@ -162,13 +170,16 @@ function DirectorDetailsPage() {
                                         }
                                         size='medium'
                                         startIcon={<EditIcon />}
-                                        onClick={() => navigate('edit')}
+                                        // onClick={() => navigate('edit')}
+                                        onClick={handleEditClick}
                                         sx={{
                                             boxShadow:
                                                 '0 4px 14px 0 rgba(0,118,255,0.39)',
                                         }}
                                     >
-                                        Edit
+                                        {location.pathname.includes('edit')
+                                            ? 'Now Editing...'
+                                            : 'Edit'}
                                     </Button>
                                     <Button
                                         variant='contained'
@@ -201,7 +212,7 @@ function DirectorDetailsPage() {
                                     <Avatar
                                         sx={{
                                             bgcolor: alpha('#1a237e', 0.1),
-                                            color: '#1a237e',
+                                            color: 'colorIcons.main',
                                         }}
                                     >
                                         <Language fontSize='small' />
@@ -231,7 +242,7 @@ function DirectorDetailsPage() {
                                     <Avatar
                                         sx={{
                                             bgcolor: alpha('#1a237e', 0.1),
-                                            color: '#1a237e',
+                                            color: 'colorIcons.main',
                                         }}
                                     >
                                         <Cake fontSize='small' />

@@ -10,7 +10,7 @@ function CinemaService() {
     const location = useLocation();
 
     return (
-        <Box sx={{ p: 2, fontSize: '24px' }}>
+        <Box sx={{ p: 2, fontSize: '18px' }}>
             <h2>Cinema Service</h2>
             <Routes>
                 <Route path='/movies/new' element={<MoviesForm />} />
@@ -28,7 +28,7 @@ function CinemaService() {
                             <Typography
                                 variant='body2'
                                 color='text.secondary'
-                                sx={{ fontSize: '24px' }}
+                                sx={{ fontSize: '14px' }}
                             >
                                 Please choose an element for editing or click
                                 the 'Add' button

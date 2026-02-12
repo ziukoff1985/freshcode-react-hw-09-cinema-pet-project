@@ -24,7 +24,10 @@ import {
 // import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import { deleteMovie, getMovieById } from '../../store/thunks/moviesThunks';
-import { clearCurrentMovie } from '../../store/slices/moviesSlice';
+import {
+    clearCurrentMovie,
+    setMovieForEdit,
+} from '../../store/slices/moviesSlice';
 import Loader from '../../components/UI/Loader';
 import ErrorMessage from '../../components/UI/ErrorMessage';
 import useConfirm from '../../hooks/useConfirm';
@@ -55,6 +58,12 @@ function MovieDetailsPage() {
     const handleConfirmDelete = () => {
         dispatch(deleteMovie(payload));
         closeConfirm();
+        navigate('/movies');
+    };
+
+    const handleEditClick = () => {
+        dispatch(setMovieForEdit(currentMovie));
+        navigate(`/movies/${id}/edit`);
     };
 
     if (!currentMovie && !error) {
@@ -91,7 +100,7 @@ function MovieDetailsPage() {
                 <Paper
                     elevation={6}
                     sx={{
-                        p: { xs: 2, md: 4 },
+                        p: { xs: 2, md: 1.5 },
                         borderRadius: 5,
                         position: 'relative',
                         overflow: 'hidden',
@@ -99,7 +108,7 @@ function MovieDetailsPage() {
                 >
                     <Grid container spacing={5} alignItems='stretch'>
                         {/* Movie's photo */}
-                        <Grid size={{ xs: 12, md: 4.5 }}>
+                        <Grid size={{ xs: 12, md: 4.7 }}>
                             <Card
                                 sx={{
                                     borderRadius: 4,
@@ -122,7 +131,7 @@ function MovieDetailsPage() {
 
                         {/* Movie's info */}
                         <Grid
-                            size={{ xs: 12, md: 7.5 }}
+                            size={{ xs: 12, md: 7.3 }}
                             sx={{ display: 'flex', flexDirection: 'column' }}
                         >
                             <Box
@@ -159,13 +168,16 @@ function MovieDetailsPage() {
                                         }
                                         size='medium'
                                         startIcon={<EditIcon />}
-                                        onClick={() => navigate('edit')}
+                                        // onClick={() => navigate('edit')}
+                                        onClick={handleEditClick}
                                         sx={{
                                             boxShadow:
                                                 '0 4px 14px 0 rgba(0,118,255,0.39)',
                                         }}
                                     >
-                                        Edit
+                                        {location.pathname.includes('edit')
+                                            ? 'Now Editing...'
+                                            : 'Edit'}
                                     </Button>
                                     <Button
                                         variant='contained'
@@ -182,7 +194,7 @@ function MovieDetailsPage() {
                                     </Button>
                                 </Box>
                             </Box>
-                            <Divider sx={{ my: 3, opacity: 0.6 }} />
+                            <Divider sx={{ my: 2, opacity: 0.6 }} />
 
                             {/* Movie's details */}
                             <Box sx={{ display: 'flex', gap: 4, mb: 4 }}>
@@ -196,7 +208,7 @@ function MovieDetailsPage() {
                                     <Avatar
                                         sx={{
                                             bgcolor: alpha('#1a237e', 0.1),
-                                            color: '#1a237e',
+                                            color: 'colorIcons.main',
                                         }}
                                     >
                                         <Language fontSize='small' />
@@ -226,7 +238,7 @@ function MovieDetailsPage() {
                                     <Avatar
                                         sx={{
                                             bgcolor: alpha('#1a237e', 0.1),
-                                            color: '#1a237e',
+                                            color: 'colorIcons.main',
                                         }}
                                     >
                                         <Cake fontSize='small' />
@@ -252,7 +264,7 @@ function MovieDetailsPage() {
                                     display: 'flex',
                                     gap: 2,
                                     width: '100%',
-                                    mb: 1,
+                                    // mb: 1,
                                 }}
                             >
                                 <Typography
@@ -313,6 +325,40 @@ function MovieDetailsPage() {
                                         <Chip
                                             key={i}
                                             label={actor}
+                                            sx={{
+                                                borderRadius: '12px',
+                                                fontWeight: 500,
+                                            }}
+                                        />
+                                    ))}
+                                </Box>
+                            </Box>
+
+                            <Box
+                                sx={{ display: 'flex', gap: 2, width: '100%' }}
+                            >
+                                <Typography
+                                    variant='h6'
+                                    sx={{
+                                        fontWeight: 'bold',
+                                        mb: 2,
+                                        color: 'primary.main',
+                                    }}
+                                >
+                                    Studios:
+                                </Typography>
+
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexWrap: 'wrap',
+                                        gap: 2,
+                                    }}
+                                >
+                                    {currentMovie.studios.map((studio, i) => (
+                                        <Chip
+                                            key={i}
+                                            label={studio}
                                             sx={{
                                                 borderRadius: '12px',
                                                 fontWeight: 500,

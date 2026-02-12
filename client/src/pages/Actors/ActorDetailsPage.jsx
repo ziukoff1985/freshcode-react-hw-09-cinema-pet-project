@@ -23,7 +23,10 @@ import {
 } from '@mui/icons-material';
 
 import { deleteActor, getActorById } from '../../store/thunks/actorsThunks';
-import { clearCurrentActor } from '../../store/slices/actorsSlice';
+import {
+    clearCurrentActor,
+    setActorForEdit,
+} from '../../store/slices/actorsSlice';
 import Loader from '../../components/UI/Loader';
 import ErrorMessage from '../../components/UI/ErrorMessage';
 import useConfirm from '../../hooks/useConfirm';
@@ -54,6 +57,12 @@ function ActorDetailsPage() {
     const handleConfirmDelete = () => {
         dispatch(deleteActor(payload));
         closeConfirm();
+        navigate('/actors');
+    };
+
+    const handleEditClick = () => {
+        dispatch(setActorForEdit(currentActor));
+        navigate(`/actors/${id}/edit`);
     };
 
     if (!currentActor && !error) {
@@ -90,7 +99,7 @@ function ActorDetailsPage() {
                 <Paper
                     elevation={6}
                     sx={{
-                        p: { xs: 2, md: 4 },
+                        p: { xs: 2, md: 3 },
                         borderRadius: 5,
                         position: 'relative',
                         overflow: 'hidden',
@@ -158,13 +167,16 @@ function ActorDetailsPage() {
                                         }
                                         size='medium'
                                         startIcon={<EditIcon />}
-                                        onClick={() => navigate('edit')}
+                                        // onClick={() => navigate('edit')}
+                                        onClick={handleEditClick}
                                         sx={{
                                             boxShadow:
                                                 '0 4px 14px 0 rgba(0,118,255,0.39)',
                                         }}
                                     >
-                                        Edit
+                                        {location.pathname.includes('edit')
+                                            ? 'Now Editing...'
+                                            : 'Edit'}
                                     </Button>
                                     <Button
                                         variant='contained'
@@ -197,7 +209,7 @@ function ActorDetailsPage() {
                                     <Avatar
                                         sx={{
                                             bgcolor: alpha('#1a237e', 0.1),
-                                            color: '#1a237e',
+                                            color: 'colorIcons.main',
                                         }}
                                     >
                                         <Language fontSize='small' />
@@ -227,7 +239,7 @@ function ActorDetailsPage() {
                                     <Avatar
                                         sx={{
                                             bgcolor: alpha('#1a237e', 0.1),
-                                            color: '#1a237e',
+                                            color: 'colorIcons.main',
                                         }}
                                     >
                                         <Cake fontSize='small' />

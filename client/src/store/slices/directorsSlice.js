@@ -30,6 +30,9 @@ const directorsSlice = createSlice({
         clearCurrentDirector: (state) => {
             state.currentDirector = null;
         },
+        clearDirectorForEdit: (state) => {
+            state.directorForEdit = EMPTY_DIRECTOR_DATA;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -94,7 +97,10 @@ const directorsSlice = createSlice({
     },
 });
 
-export const { setDirectorForEdit, clearCurrentDirector } =
-    directorsSlice.actions;
+export const {
+    setDirectorForEdit,
+    clearCurrentDirector,
+    clearDirectorForEdit,
+} = directorsSlice.actions;
 
 export default directorsSlice.reducer;

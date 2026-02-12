@@ -8,8 +8,15 @@ import Typography from '@mui/material/Typography';
 import ActorsList from '../../components/Lists/ActorsList';
 import ActorDetailsPage from './ActorDetailsPage';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import { useDispatch } from 'react-redux';
+import { setActorForEdit } from '../../store/slices/actorsSlice';
+import { EMPTY_ACTOR_DATA } from '../../constants/constants';
 
 function ActorsPage() {
+    const dispatch = useDispatch();
+    const handleAddNewActor = () => {
+        dispatch(setActorForEdit(EMPTY_ACTOR_DATA));
+    };
     return (
         <>
             <Stack
@@ -17,7 +24,7 @@ function ActorsPage() {
                     flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    mb: 2,
+                    mb: 1,
                 }}
             >
                 <Typography
@@ -32,6 +39,7 @@ function ActorsPage() {
                 </Typography>
                 <Link to='/actors/new'>
                     <Button
+                        onClick={handleAddNewActor}
                         variant='contained'
                         color='success'
                         startIcon={<LibraryAddIcon />}

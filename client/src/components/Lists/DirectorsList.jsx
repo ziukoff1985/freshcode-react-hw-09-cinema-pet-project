@@ -29,6 +29,7 @@ import {
 } from '../../store/thunks/directorsThunks';
 import useConfirm from '../../hooks/useConfirm';
 import ConfirmDrawer from '../UI/ConfirmDrawer';
+import { setDirectorForEdit } from '../../store/slices/directorsSlice';
 
 function DirectorsList() {
     const dispatch = useDispatch();
@@ -50,6 +51,14 @@ function DirectorsList() {
     const handleConfirmDelete = () => {
         dispatch(deleteDirector(payload));
         closeConfirm();
+    };
+
+    const handleEditClick = (id) => {
+        const currentDirector = directors.find(
+            (director) => director.id === id,
+        );
+        dispatch(setDirectorForEdit(currentDirector));
+        navigate(`/directors/${id}/edit`);
     };
 
     if (!directors || isPending)
@@ -103,10 +112,13 @@ function DirectorsList() {
                                         </Tooltip>
                                         <Tooltip title='Edit'>
                                             <IconButton
+                                                // onClick={() =>
+                                                //     navigate(
+                                                //         `/directors/${director.id}/edit`,
+                                                //     )
+                                                // }
                                                 onClick={() =>
-                                                    navigate(
-                                                        `/directors/${director.id}/edit`,
-                                                    )
+                                                    handleEditClick(director.id)
                                                 }
                                                 color='secondary'
                                             >

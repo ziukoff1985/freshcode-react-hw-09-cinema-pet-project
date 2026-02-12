@@ -26,6 +26,7 @@ import {
 import { deleteStudio, getAllStudios } from '../../store/thunks/studiosThunks';
 import useConfirm from '../../hooks/useConfirm';
 import ConfirmDrawer from '../UI/ConfirmDrawer';
+import { setStudioForEdit } from '../../store/slices/studiosSlice';
 
 function StudiosList() {
     const dispatch = useDispatch();
@@ -47,6 +48,12 @@ function StudiosList() {
     const handleConfirmDelete = () => {
         dispatch(deleteStudio(payload));
         closeConfirm();
+    };
+
+    const handleEditClick = (id) => {
+        const currentStudio = studios.find((studio) => studio.id === id);
+        dispatch(setStudioForEdit(currentStudio));
+        navigate(`/studios/${id}/edit`);
     };
 
     if (!studios || isPending)
@@ -100,10 +107,13 @@ function StudiosList() {
                                         </Tooltip>
                                         <Tooltip title='Edit'>
                                             <IconButton
+                                                // onClick={() =>
+                                                //     navigate(
+                                                //         `/studios/${studio.id}/edit`,
+                                                //     )
+                                                // }
                                                 onClick={() =>
-                                                    navigate(
-                                                        `/studios/${studio.id}/edit`,
-                                                    )
+                                                    handleEditClick(studio.id)
                                                 }
                                                 color='secondary'
                                             >

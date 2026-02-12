@@ -26,6 +26,7 @@ import {
 import { deleteMovie, getAllMovies } from '../../store/thunks/moviesThunks';
 import useConfirm from '../../hooks/useConfirm';
 import ConfirmDrawer from '../UI/ConfirmDrawer';
+import { setMovieForEdit } from '../../store/slices/moviesSlice';
 
 function MoviesList() {
     const dispatch = useDispatch();
@@ -47,6 +48,12 @@ function MoviesList() {
     const handleConfirmDelete = () => {
         dispatch(deleteMovie(payload));
         closeConfirm();
+    };
+
+    const handleEditClick = (id) => {
+        const currentMovie = movies.find((movie) => movie.id === id);
+        dispatch(setMovieForEdit(currentMovie));
+        navigate(`/movies/${id}/edit`);
     };
 
     if (!movies || isPending)
@@ -101,10 +108,13 @@ function MoviesList() {
 
                                         <Tooltip title='Edit'>
                                             <IconButton
+                                                // onClick={() =>
+                                                //     navigate(
+                                                //         `/movies/${movie.id}/edit`,
+                                                //     )
+                                                // }
                                                 onClick={() =>
-                                                    navigate(
-                                                        `/movies/${movie.id}/edit`,
-                                                    )
+                                                    handleEditClick(movie.id)
                                                 }
                                                 color='secondary'
                                             >

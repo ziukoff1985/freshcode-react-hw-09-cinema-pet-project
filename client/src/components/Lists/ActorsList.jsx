@@ -26,6 +26,7 @@ import {
 import { getAllActors, deleteActor } from '../../store/thunks/actorsThunks';
 import useConfirm from '../../hooks/useConfirm';
 import ConfirmDrawer from '../UI/ConfirmDrawer';
+import { setActorForEdit } from '../../store/slices/actorsSlice';
 
 function ActorsList() {
     const dispatch = useDispatch();
@@ -47,6 +48,12 @@ function ActorsList() {
     const handleConfirmDelete = () => {
         dispatch(deleteActor(payload));
         closeConfirm();
+    };
+
+    const handleEditClick = (id) => {
+        const currentActor = actors.find((actor) => actor.id === id);
+        dispatch(setActorForEdit(currentActor));
+        navigate(`/actors/${id}/edit`);
     };
 
     if (!actors || isPending)
@@ -100,10 +107,13 @@ function ActorsList() {
                                         </Tooltip>
                                         <Tooltip title='Edit'>
                                             <IconButton
+                                                // onClick={() =>
+                                                //     navigate(
+                                                //         `/actors/${actor.id}/edit`,
+                                                //     )
+                                                // }
                                                 onClick={() =>
-                                                    navigate(
-                                                        `/actors/${actor.id}/edit`,
-                                                    )
+                                                    handleEditClick(actor.id)
                                                 }
                                                 color='secondary'
                                             >

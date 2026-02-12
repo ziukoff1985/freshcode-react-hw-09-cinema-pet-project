@@ -8,8 +8,17 @@ import Typography from '@mui/material/Typography';
 import MoviesList from '../../components/Lists/MoviesList';
 import MovieDetailsPage from './MovieDetailsPage';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import { useDispatch } from 'react-redux';
+import { setMovieForEdit } from '../../store/slices/moviesSlice';
+import { EMPTY_MOVIE_DATA } from '../../constants/constants';
 
 function MoviesPage() {
+    const dispatch = useDispatch();
+
+    const handleAddNewMovie = () => {
+        dispatch(setMovieForEdit(EMPTY_MOVIE_DATA));
+    };
+
     return (
         <>
             <Stack
@@ -17,7 +26,7 @@ function MoviesPage() {
                     flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    mb: 2,
+                    mb: 1,
                 }}
             >
                 <Typography
@@ -32,6 +41,7 @@ function MoviesPage() {
                 </Typography>
                 <Link to='/movies/new'>
                     <Button
+                        onClick={handleAddNewMovie}
                         variant='contained'
                         color='success'
                         startIcon={<LibraryAddIcon />}
