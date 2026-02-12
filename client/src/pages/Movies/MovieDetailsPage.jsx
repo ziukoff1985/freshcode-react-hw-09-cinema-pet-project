@@ -248,13 +248,13 @@ function MovieDetailsPage() {
                                             variant='caption'
                                             color='text.secondary'
                                         >
-                                            Release Year
+                                            Release Date
                                         </Typography>
                                         <Typography
                                             variant='body1'
                                             sx={{ fontWeight: 600 }}
                                         >
-                                            {currentMovie.releaseYear}
+                                            {currentMovie.releaseDate}
                                         </Typography>
                                     </Box>
                                 </Box>

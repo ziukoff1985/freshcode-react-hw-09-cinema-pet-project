@@ -164,7 +164,7 @@ function MoviesList() {
                                             >
                                                 {movie.studios.join(', ')}
                                             </Typography>
-                                            {` — Release year: ${movie.releaseYear}`}
+                                            {` — Release year: ${movie.releaseDate}`}
                                         </>
                                     }
                                 />

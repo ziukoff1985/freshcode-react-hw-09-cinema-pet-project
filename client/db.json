@@ -108,7 +108,7 @@
       "id": "1",
       "title": "LucasFilm",
       "location": "San Francisco, USA",
-      "foundationYear": 1971,
+      "foundationDate": "1970-05-18",
       "movies": [
         "Indiana Jones",
         "The Star Wars",
@@ -121,7 +121,7 @@
       "id": "2",
       "title": "20th Century Studios",
       "location": "Los Angeles, USA",
-      "foundationYear": 1935,
+      "foundationDate": "1937-06-01",
       "movies": [
         "Pirates of the Caribbean",
         "The Tourist",
@@ -134,7 +134,7 @@
       "id": "3",
       "title": "Paramount Pictures",
       "location": "Los Angeles, USA",
-      "foundationYear": 1912,
+      "foundationDate": "1912-10-21",
       "movies": [
         "Alien",
         "Avatar",
@@ -159,7 +159,7 @@
         "LukasFilm"
       ],
       "country": "USA",
-      "releaseDate": 1980,
+      "releaseDate": "1980-07-30",
       "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/8/8b/IJandCrystalSkull.jpg/220px-IJandCrystalSkull.jpg"
     },
     {
@@ -178,7 +178,7 @@
         "20th Century Studios, Inc."
       ],
       "country": "USA",
-      "releaseDate": 1979,
+      "releaseDate": "1979-05-25",
       "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/c/c3/Alien_movie_poster.jpg/232px-Alien_movie_poster.jpg"
     },
     {
@@ -194,7 +194,7 @@
         "20th Century Studios, Inc."
       ],
       "country": "USA",
-      "releaseDate": 1986,
+      "releaseDate": "1986-07-19",
       "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/f/fb/Aliens_poster.jpg/196px-Aliens_poster.jpg"
     },
     {
@@ -211,7 +211,7 @@
         "Walt Disney Pictures"
       ],
       "country": "USA",
-      "releaseDate": 2001,
+      "releaseDate": "2001-05-19",
       "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/7/79/Pirates-of-the-Caribbean-The-Curse-of-the-Black-Pearl-.jpg/201px-Pirates-of-the-Caribbean-The-Curse-of-the-Black-Pearl-.jpg"
     },
     {
@@ -228,7 +228,7 @@
         "New Line Cinema "
       ],
       "country": "USA",
-      "releaseDate": 2001,
+      "releaseDate": "2001-12-18",
       "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/0/08/The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_%E2%80%94_movie.jpg/203px-The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_%E2%80%94_movie.jpg"
     }
   ]
