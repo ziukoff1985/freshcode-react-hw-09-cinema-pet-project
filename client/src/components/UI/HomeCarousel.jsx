@@ -29,7 +29,12 @@ function HomeCarousel() {
                         color: '#fff',
                     },
                 }}
-                sx={{ width: '100%', height: { xs: 350, md: 530 } }}
+                sx={{
+                    width: '100%',
+                    height: { xs: 350, md: 490 },
+                    objectFit: 'cover',
+                    overflow: 'hidden',
+                }}
             >
                 {posters.map((item) => (
                     <CarouselItem key={item.id} item={item} />
@@ -45,14 +50,14 @@ function CarouselItem({ item }) {
             elevation={0}
             sx={{
                 position: 'relative',
-                height: { xs: 350, md: 550 },
+                height: { xs: 350, md: 490 },
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
                 backgroundImage: `url(${item.url})`,
                 backgroundSize: 'cover',
-                backgroundPosition: 'center 25%',
+                backgroundPosition: 'center',
                 borderRadius: 0,
             }}
         ></Paper>
