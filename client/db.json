@@ -40,15 +40,26 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg/960px-Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg"
     },
     {
-      "id": "e19a",
+      "id": "fa86",
       "movies": [
         "Indiana Jones"
       ],
       "firstName": "Борис",
       "lastName": "Зюков",
-      "birthDate": "1985-01-13",
+      "birthDate": "2026-02-11",
       "nationality": "USA",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg/960px-Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
+    },
+    {
+      "id": "8d46",
+      "movies": [
+        "Pirates of the Caribbean"
+      ],
+      "firstName": "Борис",
+      "lastName": "Зюков",
+      "birthDate": "2026-02-12",
+      "nationality": "USA",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/07/Harrison_Ford_-_Televerse_2025_%28cropped%29.jpg"
     }
   ],
   "directors": [
@@ -90,17 +101,6 @@
         "Star Wars"
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Quentin_Tarantino_by_Gage_Skidmore.jpg/960px-Quentin_Tarantino_by_Gage_Skidmore.jpg"
-    },
-    {
-      "id": "1f7c",
-      "firstName": "Борис",
-      "lastName": "ZIUKOV",
-      "birthDate": "1985-01-13",
-      "nationality": "USA",
-      "movies": [
-        "Indiana Jones"
-      ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
     }
   ],
   "studios": [
