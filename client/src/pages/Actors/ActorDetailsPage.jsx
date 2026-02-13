@@ -305,8 +305,8 @@ function ActorDetailsPage() {
             </Box>
             <ConfirmDrawer
                 open={open}
-                title='Delete movie'
-                description='Are you sure you want to delete this actor? This action cannot be undone.'
+                title='Delete Actor'
+                description={`Are you sure you want to delete ${currentActor.firstName} ${currentActor.lastName}? This action cannot be undone.`}
                 confirmText='Delete'
                 cancelText='Cancel'
                 onConfirm={handleConfirmDelete}

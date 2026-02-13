@@ -304,7 +304,7 @@ function StudioDetailsPage() {
             <ConfirmDrawer
                 open={open}
                 title='Delete movie'
-                description='Are you sure you want to delete this studio? This action cannot be undone.'
+                description={`Are you sure you want to delete ${currentStudio.title}? This action cannot be undone.`}
                 confirmText='Delete'
                 cancelText='Cancel'
                 onConfirm={handleConfirmDelete}

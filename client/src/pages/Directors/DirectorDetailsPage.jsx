@@ -302,7 +302,7 @@ function DirectorDetailsPage() {
             <ConfirmDrawer
                 open={open}
                 title='Delete movie'
-                description='Are you sure you want to delete this director? This action cannot be undone.'
+                description={`Are you sure you want to delete ${currentDirector.firstName} ${currentDirector.lastName}? This action cannot be undone.`}
                 confirmText='Delete'
                 cancelText='Cancel'
                 onConfirm={handleConfirmDelete}

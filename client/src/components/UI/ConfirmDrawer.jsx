@@ -1,4 +1,4 @@
-import { Drawer, Box, Typography, Button, Stack } from '@mui/material';
+import { Drawer, Box, Typography, Button, Stack, Divider } from '@mui/material';
 
 function ConfirmDrawer({
     open,
@@ -15,16 +15,20 @@ function ConfirmDrawer({
                 sx={{
                     width: { xs: '100vw', sm: 360 },
                     p: 3,
+                    textAlign: 'center',
                 }}
             >
-                <Typography variant='h6' fontSize='28px'>
+                <Typography variant='h6' fontSize='24px'>
                     {title}
                 </Typography>
+                
+                <Divider sx={{ my: 3, opacity: 0.9 }} />
+
 
                 {description && (
                     <Typography
                         variant='body2'
-                        fontSize='20px'
+                        fontSize='16px'
                         color='text.secondary'
                         mt={1}
                         mb={3}

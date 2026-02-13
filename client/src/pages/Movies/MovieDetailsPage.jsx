@@ -374,7 +374,7 @@ function MovieDetailsPage() {
             <ConfirmDrawer
                 open={open}
                 title='Delete movie'
-                description='Are you sure you want to delete this movie? This action cannot be undone.'
+                description={`Are you sure you want to delete ${currentMovie.title}? This action cannot be undone.`}
                 confirmText='Delete'
                 cancelText='Cancel'
                 onConfirm={handleConfirmDelete}
