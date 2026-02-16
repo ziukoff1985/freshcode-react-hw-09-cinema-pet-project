@@ -79,6 +79,17 @@
         "Star Wars"
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Quentin_Tarantino_by_Gage_Skidmore.jpg/960px-Quentin_Tarantino_by_Gage_Skidmore.jpg"
+    },
+    {
+      "id": "01c8",
+      "firstName": "BORYS123",
+      "lastName": "ZIUKOV",
+      "birthDate": "2026-02-11",
+      "nationality": "USA",
+      "movies": [
+        "Indiana Jones"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
     }
   ],
   "studios": [

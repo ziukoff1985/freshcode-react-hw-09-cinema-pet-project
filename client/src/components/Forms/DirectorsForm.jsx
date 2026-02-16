@@ -98,7 +98,6 @@ function DirectorsForm() {
 
     const handleSubmitForm = (values) => {
         console.log('SUBMIT TRIGGERED AT STEP:', activeStep);
-        if (!isLastStep) return; // ! ?????
 
         const formattedValues = {
             ...values,
