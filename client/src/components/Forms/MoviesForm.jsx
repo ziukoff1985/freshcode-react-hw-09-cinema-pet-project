@@ -99,8 +99,6 @@ function MoviesForm() {
     };
 
     const handleSubmitForm = (values) => {
-        if (!isLastStep) return; // ! ?????
-
         const formattedValues = {
             ...values,
             releaseDate: values.releaseDate

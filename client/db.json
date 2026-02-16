@@ -230,6 +230,22 @@
       "country": "USA",
       "releaseDate": "2001-12-18",
       "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/0/08/The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_%E2%80%94_movie.jpg/203px-The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_%E2%80%94_movie.jpg"
+    },
+    {
+      "id": "2655",
+      "title": "asdasd123",
+      "country": "USA",
+      "directors": [
+        "asdasd"
+      ],
+      "actors": [
+        "asdad"
+      ],
+      "studios": [
+        "asdad"
+      ],
+      "releaseDate": "2026-02-10",
+      "poster": "https://www.limitedruns.com/media/cache/13/38/1338f5230824fd7b86cff4b031db5f26.jpg"
     }
   ]
 }
