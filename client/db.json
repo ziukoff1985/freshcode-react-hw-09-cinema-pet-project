@@ -38,6 +38,29 @@
       "birthDate": "1949-10-10",
       "nationality": "USA",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg/960px-Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg"
+    },
+    {
+      "id": "624d",
+      "movies": [
+        "Pirates of the Caribbean"
+      ],
+      "firstName": "BORYS",
+      "lastName": "ZIUKOV",
+      "birthDate": "2026-02-04",
+      "nationality": "USA",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
+    },
+    {
+      "id": "fe0c",
+      "movies": [
+        "asdad",
+        "The Star Wars"
+      ],
+      "firstName": "BORYS",
+      "lastName": "ZIUKOV",
+      "birthDate": "2026-02-04",
+      "nationality": "USA",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
     }
   ],
   "directors": [
@@ -120,6 +143,26 @@
         "The Matrix"
       ],
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Paramount_Pictures_with_Skydance_byline.svg/1280px-Paramount_Pictures_with_Skydance_byline.svg.png"
+    },
+    {
+      "id": "24fa",
+      "title": "1234568901",
+      "location": "adsfsadf",
+      "foundationDate": "2026-02-11",
+      "movies": [
+        "Indiana Jones"
+      ],
+      "logo": "https://www.limitedruns.com/media/cache/13/38/1338f5230824fd7b86cff4b031db5f26.jpg"
+    },
+    {
+      "id": "2327",
+      "title": "123123123123",
+      "location": "adsfsadf",
+      "foundationDate": "2026-02-04",
+      "movies": [
+        "Pirates of the Caribbean"
+      ],
+      "logo": "https://www.limitedruns.com/media/cache/13/38/1338f5230824fd7b86cff4b031db5f26.jpg"
     }
   ],
   "movies": [

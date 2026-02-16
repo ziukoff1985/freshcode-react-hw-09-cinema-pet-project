@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { FieldArray, Form, Formik } from 'formik';
+import dayjs from 'dayjs';
 import * as Yup from 'yup';
 
+// MUI ---------------------------------------------------
 import {
     Button,
     Grid,
     IconButton,
-    Paper,
     Stack,
     Step,
     StepLabel,
@@ -14,7 +17,6 @@ import {
     Typography,
 } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UndoIcon from '@mui/icons-material/Undo';
@@ -25,16 +27,12 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from 'dayjs';
+// -------------------------------------------------------
 
-import { FieldArray, Form, Formik } from 'formik';
 import CustomTextField from '../UI/CustomTextField';
-
 import { createStudio, updateStudio } from '../../store/thunks/studiosThunks';
-import { useState } from 'react';
-// import { clearStudioForEdit } from '../../store/slices/studiosSlice';
 
-const steps = ['Title', 'Details', 'Logo', 'Movies'];
+const steps = ['Title', 'Details', 'Logo', 'Movies']; // Steps names for Stepper
 
 function StudiosForm() {
     const dispatch = useDispatch();
@@ -47,6 +45,7 @@ function StudiosForm() {
         (state) => state.studiosList.studioForEdit,
     );
 
+    // Validation with Stepper (4 steps)
     const studioValidationSchema = [
         Yup.object({
             title: Yup.string().required('Title is required'),
@@ -72,42 +71,25 @@ function StudiosForm() {
     const currentValidationSchema = studioValidationSchema[activeStep];
     const isLastStep = activeStep === steps.length - 1;
 
-    // const handleNext = (validateForm) => {
-    //     validateForm().then((errors) => {
-    //         if (Object.keys(errors).length === 0) {
-    //             setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    //         }
-    //     });
-    // };
+    const isEdit = !!studioForEdit.id; // ckecking if we are in edit mode
 
-    const handleNext = async (e, validateForm) => {
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
+    const handleNext = (e, validateForm) => {
+        e.preventDefault(); // required with stepper
+        e.stopPropagation(); // required for stopping event bubbling
 
-        // Валідуємо форму
-        const errors = await validateForm();
-
-        // Перевіряємо помилки ТІЛЬКИ для полів поточного кроку
-        const currentStepFields = Object.keys(
-            studioValidationSchema[activeStep].fields,
-        );
-        const hasErrorsInCurrentStep = currentStepFields.some(
-            (field) => !!errors[field],
-        );
-
-        if (!hasErrorsInCurrentStep) {
-            setActiveStep((prev) => prev + 1);
-        }
+        // Checking if form on current step is valid
+        validateForm().then((errors) => {
+            if (Object.keys(errors).length === 0) {
+                setActiveStep((prev) => prev + 1);
+            }
+        });
     };
 
-    const handleBack = () =>
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    const handleBack = () => setActiveStep((prev) => prev - 1);
 
     const handleSubmitForm = (values /* , action */) => {
         console.log('SUBMIT TRIGGERED AT STEP:', activeStep);
-        if (!isLastStep) return;
+        if (!isLastStep) return; // ! ????
 
         const formattedValues = {
             ...values,
@@ -118,37 +100,14 @@ function StudiosForm() {
 
         if (!values.id) {
             dispatch(createStudio(formattedValues));
-            // action.resetForm();
-            setActiveStep(0);
+            // setActiveStep(0);
             navigate('/studios');
         } else {
             dispatch(updateStudio(formattedValues));
-            navigate(`/studios/${studioForEdit.id}`);
-            setActiveStep(0);
+            // navigate(`/studios/${studioForEdit.id}`);
+            // setActiveStep(0);
         }
     };
-
-    // const handleGoBack = () => {
-    //     if (location.pathname.includes('edit')) {
-    //         navigate(`/studios/${studioForEdit.id}`);
-    //         clearStudioForEdit();
-    //     } else {
-    //         navigate(-1);
-    //         clearStudioForEdit();
-    //     }
-    // };
-
-    // * Old validation without Stepper
-
-    // const studioValidationSchema = Yup.object().shape({
-    //     title: Yup.string().required('Title is required'),
-    //     location: Yup.string().required('Location is required'),
-    //     foundationDate: Yup.string().required('Foundation date is required'),
-    //     movies: Yup.array()
-    //         .of(Yup.string().required('At least one movie is required'))
-    //         .min(1),
-    //     logo: Yup.string().url('Invalid URL').required('Logo URL is required'),
-    // });
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -163,6 +122,7 @@ function StudiosForm() {
                 initialValues={structuredClone(studioForEdit)}
                 enableReinitialize
                 validationSchema={currentValidationSchema}
+                validateOnMount
                 onSubmit={handleSubmitForm}
             >
                 {({
@@ -251,13 +211,6 @@ function StudiosForm() {
                                 </Grid>
                             )}
 
-                            {/* <Grid size={{ xs: 12 }}>
-                                <CustomTextField
-                                    name='image'
-                                    label='Image URL'
-                                />
-                            </Grid> */}
-
                             {/* Step 4 */}
                             {activeStep === 3 && (
                                 <Grid size={{ xs: 12 }}>
@@ -318,10 +271,7 @@ function StudiosForm() {
                             )}
 
                             {/* NAVIGATION Buttons */}
-                            <Grid
-                                size={{ xs: 12 }}
-                                sx={{ mt: 2 }} /* item xs={12} sx={{ mt: 2 }} */
-                            >
+                            <Grid size={{ xs: 12 }} sx={{ mt: 2 }}>
                                 <Stack
                                     direction='row'
                                     justifyContent='space-between'
@@ -339,7 +289,15 @@ function StudiosForm() {
                                         <Button
                                             type='button'
                                             variant='outlined'
-                                            onClick={() => navigate('/studios')}
+                                            onClick={() =>
+                                                location.pathname.includes(
+                                                    'edit',
+                                                )
+                                                    ? navigate(
+                                                          `/studios/${studioForEdit.id}`,
+                                                      )
+                                                    : navigate('/studios')
+                                            }
                                             startIcon={<UndoIcon />}
                                         >
                                             Exit
@@ -347,11 +305,10 @@ function StudiosForm() {
 
                                         <Button
                                             type='button'
-                                            disabled={location.pathname.includes(
-                                                'edit',
-                                            )}
+                                            disabled={isEdit}
                                             onClick={() => {
                                                 resetForm();
+                                                setActiveStep(0);
                                             }}
                                             variant='contained'
                                             color='error'
@@ -365,9 +322,6 @@ function StudiosForm() {
                                                 type='button'
                                                 variant='contained'
                                                 disabled={!isValid}
-                                                // onClick={() =>
-                                                //     handleNext(validateForm)
-                                                // }
                                                 onClick={(e) =>
                                                     handleNext(e, validateForm)
                                                 }
@@ -389,46 +343,6 @@ function StudiosForm() {
                                     </Stack>
                                 </Stack>
                             </Grid>
-
-                            {/* <Grid size={{ xs: 4 }}>
-                                <Button
-                                    variant='contained'
-                                    color='success'
-                                    fullWidth
-                                    type='submit'
-                                    disabled={!isValid}
-                                    startIcon={<SaveIcon />}
-                                >
-                                    {values.id ? 'Update' : 'Save'}
-                                </Button>
-                            </Grid>
-                            <Grid size={{ xs: 4 }}>
-                                <Button
-                                    onClick={handleGoBack}
-                                    variant='contained'
-                                    color='primary'
-                                    fullWidth
-                                    startIcon={<UndoIcon />}
-                                >
-                                    Go Back
-                                </Button>
-                            </Grid>
-                            <Grid size={{ xs: 4 }}>
-                                <Button
-                                    disabled={location.pathname.includes(
-                                        'edit',
-                                    )}
-                                    onClick={() => {
-                                        resetForm();
-                                    }}
-                                    variant='contained'
-                                    color='error'
-                                    fullWidth
-                                    startIcon={<RestartAltIcon />}
-                                >
-                                    Reset
-                                </Button>
-                            </Grid> */}
                         </Grid>
                     </Form>
                 )}

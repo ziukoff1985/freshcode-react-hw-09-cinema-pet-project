@@ -327,12 +327,7 @@ function ActorsForm() {
                                             <Button
                                                 type='button'
                                                 variant='contained'
-                                                disabled={
-                                                    !isValid ||
-                                                    location.pathname.includes(
-                                                        'new',
-                                                    )
-                                                }
+                                                disabled={!isValid}
                                                 onClick={(e) =>
                                                     handleNext(e, validateForm)
                                                 }
