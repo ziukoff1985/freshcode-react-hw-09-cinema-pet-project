@@ -94,10 +94,7 @@ function StudiosForm() {
 
     const handleBack = () => setActiveStep((prev) => prev - 1);
 
-    const handleSubmitForm = (values /* , action */) => {
-        console.log('SUBMIT TRIGGERED AT STEP:', activeStep);
-        if (!isLastStep) return; // ! ????
-
+    const handleSubmitForm = (values) => {
         const formattedValues = {
             ...values,
             foundationDate: values.foundationDate
