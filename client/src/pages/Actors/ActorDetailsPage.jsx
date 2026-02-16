@@ -40,6 +40,7 @@ function ActorDetailsPage() {
 
     const currentActor = useSelector((state) => state.actorsList.currentActor);
     const error = useSelector((state) => state.actorsList.error);
+    const isPending = useSelector((state) => state.actorsList.isPending);
 
     useEffect(() => {
         dispatch(getActorById(id));
@@ -61,7 +62,7 @@ function ActorDetailsPage() {
     };
 
     const handleEditClick = () => {
-        dispatch(setActorForEdit(currentActor));
+        dispatch(setActorForEdit(structuredClone(currentActor)));
         navigate(`/actors/${id}/edit`);
     };
 
@@ -69,6 +70,9 @@ function ActorDetailsPage() {
         return <Loader />;
     }
 
+    if (isPending) {
+        return <Loader />;
+    }
     if (error) {
         return (
             <ErrorMessage

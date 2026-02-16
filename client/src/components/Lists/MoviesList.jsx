@@ -52,7 +52,7 @@ function MoviesList() {
 
     const handleEditClick = (id) => {
         const currentMovie = movies.find((movie) => movie.id === id);
-        dispatch(setMovieForEdit(currentMovie));
+        dispatch(setMovieForEdit(structuredClone(currentMovie)));
         navigate(`/movies/${id}/edit`);
     };
 

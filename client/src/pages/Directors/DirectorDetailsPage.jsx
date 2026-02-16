@@ -44,6 +44,7 @@ function DirectorDetailsPage() {
         (state) => state.directorsList.currentDirector,
     );
     const error = useSelector((state) => state.directorsList.error);
+    const isPending = useSelector((state) => state.directorsList.isPending);
 
     useEffect(() => {
         dispatch(getDirectorById(id));
@@ -65,11 +66,15 @@ function DirectorDetailsPage() {
     };
 
     const handleEditClick = () => {
-        dispatch(setDirectorForEdit(currentDirector));
+        dispatch(setDirectorForEdit(structuredClone(currentDirector)));
         navigate(`/directors/${id}/edit`);
     };
 
     if (!currentDirector && !error) {
+        return <Loader />;
+    }
+
+    if (isPending) {
         return <Loader />;
     }
 

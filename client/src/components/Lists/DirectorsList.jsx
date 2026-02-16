@@ -57,7 +57,7 @@ function DirectorsList() {
         const currentDirector = directors.find(
             (director) => director.id === id,
         );
-        dispatch(setDirectorForEdit(currentDirector));
+        dispatch(setDirectorForEdit(structuredClone(currentDirector)));
         navigate(`/directors/${id}/edit`);
     };
 

@@ -42,6 +42,7 @@ function StudioDetailsPage() {
         (state) => state.studiosList.currentStudio,
     );
     const error = useSelector((state) => state.studiosList.error);
+    const isPending = useSelector((state) => state.studiosList.isPending);
 
     useEffect(() => {
         dispatch(getStudioById(id));
@@ -63,11 +64,15 @@ function StudioDetailsPage() {
     };
 
     const handleEditClick = () => {
-        dispatch(setStudioForEdit(currentStudio));
+        dispatch(setStudioForEdit(structuredClone(currentStudio)));
         navigate(`/studios/${id}/edit`);
     };
 
     if (!currentStudio && !error) {
+        return <Loader />;
+    }
+
+    if (isPending) {
         return <Loader />;
     }
 
@@ -258,7 +263,7 @@ function StudioDetailsPage() {
                                             variant='body1'
                                             sx={{ fontWeight: 600 }}
                                         >
-                                            {currentStudio.foundationYear}
+                                            {currentStudio.foundationDate}
                                         </Typography>
                                     </Box>
                                 </Box>

@@ -30,27 +30,22 @@ import dayjs from 'dayjs';
 import { FieldArray, Form, Formik } from 'formik';
 import CustomTextField from '../UI/CustomTextField';
 
-import {
-    createDirector,
-    updateDirector,
-} from '../../store/thunks/directorsThunks';
-// import { clearDirectorForEdit } from '../../store/slices/directorsSlice';
+// import { clearActorForEdit } from '../../store/slices/actorsSlice';
+import { createActor, updateActor } from '../../store/thunks/actorsThunks';
 import { useState } from 'react';
 
 const steps = ['Name', 'Details', 'Photo', 'Movies'];
 
-function DirectorsForm() {
+function ActorsForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
 
     const [activeStep, setActiveStep] = useState(0); // For Stepper
 
-    const directorForEdit = useSelector(
-        (state) => state.directorsList.directorForEdit,
-    );
+    const actorForEdit = useSelector((state) => state.actorsList.actorForEdit);
 
-    const directorValidationSchema = [
+    const actorValidationSchema = [
         Yup.object({
             firstName: Yup.string().required('First name is required'),
             lastName: Yup.string().required('Last name is required'),
@@ -61,7 +56,7 @@ function DirectorsForm() {
         }),
         Yup.object({
             image: Yup.string()
-                .url('Invalid URL')
+                .url('Invalid image URL')
                 .required('Image URL is required'),
         }),
         Yup.object({
@@ -71,44 +66,21 @@ function DirectorsForm() {
         }),
     ];
 
-    const currentValidationSchema = directorValidationSchema[activeStep];
+    const currentValidationSchema = actorValidationSchema[activeStep];
     const isLastStep = activeStep === steps.length - 1;
 
-    // const handleNext = (validateForm) => {
-    //     validateForm().then((errors) => {
-    //         if (Object.keys(errors).length === 0) {
-    //             setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    //         }
-    //     });
-    // };
-
-    const handleNext = async (e, validateForm) => {
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        // Валідуємо форму
-        const errors = await validateForm();
-
-        // Перевіряємо помилки ТІЛЬКИ для полів поточного кроку
-        const currentStepFields = Object.keys(
-            directorValidationSchema[activeStep].fields,
-        );
-        const hasErrorsInCurrentStep = currentStepFields.some(
-            (field) => !!errors[field],
-        );
-
-        if (!hasErrorsInCurrentStep) {
-            setActiveStep((prev) => prev + 1);
-        }
+    const handleNext = (validateForm) => {
+        validateForm().then((errors) => {
+            if (Object.keys(errors).length === 0) {
+                setActiveStep((prevActiveStep) => prevActiveStep + 1);
+            }
+        });
     };
 
     const handleBack = () =>
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
-    const handleSubmitForm = (values /* , action */) => {
-        console.log('SUBMIT TRIGGERED AT STEP:', activeStep);
+    const handleSubmitForm = (values, action) => {
         if (!isLastStep) return;
 
         const formattedValues = {
@@ -119,38 +91,37 @@ function DirectorsForm() {
         };
 
         if (!values.id) {
-            dispatch(createDirector(formattedValues));
-            // action.resetForm();
+            dispatch(createActor(formattedValues));
+            action.resetForm();
             setActiveStep(0);
-            navigate('/directors');
+            navigate('/actors');
         } else {
-            dispatch(updateDirector(formattedValues));
-            setActiveStep(0);
-            navigate(`/directors/${directorForEdit.id}`);
+            dispatch(updateActor(formattedValues));
+            navigate(`/actors/${actorForEdit.id}`);
         }
     };
 
     // const handleGoBack = () => {
     //     if (location.pathname.includes('edit')) {
-    //         navigate(`/directors/${directorForEdit.id}`);
-    //         clearDirectorForEdit();
+    //         navigate(`/actors/${actorForEdit.id}`);
+    //         clearActorForEdit();
     //     } else {
     //         navigate(-1);
-    //         clearDirectorForEdit();
+    //         clearActorForEdit();
     //     }
     // };
 
     // * Old validation without Stepper
-    // const directorValidationSchema = Yup.object({
+    // const actorValidationSchema = Yup.object().shape({
     //     firstName: Yup.string().required('First name is required'),
     //     lastName: Yup.string().required('Last name is required'),
-    //     birthDate: Yup.date().required('Birth date is required'),
+    //     birthDate: Yup.string().required('Birth date is required'),
     //     nationality: Yup.string().required('Nationality is required'),
     //     image: Yup.string()
     //         .url('Invalid URL')
     //         .required('Image URL is required'),
     //     movies: Yup.array()
-    //         .of(Yup.string().required('Movie name is required'))
+    //         .of(Yup.string().required('At least one movie is required'))
     //         .min(1),
     // });
 
@@ -164,7 +135,7 @@ function DirectorsForm() {
                 ))}
             </Stepper>
             <Formik
-                initialValues={structuredClone(directorForEdit)}
+                initialValues={structuredClone(actorForEdit)}
                 enableReinitialize
                 validationSchema={currentValidationSchema}
                 onSubmit={handleSubmitForm}
@@ -181,7 +152,7 @@ function DirectorsForm() {
                 }) => (
                     <Form>
                         <Typography variant='h6' sx={{ mb: 3 }}>
-                            {values.id ? 'Edit director' : 'Add director'}
+                            {values.id ? 'Edit actor' : 'Add actor'}
                         </Typography>
                         <Grid container spacing={2} sx={{ minHeight: '200px' }}>
                             {/* Step 1 */}
@@ -201,6 +172,18 @@ function DirectorsForm() {
                                     </Grid>
                                 </>
                             )}
+                            {/* <Grid size={{ xs: 6 }}>
+                                <CustomTextField
+                                    name='firstName'
+                                    label='First Name'
+                                />
+                            </Grid>
+                            <Grid size={{ xs: 6 }}>
+                                <CustomTextField
+                                    name='lastName'
+                                    label='Last Name'
+                                />
+                            </Grid> */}
 
                             {/* Step 2 */}
                             {/* DatePicker */}
@@ -250,6 +233,46 @@ function DirectorsForm() {
                                     </Grid>
                                 </>
                             )}
+                            {/* DatePicker */}
+                            {/* <Grid size={{ xs: 6 }}>
+                                <DatePicker
+                                    label='Birth Date'
+                                    format='YYYY/MM/DD'
+                                    name='birthDate'
+                                    value={
+                                        values.birthDate
+                                            ? dayjs(values.birthDate)
+                                            : null
+                                    }
+                                    onChange={(newValue) =>
+                                        setFieldValue('birthDate', newValue)
+                                    }
+                                    slotProps={{
+                                        textField: {
+                                            fullWidth: true,
+                                            size: 'small',
+                                            onBlur: () =>
+                                                setFieldTouched(
+                                                    'birthDate',
+                                                    true,
+                                                ),
+                                            error:
+                                                touched.birthDate &&
+                                                !!errors.birthDate,
+                                            helperText:
+                                                touched.birthDate &&
+                                                errors.birthDate,
+                                        },
+                                    }}
+                                />
+                            </Grid>
+
+                            <Grid size={{ xs: 6 }}>
+                                <CustomTextField
+                                    name='nationality'
+                                    label='Nationality'
+                                />
+                            </Grid> */}
 
                             {/* Step 3 */}
                             {activeStep === 2 && (
@@ -260,6 +283,12 @@ function DirectorsForm() {
                                     />
                                 </Grid>
                             )}
+                            {/* <Grid size={{ xs: 12 }}>
+                                <CustomTextField
+                                    name='image'
+                                    label='Image URL'
+                                />
+                            </Grid> */}
 
                             {/* Step 4 */}
                             {activeStep === 3 && (
@@ -319,9 +348,59 @@ function DirectorsForm() {
                                     </FieldArray>
                                 </Grid>
                             )}
+                            {/* <Grid size={{ xs: 12 }}>
+                                <Typography variant='subtitle2'>
+                                    Movies List - min 1 movie:
+                                </Typography>
+                                <FieldArray name='movies'>
+                                    {({ push, remove }) => (
+                                        <Stack spacing={1} mt={1}>
+                                            {values.movies.map((_, index) => (
+                                                <Stack
+                                                    key={index}
+                                                    direction='row'
+                                                    spacing={1}
+                                                >
+                                                    <CustomTextField
+                                                        name={`movies.${index}`}
+                                                        label={`Movie #${index + 1}`}
+                                                    />
+                                                    <IconButton
+                                                        color='error'
+                                                        onClick={() =>
+                                                            remove(index)
+                                                        }
+                                                        disabled={
+                                                            values.movies
+                                                                .length === 1
+                                                        }
+                                                    >
+                                                        <DeleteIcon />
+                                                    </IconButton>
+                                                </Stack>
+                                            ))}
+                                            <Button
+                                                startIcon={<AddCircleIcon />}
+                                                variant='outlined'
+                                                onClick={() => push('')}
+                                                fullWidth
+                                                size='small'
+                                                sx={{
+                                                    alignSelf: 'flex-start',
+                                                }}
+                                            >
+                                                Add Movie
+                                            </Button>
+                                        </Stack>
+                                    )}
+                                </FieldArray>
+                            </Grid> */}
 
                             {/* NAVIGATION Buttons */}
-                            <Grid size={{ xs: 12 }} sx={{ mt: 2 }}>
+                            <Grid
+                                size={{ xs: 12 }}
+                                sx={{ mt: 2 }} /* item xs={12} sx={{ mt: 2 }} */
+                            >
                                 <Stack
                                     direction='row'
                                     justifyContent='space-between'
@@ -339,9 +418,7 @@ function DirectorsForm() {
                                         <Button
                                             type='button'
                                             variant='outlined'
-                                            onClick={() =>
-                                                navigate('/directors')
-                                            }
+                                            onClick={() => navigate('/actors')}
                                             startIcon={<UndoIcon />}
                                         >
                                             Exit
@@ -367,11 +444,8 @@ function DirectorsForm() {
                                                 type='button'
                                                 variant='contained'
                                                 disabled={!isValid}
-                                                // onClick={() =>
-                                                //     handleNext(validateForm)
-                                                // }
-                                                onClick={(e) =>
-                                                    handleNext(e, validateForm)
+                                                onClick={() =>
+                                                    handleNext(validateForm)
                                                 }
                                                 endIcon={<NavigateNextIcon />}
                                             >
@@ -380,6 +454,15 @@ function DirectorsForm() {
                                         ) : (
                                             <Button
                                                 variant='contained'
+                                                // onClick={() => {
+                                                //     navigate(
+                                                //         location.pathname.includes(
+                                                //             'edit',
+                                                //         )
+                                                //             ? `/actors/${actorForEdit.id}`
+                                                //             : '/actors',
+                                                //     );
+                                                // }}
                                                 color='success'
                                                 type='submit'
                                                 disabled={!isValid}
@@ -391,6 +474,46 @@ function DirectorsForm() {
                                     </Stack>
                                 </Stack>
                             </Grid>
+
+                            {/* <Grid size={{ xs: 4 }}>
+                                <Button
+                                    variant='contained'
+                                    color='success'
+                                    fullWidth
+                                    type='submit'
+                                    disabled={!isValid}
+                                    startIcon={<SaveIcon />}
+                                >
+                                    {values.id ? 'Update' : 'Save'}
+                                </Button>
+                            </Grid>
+                            <Grid size={{ xs: 4 }}>
+                                <Button
+                                    onClick={handleGoBack}
+                                    variant='contained'
+                                    color='primary'
+                                    fullWidth
+                                    startIcon={<UndoIcon />}
+                                >
+                                    Go Back
+                                </Button>
+                            </Grid>
+                            <Grid size={{ xs: 4 }}>
+                                <Button
+                                    disabled={location.pathname.includes(
+                                        'edit',
+                                    )}
+                                    onClick={() => {
+                                        resetForm();
+                                    }}
+                                    variant='contained'
+                                    color='error'
+                                    fullWidth
+                                    startIcon={<RestartAltIcon />}
+                                >
+                                    Reset
+                                </Button>
+                            </Grid> */}
                         </Grid>
                     </Form>
                 )}
@@ -399,4 +522,4 @@ function DirectorsForm() {
     );
 }
 
-export default DirectorsForm;
+export default ActorsForm;

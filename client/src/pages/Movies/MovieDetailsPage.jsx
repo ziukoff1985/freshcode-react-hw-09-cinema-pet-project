@@ -41,6 +41,7 @@ function MovieDetailsPage() {
 
     const currentMovie = useSelector((state) => state.moviesList.currentMovie);
     const error = useSelector((state) => state.moviesList.error);
+    const isPending = useSelector((state) => state.moviesList.isPending);
 
     useEffect(() => {
         dispatch(getMovieById(id));
@@ -62,11 +63,15 @@ function MovieDetailsPage() {
     };
 
     const handleEditClick = () => {
-        dispatch(setMovieForEdit(currentMovie));
+        dispatch(setMovieForEdit(structuredClone(currentMovie)));
         navigate(`/movies/${id}/edit`);
     };
 
     if (!currentMovie && !error) {
+        return <Loader />;
+    }
+
+    if (isPending) {
         return <Loader />;
     }
 

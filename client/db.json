@@ -9,8 +9,8 @@
       ],
       "firstName": "Harrison",
       "lastName": "Ford",
-      "birthDate": "1942-01-01",
-      "nationality": "USA",
+      "birthDate": "1942-01-13",
+      "nationality": "ukr",
       "image": "https://upload.wikimedia.org/wikipedia/commons/0/07/Harrison_Ford_-_Televerse_2025_%28cropped%29.jpg"
     },
     {
@@ -38,28 +38,6 @@
       "birthDate": "1949-10-10",
       "nationality": "USA",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg/960px-Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg"
-    },
-    {
-      "id": "fa86",
-      "movies": [
-        "Indiana Jones"
-      ],
-      "firstName": "Борис",
-      "lastName": "Зюков",
-      "birthDate": "2026-02-11",
-      "nationality": "USA",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
-    },
-    {
-      "id": "8d46",
-      "movies": [
-        "Pirates of the Caribbean"
-      ],
-      "firstName": "Борис",
-      "lastName": "Зюков",
-      "birthDate": "2026-02-12",
-      "nationality": "USA",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/0/07/Harrison_Ford_-_Televerse_2025_%28cropped%29.jpg"
     }
   ],
   "directors": [
@@ -230,6 +208,22 @@
       "country": "USA",
       "releaseDate": "2001-12-18",
       "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/0/08/The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_%E2%80%94_movie.jpg/203px-The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_%E2%80%94_movie.jpg"
+    },
+    {
+      "id": "dce4",
+      "title": "123",
+      "country": "USA",
+      "directors": [
+        "asdasd"
+      ],
+      "actors": [
+        "asdad"
+      ],
+      "studios": [
+        "sdfsdf"
+      ],
+      "releaseDate": "2026-02-10",
+      "poster": "https://www.limitedruns.com/media/cache/13/38/1338f5230824fd7b86cff4b031db5f26.jpg"
     }
   ]
 }

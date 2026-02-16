@@ -52,7 +52,7 @@ function StudiosList() {
 
     const handleEditClick = (id) => {
         const currentStudio = studios.find((studio) => studio.id === id);
-        dispatch(setStudioForEdit(currentStudio));
+        dispatch(setStudioForEdit(structuredClone(currentStudio)));
         navigate(`/studios/${id}/edit`);
     };
 

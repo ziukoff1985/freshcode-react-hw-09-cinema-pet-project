@@ -52,7 +52,7 @@ function ActorsList() {
 
     const handleEditClick = (id) => {
         const currentActor = actors.find((actor) => actor.id === id);
-        dispatch(setActorForEdit(currentActor));
+        dispatch(setActorForEdit(structuredClone(currentActor)));
         navigate(`/actors/${id}/edit`);
     };
 
