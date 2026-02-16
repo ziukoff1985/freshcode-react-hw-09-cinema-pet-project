@@ -68,14 +68,9 @@ function StudioDetailsPage() {
         navigate(`/studios/${id}/edit`);
     };
 
-    if (!currentStudio && !error) {
+    if ((!currentStudio && !error) || isPending) {
         return <Loader />;
     }
-
-    if (isPending) {
-        return <Loader />;
-    }
-
     if (error) {
         return (
             <ErrorMessage
@@ -176,7 +171,6 @@ function StudioDetailsPage() {
                                         }
                                         size='medium'
                                         startIcon={<EditIcon />}
-                                        // onClick={() => navigate('edit')}
                                         onClick={handleEditClick}
                                         sx={{
                                             boxShadow:

@@ -1,261 +1,192 @@
 {
-  "actors": [
-    {
-      "id": "1",
-      "movies": [
-        "Indiana Jones",
-        "The Star Wars",
-        "Patriot Games"
-      ],
-      "firstName": "Harrison",
-      "lastName": "Ford",
-      "birthDate": "1942-01-13",
-      "nationality": "ukr",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/0/07/Harrison_Ford_-_Televerse_2025_%28cropped%29.jpg"
-    },
-    {
-      "id": "2",
-      "movies": [
-        "Pirates of the Caribbean",
-        "The Tourist",
-        "Alice in Wonderland"
-      ],
-      "firstName": "Johnny",
-      "lastName": "Depp",
-      "birthDate": "1963-06-09",
-      "nationality": "USA",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
-    },
-    {
-      "id": "3",
-      "movies": [
-        "Alien",
-        "Avatar",
-        "Star Wars"
-      ],
-      "firstName": "Sigourney",
-      "lastName": "Weaver",
-      "birthDate": "1949-10-10",
-      "nationality": "USA",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg/960px-Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg"
-    },
-    {
-      "id": "92de",
-      "movies": [
-        "Indiana Jones"
-      ],
-      "firstName": "BORYS",
-      "lastName": "ZIUKOV123",
-      "birthDate": "2026-02-04",
-      "nationality": "ukr",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
-    }
-  ],
-  "directors": [
-    {
-      "id": "1",
-      "firstName": "Steven",
-      "lastName": "Spielberg",
-      "birthDate": "1946-04-19",
-      "nationality": "USA",
-      "movies": [
-        "Indiana Jones",
-        "Schindler's List",
-        "Saving Private Ryan"
-      ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/MKr25402_Steven_Spielberg_%28Berlinale_2023%29_%283x4_cropped%29.jpg/960px-MKr25402_Steven_Spielberg_%28Berlinale_2023%29_%283x4_cropped%29.jpg"
-    },
-    {
-      "id": "2",
-      "firstName": "James",
-      "lastName": "Cameron",
-      "birthDate": "1954-08-16",
-      "nationality": "Canada",
-      "movies": [
-        "Rambo",
-        "Terminator",
-        "Avatar"
-      ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/James_Cameron_13_Dec_2025.jpg/960px-James_Cameron_13_Dec_2025.jpg"
-    },
-    {
-      "id": "3",
-      "firstName": "Quentin",
-      "lastName": "Tarantino",
-      "birthDate": "1963-03-27",
-      "nationality": "USA",
-      "movies": [
-        "Alien",
-        "Avatar",
-        "Star Wars"
-      ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Quentin_Tarantino_by_Gage_Skidmore.jpg/960px-Quentin_Tarantino_by_Gage_Skidmore.jpg"
-    },
-    {
-      "id": "01c8",
-      "firstName": "BORYS123",
-      "lastName": "ZIUKOV",
-      "birthDate": "2026-02-11",
-      "nationality": "USA",
-      "movies": [
-        "Indiana Jones"
-      ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
-    }
-  ],
-  "studios": [
-    {
-      "id": "1",
-      "title": "LucasFilm",
-      "location": "San Francisco, USA",
-      "foundationDate": "1970-05-18",
-      "movies": [
-        "Indiana Jones",
-        "The Star Wars",
-        "Patriot Games",
-        "Gentelmens of Fortune"
-      ],
-      "logo": "https://media.licdn.com/dms/image/v2/C560BAQEvSvzoG1m9UQ/company-logo_200_200/company-logo_200_200/0/1657057059491/lucasfilm_logo?e=2147483647&v=beta&t=YvY-H1P-ZDEHFOy7xDUbMqPsrIeTT_NYyLUyEjWaX2I"
-    },
-    {
-      "id": "2",
-      "title": "20th Century Studios",
-      "location": "Los Angeles, USA",
-      "foundationDate": "1937-06-01",
-      "movies": [
-        "Pirates of the Caribbean",
-        "The Tourist",
-        "Alice in Wonderland",
-        "Sleepy Hollow"
-      ],
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/20th_Century_Studios_%282020%29.svg/960px-20th_Century_Studios_%282020%29.svg.png"
-    },
-    {
-      "id": "3",
-      "title": "Paramount Pictures",
-      "location": "Los Angeles, USA",
-      "foundationDate": "1912-10-21",
-      "movies": [
-        "Alien",
-        "Avatar",
-        "Star Wars",
-        "The Matrix"
-      ],
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Paramount_Pictures_with_Skydance_byline.svg/1280px-Paramount_Pictures_with_Skydance_byline.svg.png"
-    },
-    {
-      "id": "9def",
-      "title": "aasd123",
-      "location": "adsfsadf",
-      "foundationDate": "2026-02-03",
-      "movies": [
-        "Indiana Jones"
-      ],
-      "logo": "https://www.limitedruns.com/media/cache/13/38/1338f5230824fd7b86cff4b031db5f26.jpg"
-    }
-  ],
-  "movies": [
-    {
-      "id": "1",
-      "title": "Indiana Johns",
-      "directors": [
-        "Steven Spielberg"
-      ],
-      "actors": [
-        "Harrison Ford",
-        "Sean Connery"
-      ],
-      "studios": [
-        "LukasFilm"
-      ],
-      "country": "USA",
-      "releaseDate": "1980-07-30",
-      "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/8/8b/IJandCrystalSkull.jpg/220px-IJandCrystalSkull.jpg"
-    },
-    {
-      "id": "2",
-      "title": "Alien",
-      "directors": [
-        "Ridley Scott"
-      ],
-      "actors": [
-        "Sigourney Weaver",
-        "Tom Skerritt",
-        "John Hurt",
-        "Michael Biehn"
-      ],
-      "studios": [
-        "20th Century Studios, Inc."
-      ],
-      "country": "USA",
-      "releaseDate": "1979-05-25",
-      "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/c/c3/Alien_movie_poster.jpg/232px-Alien_movie_poster.jpg"
-    },
-    {
-      "id": "3",
-      "title": "Aliens",
-      "directors": [
-        "James Cameron"
-      ],
-      "actors": [
-        "Sigourney Weaver"
-      ],
-      "studios": [
-        "20th Century Studios, Inc."
-      ],
-      "country": "USA",
-      "releaseDate": "1986-07-19",
-      "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/f/fb/Aliens_poster.jpg/196px-Aliens_poster.jpg"
-    },
-    {
-      "id": "4",
-      "title": "Pirates of the Caribbean:",
-      "directors": [
-        "Gregor (Gore) Verbinski"
-      ],
-      "actors": [
-        "Johnny Depp",
-        "Orlando Bloom"
-      ],
-      "studios": [
-        "Walt Disney Pictures"
-      ],
-      "country": "USA",
-      "releaseDate": "2001-05-19",
-      "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/7/79/Pirates-of-the-Caribbean-The-Curse-of-the-Black-Pearl-.jpg/201px-Pirates-of-the-Caribbean-The-Curse-of-the-Black-Pearl-.jpg"
-    },
-    {
-      "id": "5",
-      "title": "The Lord Of The Rings",
-      "directors": [
-        "Peter Jackson"
-      ],
-      "actors": [
-        "Elijah Wood",
-        "Ian McKellen"
-      ],
-      "studios": [
-        "New Line Cinema "
-      ],
-      "country": "USA",
-      "releaseDate": "2001-12-18",
-      "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/0/08/The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_%E2%80%94_movie.jpg/203px-The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_%E2%80%94_movie.jpg"
-    },
-    {
-      "id": "2655",
-      "title": "asdasd123",
-      "country": "USA",
-      "directors": [
-        "asdasd"
-      ],
-      "actors": [
-        "asdad"
-      ],
-      "studios": [
-        "asdad"
-      ],
-      "releaseDate": "2026-02-10",
-      "poster": "https://www.limitedruns.com/media/cache/13/38/1338f5230824fd7b86cff4b031db5f26.jpg"
-    }
-  ]
+    "actors": [
+        {
+            "id": "1",
+            "movies": ["Indiana Jones", "The Star Wars", "Patriot Games"],
+            "firstName": "Harrison",
+            "lastName": "Ford",
+            "birthDate": "1942-01-13",
+            "nationality": "ukr",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/0/07/Harrison_Ford_-_Televerse_2025_%28cropped%29.jpg"
+        },
+        {
+            "id": "2",
+            "movies": [
+                "Pirates of the Caribbean",
+                "The Tourist",
+                "Alice in Wonderland"
+            ],
+            "firstName": "Johnny",
+            "lastName": "Depp",
+            "birthDate": "1963-06-09",
+            "nationality": "USA",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
+        },
+        {
+            "id": "3",
+            "movies": ["Alien", "Avatar", "Star Wars"],
+            "firstName": "Sigourney",
+            "lastName": "Weaver",
+            "birthDate": "1949-10-10",
+            "nationality": "USA",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg/960px-Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg"
+        },
+        {
+            "id": "92de",
+            "movies": ["Indiana Jones"],
+            "firstName": "BORYS",
+            "lastName": "ZIUKOV123",
+            "birthDate": "2026-02-04",
+            "nationality": "ukr",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
+        }
+    ],
+    "directors": [
+        {
+            "id": "1",
+            "firstName": "Steven",
+            "lastName": "Spielberg",
+            "birthDate": "1946-04-19",
+            "nationality": "USA",
+            "movies": [
+                "Indiana Jones",
+                "Schindler's List",
+                "Saving Private Ryan"
+            ],
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/MKr25402_Steven_Spielberg_%28Berlinale_2023%29_%283x4_cropped%29.jpg/960px-MKr25402_Steven_Spielberg_%28Berlinale_2023%29_%283x4_cropped%29.jpg"
+        },
+        {
+            "id": "2",
+            "firstName": "James",
+            "lastName": "Cameron",
+            "birthDate": "1954-08-16",
+            "nationality": "Canada",
+            "movies": ["Rambo", "Terminator", "Avatar"],
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/James_Cameron_13_Dec_2025.jpg/960px-James_Cameron_13_Dec_2025.jpg"
+        },
+        {
+            "id": "3",
+            "firstName": "Quentin",
+            "lastName": "Tarantino",
+            "birthDate": "1963-03-27",
+            "nationality": "USA",
+            "movies": ["Alien", "Avatar", "Star Wars"],
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Quentin_Tarantino_by_Gage_Skidmore.jpg/960px-Quentin_Tarantino_by_Gage_Skidmore.jpg"
+        },
+        {
+            "id": "01c8",
+            "firstName": "BORYS123",
+            "lastName": "ZIUKOV",
+            "birthDate": "2026-02-11",
+            "nationality": "USA",
+            "movies": ["Indiana Jones"],
+            "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
+        }
+    ],
+    "studios": [
+        {
+            "id": "1",
+            "title": "LucasFilm",
+            "location": "San Francisco, USA",
+            "foundationDate": "1970-05-18",
+            "movies": [
+                "Indiana Jones",
+                "The Star Wars",
+                "Patriot Games",
+                "Gentelmens of Fortune"
+            ],
+            "logo": "https://media.licdn.com/dms/image/v2/C560BAQEvSvzoG1m9UQ/company-logo_200_200/company-logo_200_200/0/1657057059491/lucasfilm_logo?e=2147483647&v=beta&t=YvY-H1P-ZDEHFOy7xDUbMqPsrIeTT_NYyLUyEjWaX2I"
+        },
+        {
+            "id": "2",
+            "title": "20th Century Studios",
+            "location": "Los Angeles, USA",
+            "foundationDate": "1937-06-01",
+            "movies": [
+                "Pirates of the Caribbean",
+                "The Tourist",
+                "Alice in Wonderland",
+                "Sleepy Hollow"
+            ],
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/20th_Century_Studios_%282020%29.svg/960px-20th_Century_Studios_%282020%29.svg.png"
+        },
+        {
+            "id": "3",
+            "title": "Paramount Pictures",
+            "location": "Los Angeles, USA",
+            "foundationDate": "1912-10-21",
+            "movies": ["Alien", "Avatar", "Star Wars", "The Matrix"],
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Paramount_Pictures_with_Skydance_byline.svg/1280px-Paramount_Pictures_with_Skydance_byline.svg.png"
+        },
+        {
+            "id": "9def",
+            "title": "aasd123",
+            "location": "adsfsadf",
+            "foundationDate": "2026-02-03",
+            "movies": ["Indiana Jones"],
+            "logo": "https://www.limitedruns.com/media/cache/13/38/1338f5230824fd7b86cff4b031db5f26.jpg"
+        }
+    ],
+    "movies": [
+        {
+            "id": "1",
+            "title": "Indiana Johns",
+            "directors": ["Steven Spielberg"],
+            "actors": ["Harrison Ford", "Sean Connery"],
+            "studios": ["LukasFilm"],
+            "country": "USA",
+            "releaseDate": "1980-07-30",
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/8/8b/IJandCrystalSkull.jpg/220px-IJandCrystalSkull.jpg"
+        },
+        {
+            "id": "2",
+            "title": "Alien",
+            "directors": ["Ridley Scott"],
+            "actors": ["Sigourney Weaver", "Tom Skerritt"],
+            "studios": ["20th Century Studios, Inc."],
+            "country": "USA",
+            "releaseDate": "1979-05-25",
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/c/c3/Alien_movie_poster.jpg/232px-Alien_movie_poster.jpg"
+        },
+        {
+            "id": "3",
+            "title": "Aliens",
+            "directors": ["James Cameron"],
+            "actors": ["Sigourney Weaver"],
+            "studios": ["20th Century Studios, Inc."],
+            "country": "USA",
+            "releaseDate": "1986-07-19",
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/f/fb/Aliens_poster.jpg/196px-Aliens_poster.jpg"
+        },
+        {
+            "id": "4",
+            "title": "Pirates of the Caribbean:",
+            "directors": ["Gregor (Gore) Verbinski"],
+            "actors": ["Johnny Depp", "Orlando Bloom"],
+            "studios": ["Walt Disney Pictures"],
+            "country": "USA",
+            "releaseDate": "2001-05-19",
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/7/79/Pirates-of-the-Caribbean-The-Curse-of-the-Black-Pearl-.jpg/201px-Pirates-of-the-Caribbean-The-Curse-of-the-Black-Pearl-.jpg"
+        },
+        {
+            "id": "5",
+            "title": "The Lord Of The Rings",
+            "directors": ["Peter Jackson"],
+            "actors": ["Elijah Wood", "Ian McKellen"],
+            "studios": ["New Line Cinema "],
+            "country": "USA",
+            "releaseDate": "2001-12-18",
+            "poster": "https://upload.wikimedia.org/wikipedia/ru/thumb/0/08/The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_%E2%80%94_movie.jpg/203px-The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_%E2%80%94_movie.jpg"
+        },
+        {
+            "id": "2655",
+            "title": "asdasd123",
+            "country": "USA",
+            "directors": ["asdasd"],
+            "actors": ["asdad"],
+            "studios": ["asdad"],
+            "releaseDate": "2026-02-10",
+            "poster": "https://www.limitedruns.com/media/cache/13/38/1338f5230824fd7b86cff4b031db5f26.jpg"
+        }
+    ]
 }

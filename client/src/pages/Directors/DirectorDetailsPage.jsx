@@ -70,11 +70,7 @@ function DirectorDetailsPage() {
         navigate(`/directors/${id}/edit`);
     };
 
-    if (!currentDirector && !error) {
-        return <Loader />;
-    }
-
-    if (isPending) {
+    if ((!currentDirector && !error) || isPending) {
         return <Loader />;
     }
 
@@ -175,7 +171,6 @@ function DirectorDetailsPage() {
                                         }
                                         size='medium'
                                         startIcon={<EditIcon />}
-                                        // onClick={() => navigate('edit')}
                                         onClick={handleEditClick}
                                         sx={{
                                             boxShadow:

@@ -66,13 +66,10 @@ function ActorDetailsPage() {
         navigate(`/actors/${id}/edit`);
     };
 
-    if (!currentActor && !error) {
+    if ((!currentActor && !error) || isPending) {
         return <Loader />;
     }
 
-    if (isPending) {
-        return <Loader />;
-    }
     if (error) {
         return (
             <ErrorMessage
@@ -171,7 +168,6 @@ function ActorDetailsPage() {
                                         }
                                         size='medium'
                                         startIcon={<EditIcon />}
-                                        // onClick={() => navigate('edit')}
                                         onClick={handleEditClick}
                                         sx={{
                                             boxShadow:

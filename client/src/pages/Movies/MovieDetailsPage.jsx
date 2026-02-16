@@ -67,11 +67,7 @@ function MovieDetailsPage() {
         navigate(`/movies/${id}/edit`);
     };
 
-    if (!currentMovie && !error) {
-        return <Loader />;
-    }
-
-    if (isPending) {
+    if ((!currentMovie && !error) || isPending) {
         return <Loader />;
     }
 
@@ -105,7 +101,7 @@ function MovieDetailsPage() {
                 <Paper
                     elevation={6}
                     sx={{
-                        p: { xs: 2, md: 1.5 },
+                        p: { xs: 2, md: 3 },
                         borderRadius: 5,
                         position: 'relative',
                         overflow: 'hidden',
@@ -113,7 +109,7 @@ function MovieDetailsPage() {
                 >
                     <Grid container spacing={5} alignItems='stretch'>
                         {/* Movie's photo */}
-                        <Grid size={{ xs: 12, md: 4.7 }}>
+                        <Grid size={{ xs: 12, md: 4.5 }}>
                             <Card
                                 sx={{
                                     borderRadius: 4,
@@ -136,7 +132,7 @@ function MovieDetailsPage() {
 
                         {/* Movie's info */}
                         <Grid
-                            size={{ xs: 12, md: 7.3 }}
+                            size={{ xs: 12, md: 7.5 }}
                             sx={{ display: 'flex', flexDirection: 'column' }}
                         >
                             <Box
@@ -173,7 +169,6 @@ function MovieDetailsPage() {
                                         }
                                         size='medium'
                                         startIcon={<EditIcon />}
-                                        // onClick={() => navigate('edit')}
                                         onClick={handleEditClick}
                                         sx={{
                                             boxShadow:
@@ -202,7 +197,7 @@ function MovieDetailsPage() {
                             <Divider sx={{ my: 2, opacity: 0.6 }} />
 
                             {/* Movie's details */}
-                            <Box sx={{ display: 'flex', gap: 4, mb: 4 }}>
+                            <Box sx={{ display: 'flex', gap: 4, mb: 3 }}>
                                 <Box
                                     sx={{
                                         display: 'flex',
@@ -267,109 +262,126 @@ function MovieDetailsPage() {
                             <Box
                                 sx={{
                                     display: 'flex',
-                                    gap: 2,
-                                    width: '100%',
-                                    // mb: 1,
+                                    flexDirection: 'column',
+                                    gap: 1,
                                 }}
                             >
-                                <Typography
-                                    variant='h6'
+                                <Box
                                     sx={{
-                                        fontWeight: 'bold',
-                                        mb: 2,
-                                        color: 'primary.main',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: 2,
+                                        width: '100%',
                                     }}
                                 >
-                                    Directors:
-                                </Typography>
+                                    <Typography
+                                        variant='body1'
+                                        sx={{
+                                            fontWeight: 'bold',
+                                            color: 'primary.main',
+                                        }}
+                                    >
+                                        Directors:
+                                    </Typography>
+
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                            flexWrap: 'wrap',
+                                            gap: 2,
+                                        }}
+                                    >
+                                        {currentMovie.directors.map(
+                                            (director, i) => (
+                                                <Chip
+                                                    key={i}
+                                                    label={director}
+                                                    sx={{
+                                                        borderRadius: '12px',
+                                                        fontWeight: 500,
+                                                    }}
+                                                />
+                                            ),
+                                        )}
+                                    </Box>
+                                </Box>
 
                                 <Box
                                     sx={{
                                         display: 'flex',
-                                        flexWrap: 'wrap',
+                                        alignItems: 'center',
                                         gap: 2,
+                                        width: '100%',
                                     }}
                                 >
-                                    {currentMovie.directors.map(
-                                        (director, i) => (
+                                    <Typography
+                                        variant='body1'
+                                        sx={{
+                                            fontWeight: 'bold',
+                                            color: 'primary.main',
+                                        }}
+                                    >
+                                        Actors:
+                                    </Typography>
+
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                            flexWrap: 'wrap',
+                                            gap: 2,
+                                        }}
+                                    >
+                                        {currentMovie.actors.map((actor, i) => (
                                             <Chip
                                                 key={i}
-                                                label={director}
+                                                label={actor}
                                                 sx={{
                                                     borderRadius: '12px',
                                                     fontWeight: 500,
                                                 }}
                                             />
-                                        ),
-                                    )}
+                                        ))}
+                                    </Box>
                                 </Box>
-                            </Box>
-
-                            <Box
-                                sx={{ display: 'flex', gap: 2, width: '100%' }}
-                            >
-                                <Typography
-                                    variant='h6'
-                                    sx={{
-                                        fontWeight: 'bold',
-                                        mb: 2,
-                                        color: 'primary.main',
-                                    }}
-                                >
-                                    Actors:
-                                </Typography>
 
                                 <Box
                                     sx={{
                                         display: 'flex',
-                                        flexWrap: 'wrap',
+                                        alignItems: 'center',
                                         gap: 2,
+                                        width: '100%',
                                     }}
                                 >
-                                    {currentMovie.actors.map((actor, i) => (
-                                        <Chip
-                                            key={i}
-                                            label={actor}
-                                            sx={{
-                                                borderRadius: '12px',
-                                                fontWeight: 500,
-                                            }}
-                                        />
-                                    ))}
-                                </Box>
-                            </Box>
+                                    <Typography
+                                        variant='body1'
+                                        sx={{
+                                            fontWeight: 'bold',
+                                            color: 'primary.main',
+                                        }}
+                                    >
+                                        Studios:
+                                    </Typography>
 
-                            <Box
-                                sx={{ display: 'flex', gap: 2, width: '100%' }}
-                            >
-                                <Typography
-                                    variant='h6'
-                                    sx={{
-                                        fontWeight: 'bold',
-                                        mb: 2,
-                                        color: 'primary.main',
-                                    }}
-                                >
-                                    Studios:
-                                </Typography>
-
-                                <Box
-                                    sx={{
-                                        display: 'flex',
-                                        flexWrap: 'wrap',
-                                        gap: 2,
-                                    }}
-                                >
-                                    {currentMovie.studios.map((studio, i) => (
-                                        <Chip
-                                            key={i}
-                                            label={studio}
-                                            sx={{
-                                                borderRadius: '12px',
-                                                fontWeight: 500,
-                                            }}
-                                        />
-                                    ))}
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                            flexWrap: 'wrap',
+                                            gap: 2,
+                                        }}
+                                    >
+                                        {currentMovie.studios.map(
+                                            (studio, i) => (
+                                                <Chip
+                                                    key={i}
+                                                    label={studio}
+                                                    sx={{
+                                                        borderRadius: '12px',
+                                                        fontWeight: 500,
+                                                    }}
+                                                />
+                                            ),
+                                        )}
+                                    </Box>
                                 </Box>
                             </Box>
                         </Grid>
