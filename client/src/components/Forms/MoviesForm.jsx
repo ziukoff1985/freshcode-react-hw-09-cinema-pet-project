@@ -109,11 +109,8 @@ function MoviesForm() {
         if (!values.id) {
             dispatch(createMovie(formattedValues));
             navigate('/movies');
-            // setActiveStep(0);
         } else {
             dispatch(updateMovie(formattedValues));
-            // navigate(`/movies/${movieForEdit.id}`);
-            // setActiveStep(0);
         }
     };
 
