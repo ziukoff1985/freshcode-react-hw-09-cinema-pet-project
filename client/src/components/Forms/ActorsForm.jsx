@@ -101,12 +101,9 @@ function ActorsForm() {
 
         if (!values.id) {
             dispatch(createActor(formattedValues));
-            // setActiveStep(0);
             navigate('/actors');
         } else {
             dispatch(updateActor(formattedValues));
-            // navigate(`/actors/${actorForEdit.id}`);
-            // setActiveStep(0);
         }
     };
 
