@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { FieldArray, Form, Formik } from 'formik';
 import dayjs from 'dayjs';
@@ -37,6 +37,7 @@ const steps = ['Name', 'Details', 'Photo', 'Movies']; // Steps names for Stepper
 function ActorsForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [activeStep, setActiveStep] = useState(0); // For Stepper
 
@@ -85,7 +86,7 @@ function ActorsForm() {
 
     const handleSubmitForm = (values) => {
         console.log('SUBMIT TRIGGERED AT STEP:', activeStep);
-        if (!isLastStep) return;
+        if (!isLastStep) return; // ! ?????
 
         const formattedValues = {
             ...values,
@@ -96,12 +97,12 @@ function ActorsForm() {
 
         if (!values.id) {
             dispatch(createActor(formattedValues));
-            setActiveStep(0);
+            // setActiveStep(0);
             navigate('/actors');
         } else {
             dispatch(updateActor(formattedValues));
-            navigate(`/actors/${actorForEdit.id}`);
-            setActiveStep(0);
+            // navigate(`/actors/${actorForEdit.id}`);
+            // setActiveStep(0);
         }
     };
 
@@ -118,7 +119,7 @@ function ActorsForm() {
                 initialValues={structuredClone(actorForEdit)}
                 enableReinitialize
                 validationSchema={currentValidationSchema}
-                validateOnMount={true}
+                validateOnMount
                 onSubmit={handleSubmitForm}
             >
                 {({
@@ -130,7 +131,6 @@ function ActorsForm() {
                     errors,
                     resetForm,
                     validateForm,
-                    dirty,
                 }) => (
                     <Form>
                         <Typography variant='h6' sx={{ mb: 3 }}>
@@ -327,7 +327,12 @@ function ActorsForm() {
                                             <Button
                                                 type='button'
                                                 variant='contained'
-                                                disabled={!isValid || !dirty}
+                                                disabled={
+                                                    !isValid ||
+                                                    location.pathname.includes(
+                                                        'new',
+                                                    )
+                                                }
                                                 onClick={(e) =>
                                                     handleNext(e, validateForm)
                                                 }

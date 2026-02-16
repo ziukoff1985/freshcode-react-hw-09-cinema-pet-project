@@ -1,7 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { FieldArray, Form, Formik } from 'formik';
+import dayjs from 'dayjs';
 import * as Yup from 'yup';
 
+// MUI ---------------------------------------------------
 import {
     Button,
     Grid,
@@ -14,7 +18,6 @@ import {
     Typography,
 } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UndoIcon from '@mui/icons-material/Undo';
@@ -25,19 +28,15 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from 'dayjs';
+// ------------------------------------------------------
 
-import { FieldArray, Form, Formik } from 'formik';
 import CustomTextField from '../UI/CustomTextField';
-
 import {
     createDirector,
     updateDirector,
 } from '../../store/thunks/directorsThunks';
-// import { clearDirectorForEdit } from '../../store/slices/directorsSlice';
-import { useState } from 'react';
 
-const steps = ['Name', 'Details', 'Photo', 'Movies'];
+const steps = ['Name', 'Details', 'Photo', 'Movies']; // Steps names for Stepper
 
 function DirectorsForm() {
     const dispatch = useDispatch();
@@ -50,6 +49,7 @@ function DirectorsForm() {
         (state) => state.directorsList.directorForEdit,
     );
 
+    // Validation with Stepper (4 steps)
     const directorValidationSchema = [
         Yup.object({
             firstName: Yup.string().required('First name is required'),
@@ -74,42 +74,25 @@ function DirectorsForm() {
     const currentValidationSchema = directorValidationSchema[activeStep];
     const isLastStep = activeStep === steps.length - 1;
 
-    // const handleNext = (validateForm) => {
-    //     validateForm().then((errors) => {
-    //         if (Object.keys(errors).length === 0) {
-    //             setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    //         }
-    //     });
-    // };
+    const isEdit = !!directorForEdit.id;
 
     const handleNext = async (e, validateForm) => {
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
+        e.preventDefault(); // required with stepper
+        e.stopPropagation(); // required for stopping event bubbling
 
-        // Валідуємо форму
-        const errors = await validateForm();
-
-        // Перевіряємо помилки ТІЛЬКИ для полів поточного кроку
-        const currentStepFields = Object.keys(
-            directorValidationSchema[activeStep].fields,
-        );
-        const hasErrorsInCurrentStep = currentStepFields.some(
-            (field) => !!errors[field],
-        );
-
-        if (!hasErrorsInCurrentStep) {
-            setActiveStep((prev) => prev + 1);
-        }
+        // Checking if form on current step is valid
+        validateForm().then((errors) => {
+            if (Object.keys(errors).length === 0) {
+                setActiveStep((prev) => prev + 1);
+            }
+        });
     };
 
-    const handleBack = () =>
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    const handleBack = () => setActiveStep((prev) => prev - 1);
 
-    const handleSubmitForm = (values /* , action */) => {
+    const handleSubmitForm = (values) => {
         console.log('SUBMIT TRIGGERED AT STEP:', activeStep);
-        if (!isLastStep) return;
+        if (!isLastStep) return; // ! ?????
 
         const formattedValues = {
             ...values,
@@ -120,39 +103,14 @@ function DirectorsForm() {
 
         if (!values.id) {
             dispatch(createDirector(formattedValues));
-            // action.resetForm();
-            setActiveStep(0);
+            // setActiveStep(0);
             navigate('/directors');
         } else {
             dispatch(updateDirector(formattedValues));
-            setActiveStep(0);
             navigate(`/directors/${directorForEdit.id}`);
+            // setActiveStep(0);
         }
     };
-
-    // const handleGoBack = () => {
-    //     if (location.pathname.includes('edit')) {
-    //         navigate(`/directors/${directorForEdit.id}`);
-    //         clearDirectorForEdit();
-    //     } else {
-    //         navigate(-1);
-    //         clearDirectorForEdit();
-    //     }
-    // };
-
-    // * Old validation without Stepper
-    // const directorValidationSchema = Yup.object({
-    //     firstName: Yup.string().required('First name is required'),
-    //     lastName: Yup.string().required('Last name is required'),
-    //     birthDate: Yup.date().required('Birth date is required'),
-    //     nationality: Yup.string().required('Nationality is required'),
-    //     image: Yup.string()
-    //         .url('Invalid URL')
-    //         .required('Image URL is required'),
-    //     movies: Yup.array()
-    //         .of(Yup.string().required('Movie name is required'))
-    //         .min(1),
-    // });
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -167,6 +125,7 @@ function DirectorsForm() {
                 initialValues={structuredClone(directorForEdit)}
                 enableReinitialize
                 validationSchema={currentValidationSchema}
+                validateOnMount
                 onSubmit={handleSubmitForm}
             >
                 {({
@@ -340,7 +299,13 @@ function DirectorsForm() {
                                             type='button'
                                             variant='outlined'
                                             onClick={() =>
-                                                navigate('/directors')
+                                                location.pathname.includes(
+                                                    'edit',
+                                                )
+                                                    ? navigate(
+                                                          `/directors/${directorForEdit.id}`,
+                                                      )
+                                                    : navigate('/directors')
                                             }
                                             startIcon={<UndoIcon />}
                                         >
@@ -349,11 +314,10 @@ function DirectorsForm() {
 
                                         <Button
                                             type='button'
-                                            disabled={location.pathname.includes(
-                                                'edit',
-                                            )}
+                                            disabled={isEdit}
                                             onClick={() => {
                                                 resetForm();
+                                                setActiveStep(0);
                                             }}
                                             variant='contained'
                                             color='error'
@@ -366,10 +330,12 @@ function DirectorsForm() {
                                             <Button
                                                 type='button'
                                                 variant='contained'
-                                                disabled={!isValid}
-                                                // onClick={() =>
-                                                //     handleNext(validateForm)
-                                                // }
+                                                disabled={
+                                                    !isValid ||
+                                                    location.pathname.includes(
+                                                        'new',
+                                                    )
+                                                }
                                                 onClick={(e) =>
                                                     handleNext(e, validateForm)
                                                 }
