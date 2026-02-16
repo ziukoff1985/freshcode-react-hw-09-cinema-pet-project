@@ -104,12 +104,9 @@ function StudiosForm() {
 
         if (!values.id) {
             dispatch(createStudio(formattedValues));
-            // setActiveStep(0);
             navigate('/studios');
         } else {
             dispatch(updateStudio(formattedValues));
-            // navigate(`/studios/${studioForEdit.id}`);
-            // setActiveStep(0);
         }
     };
 
