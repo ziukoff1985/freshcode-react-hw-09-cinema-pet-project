@@ -92,9 +92,6 @@ function ActorsForm() {
     const handleBack = () => setActiveStep((prev) => prev - 1);
 
     const handleSubmitForm = (values) => {
-        console.log('SUBMIT TRIGGERED AT STEP:', activeStep);
-        if (!isLastStep) return; // ! ?????
-
         const formattedValues = {
             ...values,
             birthDate: values.birthDate
