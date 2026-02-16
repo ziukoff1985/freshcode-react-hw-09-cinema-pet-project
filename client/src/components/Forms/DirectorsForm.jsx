@@ -106,12 +106,9 @@ function DirectorsForm() {
 
         if (!values.id) {
             dispatch(createDirector(formattedValues));
-            // setActiveStep(0);
             navigate('/directors');
         } else {
             dispatch(updateDirector(formattedValues));
-            navigate(`/directors/${directorForEdit.id}`);
-            // setActiveStep(0);
         }
     };
 
