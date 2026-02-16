@@ -38,6 +38,17 @@
       "birthDate": "1949-10-10",
       "nationality": "USA",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg/960px-Sigourney_Weaver_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg"
+    },
+    {
+      "id": "275f",
+      "movies": [
+        "Alien"
+      ],
+      "firstName": "BORYS123",
+      "lastName": "ZIUKOV",
+      "birthDate": "2026-02-04",
+      "nationality": "USA",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg"
     }
   ],
   "directors": [

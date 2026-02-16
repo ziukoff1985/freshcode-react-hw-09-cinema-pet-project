@@ -1,7 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { /* useLocation,  */ useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { FieldArray, Form, Formik } from 'formik';
+import dayjs from 'dayjs';
 import * as Yup from 'yup';
 
+// MUI ---------------------------------------------------
 import {
     Button,
     Grid,
@@ -23,26 +27,22 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from 'dayjs';
+// ------------------------------------------------------
 
-import { FieldArray, Form, Formik } from 'formik';
 import CustomTextField from '../UI/CustomTextField';
-
 import { createActor, updateActor } from '../../store/thunks/actorsThunks';
-import { useState } from 'react';
 
-const steps = ['Name', 'Details', 'Photo', 'Movies']; // For Stepper
+const steps = ['Name', 'Details', 'Photo', 'Movies']; // Steps names for Stepper
 
 function ActorsForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // const location = useLocation();
 
     const [activeStep, setActiveStep] = useState(0); // For Stepper
 
     const actorForEdit = useSelector((state) => state.actorsList.actorForEdit);
 
-    //
+    // Validation with Stepper (4 steps)
     const actorValidationSchema = [
         Yup.object({
             firstName: Yup.string().required('First name is required'),
@@ -67,34 +67,23 @@ function ActorsForm() {
     const currentValidationSchema = actorValidationSchema[activeStep];
     const isLastStep = activeStep === steps.length - 1;
 
-    const isEdit = !!actorForEdit.id;
+    const isEdit = !!actorForEdit.id; // ckecking if we are in edit mode
 
-    const handleNext = async (e, validateForm) => {
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
+    const handleNext = (e, validateForm) => {
+        e.preventDefault(); // required with stepper
+        e.stopPropagation(); // required for stopping event bubbling
 
-        // Валідуємо форму
-        const errors = await validateForm();
-
-        // Перевіряємо помилки ТІЛЬКИ для полів поточного кроку
-        const currentStepFields = Object.keys(
-            actorValidationSchema[activeStep].fields,
-        );
-        const hasErrorsInCurrentStep = currentStepFields.some(
-            (field) => !!errors[field],
-        );
-
-        if (!hasErrorsInCurrentStep) {
-            setActiveStep((prev) => prev + 1);
-        }
+        // Checking if form on current step is valid
+        validateForm().then((errors) => {
+            if (Object.keys(errors).length === 0) {
+                setActiveStep((prev) => prev + 1);
+            }
+        });
     };
 
-    const handleBack = () =>
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    const handleBack = () => setActiveStep((prev) => prev - 1);
 
-    const handleSubmitForm = (values /* , action */) => {
+    const handleSubmitForm = (values) => {
         console.log('SUBMIT TRIGGERED AT STEP:', activeStep);
         if (!isLastStep) return;
 
@@ -107,7 +96,6 @@ function ActorsForm() {
 
         if (!values.id) {
             dispatch(createActor(formattedValues));
-            // action.resetForm();
             setActiveStep(0);
             navigate('/actors');
         } else {
@@ -128,8 +116,9 @@ function ActorsForm() {
             </Stepper>
             <Formik
                 initialValues={structuredClone(actorForEdit)}
-                enableReinitialize={false}
+                enableReinitialize
                 validationSchema={currentValidationSchema}
+                validateOnMount={true}
                 onSubmit={handleSubmitForm}
             >
                 {({
@@ -141,6 +130,7 @@ function ActorsForm() {
                     errors,
                     resetForm,
                     validateForm,
+                    dirty,
                 }) => (
                     <Form>
                         <Typography variant='h6' sx={{ mb: 3 }}>
@@ -227,6 +217,7 @@ function ActorsForm() {
                             )}
 
                             {/* Step 4 */}
+                            {/* FieldArray */}
                             {activeStep === 3 && (
                                 <Grid size={{ xs: 12 }}>
                                     <Typography variant='subtitle2'>
@@ -304,7 +295,15 @@ function ActorsForm() {
                                         <Button
                                             type='button'
                                             variant='outlined'
-                                            onClick={() => navigate('/actors')}
+                                            onClick={() =>
+                                                location.pathname.includes(
+                                                    'edit',
+                                                )
+                                                    ? navigate(
+                                                          `/actors/${actorForEdit.id}`,
+                                                      )
+                                                    : navigate('/actors')
+                                            }
                                             startIcon={<UndoIcon />}
                                         >
                                             Exit
@@ -312,12 +311,10 @@ function ActorsForm() {
 
                                         <Button
                                             type='button'
-                                            // disabled={location.pathname.includes(
-                                            //     'edit',
-                                            // )}
                                             disabled={isEdit}
                                             onClick={() => {
                                                 resetForm();
+                                                setActiveStep(0);
                                             }}
                                             variant='contained'
                                             color='error'
@@ -330,10 +327,7 @@ function ActorsForm() {
                                             <Button
                                                 type='button'
                                                 variant='contained'
-                                                disabled={!isValid}
-                                                // onClick={() =>
-                                                //     handleNext(validateForm)
-                                                // }
+                                                disabled={!isValid || !dirty}
                                                 onClick={(e) =>
                                                     handleNext(e, validateForm)
                                                 }
