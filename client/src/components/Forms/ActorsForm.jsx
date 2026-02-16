@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { FieldArray, Form, Formik } from 'formik';
 import dayjs from 'dayjs';
@@ -37,7 +37,6 @@ const steps = ['Name', 'Details', 'Photo', 'Movies']; // Steps names for Stepper
 function ActorsForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
 
     const [activeStep, setActiveStep] = useState(0); // For Stepper
 
@@ -80,6 +79,14 @@ function ActorsForm() {
                 setActiveStep((prev) => prev + 1);
             }
         });
+    };
+
+    const handleExit = () => {
+        if (isEdit) {
+            navigate(`/actors/${actorForEdit.id}`);
+        } else {
+            navigate('/actors');
+        }
     };
 
     const handleBack = () => setActiveStep((prev) => prev - 1);
@@ -295,15 +302,7 @@ function ActorsForm() {
                                         <Button
                                             type='button'
                                             variant='outlined'
-                                            onClick={() =>
-                                                location.pathname.includes(
-                                                    'edit',
-                                                )
-                                                    ? navigate(
-                                                          `/actors/${actorForEdit.id}`,
-                                                      )
-                                                    : navigate('/actors')
-                                            }
+                                            onClick={handleExit}
                                             startIcon={<UndoIcon />}
                                         >
                                             Exit

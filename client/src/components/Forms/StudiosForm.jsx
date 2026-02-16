@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { FieldArray, Form, Formik } from 'formik';
 import dayjs from 'dayjs';
@@ -37,7 +37,6 @@ const steps = ['Title', 'Details', 'Logo', 'Movies']; // Steps names for Stepper
 function StudiosForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
 
     const [activeStep, setActiveStep] = useState(0); // For Stepper
 
@@ -83,6 +82,14 @@ function StudiosForm() {
                 setActiveStep((prev) => prev + 1);
             }
         });
+    };
+
+    const handleExit = () => {
+        if (isEdit) {
+            navigate(`/studios/${studioForEdit.id}`);
+        } else {
+            navigate('/studios');
+        }
     };
 
     const handleBack = () => setActiveStep((prev) => prev - 1);
@@ -289,15 +296,7 @@ function StudiosForm() {
                                         <Button
                                             type='button'
                                             variant='outlined'
-                                            onClick={() =>
-                                                location.pathname.includes(
-                                                    'edit',
-                                                )
-                                                    ? navigate(
-                                                          `/studios/${studioForEdit.id}`,
-                                                      )
-                                                    : navigate('/studios')
-                                            }
+                                            onClick={handleExit}
                                             startIcon={<UndoIcon />}
                                         >
                                             Exit

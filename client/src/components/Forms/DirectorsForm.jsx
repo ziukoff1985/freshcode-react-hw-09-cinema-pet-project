@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { FieldArray, Form, Formik } from 'formik';
 import dayjs from 'dayjs';
@@ -10,7 +10,6 @@ import {
     Button,
     Grid,
     IconButton,
-    Paper,
     Stack,
     Step,
     StepLabel,
@@ -41,7 +40,6 @@ const steps = ['Name', 'Details', 'Photo', 'Movies']; // Steps names for Stepper
 function DirectorsForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
 
     const [activeStep, setActiveStep] = useState(0); // For Stepper
 
@@ -86,6 +84,14 @@ function DirectorsForm() {
                 setActiveStep((prev) => prev + 1);
             }
         });
+    };
+
+    const handleExit = () => {
+        if (isEdit) {
+            navigate(`/directors/${directorForEdit.id}`);
+        } else {
+            navigate('/directors');
+        }
     };
 
     const handleBack = () => setActiveStep((prev) => prev - 1);
@@ -298,15 +304,7 @@ function DirectorsForm() {
                                         <Button
                                             type='button'
                                             variant='outlined'
-                                            onClick={() =>
-                                                location.pathname.includes(
-                                                    'edit',
-                                                )
-                                                    ? navigate(
-                                                          `/directors/${directorForEdit.id}`,
-                                                      )
-                                                    : navigate('/directors')
-                                            }
+                                            onClick={handleExit}
                                             startIcon={<UndoIcon />}
                                         >
                                             Exit

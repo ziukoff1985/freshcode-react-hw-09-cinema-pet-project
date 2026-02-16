@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { FieldArray, Form, Formik } from 'formik';
+import dayjs from 'dayjs';
 import * as Yup from 'yup';
 
+// MUI ---------------------------------------------------
 import {
     Button,
     Grid,
     IconButton,
-    Paper,
     Stack,
     Step,
     StepLabel,
@@ -14,7 +17,6 @@ import {
     Typography,
 } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UndoIcon from '@mui/icons-material/Undo';
@@ -25,26 +27,22 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from 'dayjs';
+// ------------------------------------------------------
 
-import { FieldArray, Form, Formik } from 'formik';
 import CustomTextField from '../UI/CustomTextField';
-
 import { createMovie, updateMovie } from '../../store/thunks/moviesThunks';
-// import { clearMovieForEdit } from '../../store/slices/moviesSlice';
-import { useState } from 'react';
 
-const steps = ['Main info', 'Details', 'Directors', 'Actors', 'Studios'];
+const steps = ['Main info', 'Details', 'Directors', 'Actors', 'Studios']; // Steps names for Stepper
 
 function MoviesForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
 
-    const [activeStep, setActiveStep] = useState(0);
+    const [activeStep, setActiveStep] = useState(0); // For Stepper
 
     const movieForEdit = useSelector((state) => state.moviesList.movieForEdit);
 
+    // Validation with Stepper (5 steps)
     const movieValidationSchema = [
         Yup.object({
             title: Yup.string().required('First name is required'),
@@ -76,40 +74,33 @@ function MoviesForm() {
     const currentValidationSchema = movieValidationSchema[activeStep];
     const isLastStep = activeStep === steps.length - 1;
 
-    // const handleNext = (validateForm) => {
-    //     validateForm().then((errors) => {
-    //         if (Object.keys(errors).length === 0) {
-    //             setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    //         }
-    //     });
-    // };
+    const isEdit = !!movieForEdit.id; // ckecking if we are in edit mode
 
-    const handleNext = async (e, validateForm) => {
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
+    const handleNext = (e, validateForm) => {
+        e.preventDefault(); // required with stepper
+        e.stopPropagation(); // required for stopping event bubbling
 
-        // Валідуємо форму
-        const errors = await validateForm();
+        // Checking if form on current step is valid
+        validateForm().then((errors) => {
+            if (Object.keys(errors).length === 0) {
+                setActiveStep((prev) => prev + 1);
+            }
+        });
+    };
 
-        // Перевіряємо помилки ТІЛЬКИ для полів поточного кроку
-        const currentStepFields = Object.keys(
-            movieValidationSchema[activeStep].fields,
-        );
-        const hasErrorsInCurrentStep = currentStepFields.some(
-            (field) => !!errors[field],
-        );
+    const handleBack = () => setActiveStep((prev) => prev - 1);
 
-        if (!hasErrorsInCurrentStep) {
-            setActiveStep((prev) => prev + 1);
+    const handleExit = () => {
+        if (isEdit) {
+            navigate(`/movies/${movieForEdit.id}`);
+        } else {
+            navigate('/movies');
         }
     };
 
-    const handleBack = () =>
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    const handleSubmitForm = (values) => {
+        if (!isLastStep) return; // ! ?????
 
-    const handleSubmitForm = (values /* , action */) => {
         const formattedValues = {
             ...values,
             releaseDate: values.releaseDate
@@ -119,44 +110,14 @@ function MoviesForm() {
 
         if (!values.id) {
             dispatch(createMovie(formattedValues));
-            // action.resetForm();
             navigate('/movies');
-            setActiveStep(0);
+            // setActiveStep(0);
         } else {
             dispatch(updateMovie(formattedValues));
-            navigate(`/movies/${movieForEdit.id}`);
-            setActiveStep(0);
+            // navigate(`/movies/${movieForEdit.id}`);
+            // setActiveStep(0);
         }
     };
-
-    // const handleGoBack = () => {
-    //     if (location.pathname.includes('edit')) {
-    //         navigate(`/movies/${movieForEdit.id}`);
-    //         clearMovieForEdit();
-    //     } else {
-    //         navigate(-1);
-    //         clearMovieForEdit();
-    //     }
-    // };
-
-    // * Old validation without Stepper
-    // const movieValidationShema = Yup.object().shape({
-    //     title: Yup.string().required('Title is required'),
-    //     country: Yup.string().required('Country is required'),
-    //     directors: Yup.array()
-    //         .of(Yup.string().required('At least one director is required'))
-    //         .min(1),
-    //     actors: Yup.array()
-    //         .of(Yup.string().required('At least one actor is required'))
-    //         .min(1),
-    //     studios: Yup.array()
-    //         .of(Yup.string().required('At least one studio is required'))
-    //         .min(1),
-    //     releaseDate: Yup.string().required('Release date is required'),
-    //     poster: Yup.string()
-    //         .url('Invalid URL')
-    //         .required('Poster URL is required'),
-    // });
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -171,6 +132,7 @@ function MoviesForm() {
                 initialValues={structuredClone(movieForEdit)}
                 enableReinitialize
                 validationSchema={currentValidationSchema}
+                validateOnMount
                 onSubmit={handleSubmitForm}
             >
                 {({
@@ -437,10 +399,7 @@ function MoviesForm() {
                             )}
 
                             {/* NAVIGATION Buttons */}
-                            <Grid
-                                size={{ xs: 12 }}
-                                sx={{ mt: 2 }} /* item xs={12} sx={{ mt: 2 }} */
-                            >
+                            <Grid size={{ xs: 12 }} sx={{ mt: 2 }}>
                                 <Stack
                                     direction='row'
                                     justifyContent='space-between'
@@ -458,7 +417,7 @@ function MoviesForm() {
                                         <Button
                                             type='button'
                                             variant='outlined'
-                                            onClick={() => navigate('/movies')}
+                                            onClick={handleExit}
                                             startIcon={<UndoIcon />}
                                         >
                                             Exit
@@ -466,11 +425,10 @@ function MoviesForm() {
 
                                         <Button
                                             type='button'
-                                            disabled={location.pathname.includes(
-                                                'edit',
-                                            )}
+                                            disabled={isEdit}
                                             onClick={() => {
                                                 resetForm();
+                                                setActiveStep(0);
                                             }}
                                             variant='contained'
                                             color='error'
@@ -484,9 +442,6 @@ function MoviesForm() {
                                                 type='button'
                                                 variant='contained'
                                                 disabled={!isValid}
-                                                // onClick={() =>
-                                                //     handleNext(validateForm)
-                                                // }
                                                 onClick={(e) =>
                                                     handleNext(e, validateForm)
                                                 }
