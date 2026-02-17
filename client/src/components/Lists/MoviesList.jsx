@@ -78,12 +78,14 @@ function MoviesList() {
                     Back to Home
                 </Button>
             </Box>
-            <Paper
-                elevation={2}
+            <Box
+                // elevation={10}
                 sx={{
                     width: '100%',
                     bgcolor: 'background.paper',
                     borderRadius: 2,
+                    maxHeight: 390,
+                    overflow: 'auto',
                 }}
             >
                 <List sx={{ width: '100%', py: 0 }}>
@@ -175,7 +177,7 @@ function MoviesList() {
                         </Box>
                     ))}
                 </List>
-            </Paper>
+            </Box>
 
             <ConfirmDrawer
                 open={open}
