@@ -32,7 +32,7 @@ function Layout() {
 
             <Grid container sx={{ flexGrow: 1 }}>
                 <Grid
-                    size={{ xs: 12, md: 1.9 }}
+                    size={{ xs: 12, md: 1.8 }}
                     sx={{
                         borderRight: 1,
                         borderColor: 'divider',
@@ -43,7 +43,7 @@ function Layout() {
                 </Grid>
 
                 <Grid
-                    size={{ xs: 12, md: 6.3 }}
+                    size={{ xs: 12, md: 6.7 }}
                     component='main'
                     sx={{ p: 2, bgcolor: 'background.paper' }}
                 >
@@ -51,7 +51,7 @@ function Layout() {
                 </Grid>
 
                 <Grid
-                    size={{ xs: 12, md: 3.8 }}
+                    size={{ xs: 12, md: 3.5 }}
                     sx={{
                         borderLeft: 1,
                         borderColor: 'divider',

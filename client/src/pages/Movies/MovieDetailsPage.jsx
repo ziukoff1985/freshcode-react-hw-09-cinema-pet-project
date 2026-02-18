@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -13,6 +13,7 @@ import {
     CardMedia,
     alpha,
     Avatar,
+    keyframes,
 } from '@mui/material';
 import {
     ArrowBack as BackIcon,
@@ -20,8 +21,8 @@ import {
     Cake,
     DeleteForever,
     Language,
+    PlayCircleOutline,
 } from '@mui/icons-material';
-// import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import { deleteMovie, getMovieById } from '../../store/thunks/moviesThunks';
 import {
@@ -32,12 +33,22 @@ import Loader from '../../components/UI/Loader';
 import ErrorMessage from '../../components/UI/ErrorMessage';
 import useConfirm from '../../hooks/useConfirm';
 import ConfirmDrawer from '../../components/UI/ConfirmDrawer';
+import MovieTrailerModal from '../../components/UI/MovieTrailerModal';
+
+// Створюємо ефект пульсації за допомогою Keyframes
+const pulse = keyframes`
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.7); }
+  70% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(33, 150, 243, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(33, 150, 243, 0); }
+`;
 
 function MovieDetailsPage() {
     const { id } = useParams();
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const [isTrailerOpen, setIsTrailerOpen] = useState(false);
 
     const currentMovie = useSelector((state) => state.moviesList.currentMovie);
     const error = useSelector((state) => state.moviesList.error);
@@ -107,7 +118,7 @@ function MovieDetailsPage() {
                         overflow: 'hidden',
                     }}
                 >
-                    <Grid container spacing={5} alignItems='stretch'>
+                    <Grid container spacing={3} alignItems='stretch'>
                         {/* Movie's photo */}
                         <Grid size={{ xs: 12, md: 4.5 }}>
                             <Card
@@ -160,7 +171,7 @@ function MovieDetailsPage() {
                                     </Typography>
                                 </Box>
 
-                                <Box sx={{ display: 'flex', gap: 2 }}>
+                                <Box sx={{ display: 'flex', gap: 1.5 }}>
                                     <Button
                                         variant={
                                             location.pathname.includes('edit')
@@ -176,7 +187,7 @@ function MovieDetailsPage() {
                                         }}
                                     >
                                         {location.pathname.includes('edit')
-                                            ? 'Now Editing...'
+                                            ? 'Editing...'
                                             : 'Edit'}
                                     </Button>
                                     <Button
@@ -191,6 +202,23 @@ function MovieDetailsPage() {
                                         }}
                                     >
                                         Delete
+                                    </Button>
+                                    <Button
+                                        variant='contained'
+                                        size='medium'
+                                        startIcon={<PlayCircleOutline />}
+                                        onClick={() => setIsTrailerOpen(true)}
+                                        sx={{
+                                            background:
+                                                'linear-gradient(45deg, #1a237e 30%, #2196F3 90%)',
+                                            boxShadow:
+                                                '0 4px 14px 0 rgba(0,118,255,0.39)',
+                                            animation: `${pulse} 2s infinite`, // Застосування анімації
+                                            fontWeight: 'bold',
+                                            px: 3,
+                                        }}
+                                    >
+                                        Watch Trailer
                                     </Button>
                                 </Box>
                             </Box>
@@ -388,6 +416,14 @@ function MovieDetailsPage() {
                     </Grid>
                 </Paper>
             </Box>
+
+            {/* Компонент модального вікна трейлера */}
+            <MovieTrailerModal
+                open={isTrailerOpen}
+                onClose={() => setIsTrailerOpen(false)}
+                trailerUrl={currentMovie.trailerUrl} // Припускаємо, що це поле є в моделі
+            />
+
             <ConfirmDrawer
                 open={open}
                 title='Delete movie'

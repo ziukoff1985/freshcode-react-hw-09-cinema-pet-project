@@ -408,97 +408,56 @@ function MoviesForm() {
                                         Back
                                     </Button>
 
-                                    <Stack direction='row' spacing={2}>
-                                        <Button
-                                            type='button'
-                                            variant='outlined'
-                                            onClick={handleExit}
-                                            startIcon={<UndoIcon />}
-                                        >
-                                            Exit
-                                        </Button>
+                                    {/* <Stack direction='row' spacing={2}> */}
+                                    <Button
+                                        type='button'
+                                        variant='outlined'
+                                        onClick={handleExit}
+                                        startIcon={<UndoIcon />}
+                                    >
+                                        Exit
+                                    </Button>
 
+                                    <Button
+                                        type='button'
+                                        disabled={isEdit}
+                                        onClick={() => {
+                                            resetForm();
+                                            setActiveStep(0);
+                                        }}
+                                        variant='contained'
+                                        color='error'
+                                        startIcon={<RestartAltIcon />}
+                                    >
+                                        Reset
+                                    </Button>
+
+                                    {!isLastStep ? (
                                         <Button
                                             type='button'
-                                            disabled={isEdit}
-                                            onClick={() => {
-                                                resetForm();
-                                                setActiveStep(0);
-                                            }}
                                             variant='contained'
-                                            color='error'
-                                            startIcon={<RestartAltIcon />}
+                                            disabled={!isValid}
+                                            onClick={(e) =>
+                                                handleNext(e, validateForm)
+                                            }
+                                            endIcon={<NavigateNextIcon />}
                                         >
-                                            Reset
+                                            Next
                                         </Button>
-
-                                        {!isLastStep ? (
-                                            <Button
-                                                type='button'
-                                                variant='contained'
-                                                disabled={!isValid}
-                                                onClick={(e) =>
-                                                    handleNext(e, validateForm)
-                                                }
-                                                endIcon={<NavigateNextIcon />}
-                                            >
-                                                Next
-                                            </Button>
-                                        ) : (
-                                            <Button
-                                                variant='contained'
-                                                color='success'
-                                                type='submit'
-                                                disabled={!isValid}
-                                                startIcon={<SaveIcon />}
-                                            >
-                                                {values.id ? 'Update' : 'Save'}
-                                            </Button>
-                                        )}
-                                    </Stack>
+                                    ) : (
+                                        <Button
+                                            variant='contained'
+                                            color='success'
+                                            type='submit'
+                                            disabled={!isValid}
+                                            startIcon={<SaveIcon />}
+                                        >
+                                            {values.id ? 'Update' : 'Save'}
+                                        </Button>
+                                    )}
+                                    {/* </Stack> */}
                                 </Stack>
                             </Grid>
-
-                            {/* Buttons */}
-                            {/* <Grid size={{ xs: 4 }}>
-                                <Button
-                                    variant='contained'
-                                    color='success'
-                                    fullWidth
-                                    type='submit'
-                                    disabled={!isValid}
-                                    startIcon={<SaveIcon />}
-                                >
-                                    {values.id ? 'Update' : 'Save'}
-                                </Button>
-                            </Grid>
-                            <Grid size={{ xs: 4 }}>
-                                <Button
-                                    onClick={handleGoBack}
-                                    variant='contained'
-                                    color='primary'
-                                    fullWidth
-                                    startIcon={<UndoIcon />}
-                                >
-                                    Go Back
-                                </Button>
-                            </Grid>
-                            <Grid size={{ xs: 4 }}>
-                                <Button
-                                    disabled={location.pathname.includes(
-                                        'edit',
-                                    )}
-                                    onClick={() => {
-                                        resetForm();
-                                    }}
-                                    variant='contained'
-                                    color='error'
-                                    fullWidth
-                                    startIcon={<RestartAltIcon />}
-                                >
-                                    Reset
-                                </Button>
-                            </Grid> */}
                         </Grid>
                     </Form>
                 )}
