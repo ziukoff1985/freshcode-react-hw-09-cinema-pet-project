@@ -1,4 +1,11 @@
-import { Dialog, DialogContent, IconButton, Box } from '@mui/material';
+import {
+    Dialog,
+    DialogContent,
+    IconButton,
+    Box,
+    Fade,
+    keyframes,
+} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 // function extractYouTubeId(url) {
@@ -9,6 +16,18 @@ import CloseIcon from '@mui/icons-material/Close';
 
 //     return match ? match[1] : null;
 // }
+
+// 🎬 Zoom-in animation
+const zoomIn = keyframes`
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
 
 function MovieTrailerModal({ open, onClose, trailerUrl }) {
     // const videoId = extractYouTubeId(trailerUrl);
@@ -22,11 +41,18 @@ function MovieTrailerModal({ open, onClose, trailerUrl }) {
             maxWidth='md'
             fullWidth
             slotProps={{
+                backdrop: {
+                    sx: {
+                        backdropFilter: 'blur(6px)', // 🔥 cinematic blur
+                        backgroundColor: 'rgba(0,0,0,0.7)',
+                    },
+                },
                 paper: {
                     sx: {
                         bgcolor: 'black',
                         position: 'relative',
-                        overflow: 'visible',
+                        overflow: 'hidden',
+                        borderRadius: 4,
                     },
                 },
             }}
@@ -35,9 +61,10 @@ function MovieTrailerModal({ open, onClose, trailerUrl }) {
                 onClick={onClose}
                 sx={{
                     position: 'absolute',
-                    right: -40,
-                    top: -40,
+                    right: 8,
+                    top: 8,
                     color: 'white',
+                    zIndex: 10,
                 }}
             >
                 <CloseIcon />
@@ -47,27 +74,66 @@ function MovieTrailerModal({ open, onClose, trailerUrl }) {
                 <Box
                     sx={{
                         position: 'relative',
-                        pt: '56.25%',
+                        pt: '56.25%', // 16:9
+                        overflow: 'hidden',
                     }}
                 >
                     {embedUrl && (
-                        <iframe
-                            src={embedUrl}
-                            title='Movie Trailer'
-                            allow='autoplay; encrypted-media'
-                            allowFullScreen
-                            style={{
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                width: '100%',
-                                height: '100%',
-                                border: 0,
-                            }}
-                        />
+                        <Fade in={open} timeout={1500}>
+                            <Box
+                                sx={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '100%',
+                                    height: '100%',
+                                    animation: `${zoomIn} 500ms ease-out`,
+                                }}
+                            >
+                                <iframe
+                                    src={embedUrl}
+                                    title='Movie Trailer'
+                                    allow='autoplay; encrypted-media'
+                                    allowFullScreen
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        border: 0,
+                                    }}
+                                />
+                            </Box>
+                        </Fade>
                     )}
                 </Box>
             </DialogContent>
+
+            {/* <Fade in={open} timeout={400}>
+                <DialogContent sx={{ p: 0, lineHeight: 0 }}>
+                    <Box
+                        sx={{
+                            position: 'relative',
+                            pt: '56.25%',
+                        }}
+                    >
+                        {embedUrl && (
+                            <iframe
+                                src={embedUrl}
+                                title='Movie Trailer'
+                                allow='autoplay; encrypted-media'
+                                allowFullScreen
+                                style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '100%',
+                                    height: '100%',
+                                    border: 0,
+                                }}
+                            />
+                        )}
+                    </Box>
+                </DialogContent>
+            </Fade> */}
         </Dialog>
     );
 }

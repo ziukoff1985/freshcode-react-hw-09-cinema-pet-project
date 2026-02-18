@@ -35,7 +35,7 @@ import useConfirm from '../../hooks/useConfirm';
 import ConfirmDrawer from '../../components/UI/ConfirmDrawer';
 import MovieTrailerModal from '../../components/UI/MovieTrailerModal';
 
-// Створюємо ефект пульсації за допомогою Keyframes
+// Pulse animation
 const pulse = keyframes`
   0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.7); }
   70% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(33, 150, 243, 0); }
@@ -213,7 +213,7 @@ function MovieDetailsPage() {
                                                 'linear-gradient(45deg, #1a237e 30%, #2196F3 90%)',
                                             boxShadow:
                                                 '0 4px 14px 0 rgba(0,118,255,0.39)',
-                                            animation: `${pulse} 2s infinite`, // Застосування анімації
+                                            animation: `${pulse} 2s infinite`,
                                             fontWeight: 'bold',
                                             px: 3,
                                         }}
@@ -417,13 +417,14 @@ function MovieDetailsPage() {
                 </Paper>
             </Box>
 
-            {/* Компонент модального вікна трейлера */}
+            {/* Trailer modal */}
             <MovieTrailerModal
                 open={isTrailerOpen}
                 onClose={() => setIsTrailerOpen(false)}
-                trailerUrl={currentMovie.trailerUrl} // Припускаємо, що це поле є в моделі
+                trailerUrl={currentMovie.trailerUrl}
             />
 
+            {/* Confirmation drawer */}
             <ConfirmDrawer
                 open={open}
                 title='Delete movie'

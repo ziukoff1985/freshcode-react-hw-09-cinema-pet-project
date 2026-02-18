@@ -41,7 +41,14 @@ function NavBar() {
                 bgcolor: 'background.paper',
             }}
         >
-            <Box sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box
+                sx={{
+                    p: 3,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                }}
+            >
                 <LogoIcon color='primary' sx={{ fontSize: 32 }} />
                 <Typography
                     variant='h6'
