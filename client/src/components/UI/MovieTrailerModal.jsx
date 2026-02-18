@@ -21,7 +21,7 @@ import CloseIcon from '@mui/icons-material/Close';
 const zoomIn = keyframes`
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.9);
   }
   to {
     opacity: 1;
@@ -51,7 +51,7 @@ function MovieTrailerModal({ open, onClose, trailerUrl }) {
                     sx: {
                         bgcolor: 'black',
                         position: 'relative',
-                        overflow: 'hidden',
+                        overflow: 'visible',
                         borderRadius: 4,
                     },
                 },
@@ -61,13 +61,13 @@ function MovieTrailerModal({ open, onClose, trailerUrl }) {
                 onClick={onClose}
                 sx={{
                     position: 'absolute',
-                    right: 8,
-                    top: 8,
+                    right: -50,
+                    top: -50,
                     color: 'white',
                     zIndex: 10,
                 }}
             >
-                <CloseIcon />
+                <CloseIcon fontSize='large' />
             </IconButton>
 
             <DialogContent sx={{ p: 0, lineHeight: 0 }}>
@@ -79,7 +79,7 @@ function MovieTrailerModal({ open, onClose, trailerUrl }) {
                     }}
                 >
                     {embedUrl && (
-                        <Fade in={open} timeout={1500}>
+                        <Fade in={open} timeout={5000}>
                             <Box
                                 sx={{
                                     position: 'absolute',
