@@ -30,7 +30,7 @@ function Layout() {
                 <Header />
             </Paper>
 
-            <Grid container sx={{ flexGrow: 1 }}>
+            <Grid container sx={{ flexGrow: 1, minHeight: '80%' }}>
                 <Grid
                     size={{ xs: 12, md: 1.8 }}
                     sx={{
@@ -45,6 +45,7 @@ function Layout() {
                 <Grid
                     size={{ xs: 12, md: 6.7 }}
                     component='main'
+                    minHeight='100%'
                     sx={{ p: 2, bgcolor: 'background.paper' }}
                 >
                     <Outlet />
