@@ -4,7 +4,7 @@ import {
     IconButton,
     Box,
     Fade,
-    keyframes,
+    /* keyframes, */
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -18,16 +18,16 @@ import CloseIcon from '@mui/icons-material/Close';
 // }
 
 // 🎬 Zoom-in animation
-const zoomIn = keyframes`
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-`;
+// const zoomIn = keyframes`
+//   from {
+//     opacity: 0;
+//     transform: scale(0.9);
+//   }
+//   to {
+//     opacity: 1;
+//     transform: scale(1);
+//   }
+// `;
 
 function MovieTrailerModal({ open, onClose, trailerUrl }) {
     // const videoId = extractYouTubeId(trailerUrl);
@@ -52,7 +52,7 @@ function MovieTrailerModal({ open, onClose, trailerUrl }) {
                         bgcolor: 'black',
                         position: 'relative',
                         overflow: 'visible',
-                        borderRadius: 4,
+                        // borderRadius: 4,
                     },
                 },
             }}
@@ -87,7 +87,9 @@ function MovieTrailerModal({ open, onClose, trailerUrl }) {
                                     left: 0,
                                     width: '100%',
                                     height: '100%',
-                                    animation: `${zoomIn} 500ms ease-out`,
+                                    borderRadius: 4,
+
+                                    // animation: `${zoomIn} 500ms ease-out`,
                                 }}
                             >
                                 <iframe
@@ -99,6 +101,7 @@ function MovieTrailerModal({ open, onClose, trailerUrl }) {
                                         width: '100%',
                                         height: '100%',
                                         border: 0,
+                                        borderRadius: 4,
                                     }}
                                 />
                             </Box>
