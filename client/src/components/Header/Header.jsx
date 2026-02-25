@@ -2,6 +2,7 @@ import { IconButton, Typography, Box, useTheme, Tooltip } from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { useColorMode } from '../../context/ThemeContext';
+import { Link } from 'react-router-dom';
 
 function Header() {
     const { toggleColorMode } = useColorMode();
@@ -17,7 +18,19 @@ function Header() {
                 px: 2,
             }}
         >
-            <Typography variant='h6'>CinemaLab</Typography>
+            <Typography
+                component={Link}
+                to='/'
+                variant='h6'
+                sx={{
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    fontWeight: '700',
+                }}
+            >
+                CinemaLab
+            </Typography>
+
             <Tooltip
                 title={
                     isDarkMode ? 'Switch to Light mode' : 'Switch to Dark mode'
