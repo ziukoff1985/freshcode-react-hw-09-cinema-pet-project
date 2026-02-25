@@ -23,9 +23,24 @@ function Header() {
                     isDarkMode ? 'Switch to Light mode' : 'Switch to Dark mode'
                 }
             >
-                <IconButton onClick={toggleColorMode} color='inherit'>
+                {/* <IconButton onClick={toggleColorMode} color='inherit'>
                     {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-                </IconButton>
+                </IconButton> */}
+
+                <Box
+                    onClick={toggleColorMode}
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        // gap: 1,
+                        cursor: 'pointer',
+                    }}
+                >
+                    <IconButton color='inherit'>
+                        {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+                    </IconButton>
+                    <Typography variant='body1'>Theme</Typography>
+                </Box>
             </Tooltip>
         </Box>
     );

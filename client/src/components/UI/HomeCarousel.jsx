@@ -7,7 +7,7 @@ function HomeCarousel() {
     return (
         <Box
             sx={{
-                // borderRadius: 2,
+                borderRadius: 1,
                 overflow: 'hidden',
                 boxShadow: '0px 0px 64px 1px rgba(0,0,0,0.3)',
                 mx: { xs: 1, md: 0 },
@@ -22,16 +22,7 @@ function HomeCarousel() {
                 navButtonsAlwaysVisible={true}
                 sx={{
                     width: '100%',
-                    height: '100%', // Карусель тепер займає весь Box
-                    // '& .css-1abcde-MuiPaper-root': {
-                    //     // Це внутрішній клас бібліотеки (може змінюватись)
-                    //     height: '100%',
-                    // },
-                    // // Або використовуйте універсальний селектор для всіх дітей каруселі:
-                    // '& div': {
-                    //     height: '100%',
-                    // },
-                    // height: { xs: 350, md: 490 },
+                    height: '100%',
                     objectFit: 'cover',
                     overflow: 'hidden',
                 }}
@@ -51,7 +42,6 @@ function CarouselItem({ item }) {
             elevation={0}
             sx={{
                 position: 'relative',
-                // height: { xs: 350, md: 490 },
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
